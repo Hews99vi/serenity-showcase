@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import HeroSection from "@/components/home/HeroSection";
+import BrandStory from "@/components/home/BrandStory";
+import ServicesPreview from "@/components/home/ServicesPreview";
+import FeaturedWork from "@/components/home/FeaturedWork";
+import CTASection from "@/components/home/CTASection";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
-import BookingModal from "@/components/BookingModal";
 
 const Index = () => {
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-
   return (
     <>
       <Helmet>
@@ -32,15 +32,14 @@ const Index = () => {
 
       <main className="overflow-hidden">
         <Navbar />
-        <Hero onOpenBooking={() => setIsBookingOpen(true)} />
+        <HeroSection />
+        <BrandStory />
+        <ServicesPreview />
+        <FeaturedWork />
+        <CTASection />
         <Testimonials />
         <Footer />
       </main>
-
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
     </>
   );
 };
