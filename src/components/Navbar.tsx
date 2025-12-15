@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/serenity-logo.png";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Services", href: "#services" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,14 +23,6 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsOpen(false);
-  };
 
   return (
     <nav
@@ -42,50 +35,39 @@ const Navbar = () => {
       <div className="section-container">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#home");
-            }}
-            className="flex items-center"
-          >
+          <Link to="/" className="flex items-center">
             <img
               src={logo}
               alt="Serenity Wedding Films"
               className="h-8 md:h-10 w-auto brightness-0 invert"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
-                className="text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-light transition-colors duration-300 link-underline"
+                to={link.href}
+                className={`text-sm tracking-widest uppercase font-light transition-colors duration-300 link-underline ${
+                  location.pathname === link.href
+                    ? "text-cream"
+                    : "text-cream/80 hover:text-cream"
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* Reserve Now Button */}
           <div className="hidden lg:block">
-            <a
-              href="#quote"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("#quote");
-              }}
+            <Link
+              to="/contact"
               className="inline-flex items-center gap-2 bg-cream text-charcoal px-6 py-3 text-sm tracking-widest uppercase font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105"
             >
               Reserve Now
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -106,29 +88,27 @@ const Navbar = () => {
         >
           <div className="flex flex-col items-center justify-center h-full gap-8">
             {navLinks.map((link, index) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
-                className="text-cream text-2xl font-serif tracking-wide transition-all duration-300 hover:text-cream/70"
+                to={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`text-2xl font-serif tracking-wide transition-all duration-300 ${
+                  location.pathname === link.href
+                    ? "text-cream"
+                    : "text-cream/70 hover:text-cream"
+                }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#quote"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("#quote");
-              }}
+            <Link
+              to="/contact"
+              onClick={() => setIsOpen(false)}
               className="mt-4 inline-flex items-center gap-2 bg-cream text-charcoal px-8 py-4 text-sm tracking-widest uppercase font-medium"
             >
               Reserve Now
-            </a>
+            </Link>
           </div>
           <button
             onClick={() => setIsOpen(false)}

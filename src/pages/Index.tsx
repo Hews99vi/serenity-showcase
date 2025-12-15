@@ -2,12 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
-import QuoteSection from "@/components/QuoteSection";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BookingModal from "@/components/BookingModal";
 
@@ -38,12 +33,7 @@ const Index = () => {
       <main className="overflow-hidden">
         <Navbar />
         <Hero onOpenBooking={() => setIsBookingOpen(true)} />
-        <About />
-        <Portfolio />
-        <Services />
         <Testimonials />
-        <QuoteSection />
-        <Contact />
         <Footer />
       </main>
 
