@@ -17,13 +17,16 @@ const Hero = ({ onOpenBooking }: HeroProps) => {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
-        }}
-      />
+      {/* Video Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <iframe
+          src="https://galleries.vidflow.co/videos/c6b98410?autoplay=1&muted=1&loop=1&controls=0"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full pointer-events-none scale-125"
+          frameBorder="0"
+          allow="autoplay; fullscreen"
+          allowFullScreen
+        />
+      </div>
 
       {/* Gradient Overlay */}
       <div className="gradient-overlay-dark" />
