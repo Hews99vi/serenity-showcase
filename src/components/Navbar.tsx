@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 import logo from "@/assets/serenity-logo.png";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Our Work", href: "#portfolio" },
-  { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
+  { label: "Portfolio", href: "#portfolio" },
+  { label: "Services", href: "#services" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
@@ -34,14 +33,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-primary/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+          ? "bg-charcoal/95 backdrop-blur-md py-3"
+          : "bg-transparent py-6"
       }`}
     >
       <div className="section-container">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <a
             href="#home"
@@ -54,12 +53,12 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Serenity Wedding Films"
-              className="h-10 md:h-12 w-auto brightness-0 invert"
+              className="h-8 md:h-10 w-auto brightness-0 invert"
             />
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -68,44 +67,45 @@ const Navbar = () => {
                   e.preventDefault();
                   scrollToSection(link.href);
                 }}
-                className="text-cream/90 hover:text-cream text-sm font-medium tracking-wide transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-cream hover:after:w-full after:transition-all after:duration-300"
+                className="text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-light transition-colors duration-300 link-underline"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* WhatsApp Button & Mobile Menu */}
-          <div className="flex items-center gap-4">
+          {/* Reserve Now Button */}
+          <div className="hidden lg:block">
             <a
-              href="https://wa.me/94771234567?text=Hi,%20I'm%20interested%20in%20your%20wedding%20films.%20Can%20we%20discuss%20my%20upcoming%20wedding?"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105"
+              href="#quote"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("#quote");
+              }}
+              className="inline-flex items-center gap-2 bg-cream text-charcoal px-6 py-3 text-sm tracking-widest uppercase font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105"
             >
-              <MessageCircle className="w-4 h-4" />
-              <span className="hidden sm:inline">WhatsApp</span>
+              Reserve Now
             </a>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-cream"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 text-cream"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-96 pb-6" : "max-h-0"
+          className={`lg:hidden fixed inset-0 top-0 bg-charcoal/98 backdrop-blur-lg transition-all duration-500 ${
+            isOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
-          <div className="flex flex-col gap-4 pt-4">
-            {navLinks.map((link) => (
+          <div className="flex flex-col items-center justify-center h-full gap-8">
+            {navLinks.map((link, index) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -113,12 +113,30 @@ const Navbar = () => {
                   e.preventDefault();
                   scrollToSection(link.href);
                 }}
-                className="text-cream/90 hover:text-cream text-lg font-medium tracking-wide transition-colors duration-200 py-2"
+                className="text-cream text-2xl font-serif tracking-wide transition-all duration-300 hover:text-cream/70"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {link.label}
               </a>
             ))}
+            <a
+              href="#quote"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("#quote");
+              }}
+              className="mt-4 inline-flex items-center gap-2 bg-cream text-charcoal px-8 py-4 text-sm tracking-widest uppercase font-medium"
+            >
+              Reserve Now
+            </a>
           </div>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-6 right-6 p-2 text-cream"
+            aria-label="Close menu"
+          >
+            <X className="w-8 h-8" />
+          </button>
         </div>
       </div>
     </nav>

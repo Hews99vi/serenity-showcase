@@ -1,77 +1,83 @@
-import { Film, Sparkles } from "lucide-react";
+import { Film } from "lucide-react";
 
 const About = () => {
   return (
-    <section id="about" className="section-padding bg-muted">
+    <section id="about" className="section-padding bg-charcoal">
       <div className="section-container">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-foreground mb-4">
-            About Serenity Wedding Films
+        <div className="text-center mb-20">
+          <span className="text-cream/50 text-sm tracking-[0.3em] uppercase font-light mb-4 block">
+            About Us
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-cream mb-6">
+            Serenity Wedding Films
           </h2>
-          <div className="w-24 h-px bg-accent mx-auto" />
+          <div className="w-20 h-px bg-cream/30 mx-auto" />
         </div>
 
-        {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
-          {/* Introduction */}
-          <div className="space-y-6">
-            <p className="text-lg text-foreground/80 leading-relaxed">
-              We're stepping into a new chapter with a refreshed identity
-              crafted with elegance, warmth, and timeless storytelling. At
-              Serenity Wedding Films, every love story becomes a cinematic
-              journey filled with emotion and beauty.
-            </p>
-            <p className="text-lg text-foreground/80 leading-relaxed">
-              We believe your wedding film should feel personal, meaningful, and
-              deeply connected to who you are. Our approach combines artistic
-              vision with genuine moments to create something truly special.
-            </p>
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
+          {/* Left Column - Image */}
+          <div className="relative">
+            <div className="aspect-[4/5] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Cinematic wedding moment"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+            {/* Decorative Frame */}
+            <div className="absolute -bottom-6 -right-6 w-full h-full border border-cream/20 -z-10" />
           </div>
 
-          {/* Philosophy Card */}
-          <div className="bg-primary text-primary-foreground p-8 md:p-10 rounded-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full -translate-y-1/2 translate-x-1/2" />
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
-                <Sparkles className="w-6 h-6 text-accent" />
-                <h3 className="text-xl font-serif font-medium">
-                  Our Philosophy
-                </h3>
-              </div>
-              <p className="text-primary-foreground/90 leading-relaxed italic text-lg">
-                "Capturing timeless moments, one frame at a time. We believe
-                wedding filmmaking is more than documenting events—it's creating
-                an emotional journey. Our goal is to preserve the feelings, the
-                atmosphere, and the unique charm of your union in a film you
-                will cherish for life."
+          {/* Right Column - Text */}
+          <div className="space-y-8">
+            <div>
+              <h3 className="font-script text-3xl md:text-4xl text-cream/90 mb-6">
+                Our Story
+              </h3>
+              <p className="text-cream/70 text-lg leading-relaxed mb-6">
+                We're stepping into a new chapter with a refreshed identity
+                crafted with elegance, warmth, and timeless storytelling. At
+                Serenity Wedding Films, every love story becomes a cinematic
+                journey filled with emotion and beauty.
+              </p>
+              <p className="text-cream/70 text-lg leading-relaxed">
+                We believe your wedding film should feel personal, meaningful, and
+                deeply connected to who you are. Our approach combines artistic
+                vision with genuine moments to create something truly special.
               </p>
             </div>
+
+            {/* Philosophy Quote */}
+            <blockquote className="border-l-2 border-cream/30 pl-6 py-4">
+              <p className="font-script text-2xl text-cream/80 italic leading-relaxed">
+                "Capturing timeless moments, one frame at a time."
+              </p>
+            </blockquote>
           </div>
         </div>
 
         {/* 4K Quality Feature */}
-        <div className="bg-background border border-border rounded-2xl p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
-          <div className="relative z-10 grid md:grid-cols-[auto,1fr] gap-8 items-center">
-            <div className="flex items-center justify-center w-20 h-20 bg-accent rounded-2xl">
-              <Film className="w-10 h-10 text-accent-foreground" />
+        <div className="bg-cream/5 backdrop-blur-sm border border-cream/10 p-10 md:p-16">
+          <div className="grid md:grid-cols-[auto,1fr] gap-10 items-center">
+            <div className="flex items-center justify-center w-24 h-24 bg-cream text-charcoal">
+              <Film className="w-12 h-12" />
             </div>
             <div>
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-sm font-bold tracking-wider text-accent-foreground bg-accent px-3 py-1 rounded-full">
-                  4K QUALITY
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-xs font-medium tracking-[0.2em] text-charcoal bg-cream px-4 py-2 uppercase">
+                  4K Quality
                 </span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-serif font-medium text-foreground mb-4">
+              <h3 className="text-2xl md:text-3xl font-serif font-medium text-cream mb-4">
                 Capturing Your Love in 4K
               </h3>
-              <p className="text-foreground/80 leading-relaxed max-w-3xl">
+              <p className="text-cream/70 leading-relaxed max-w-3xl text-lg">
                 4K filmmaking sets a new standard in preserving memories. With
                 four times the resolution of Full HD, every detail—from the
                 texture of your dress to the emotions in your loved ones'
-                eyes—is captured with breathtaking clarity. Choosing 4K means
-                future-proofing your memories for generations to come.
+                eyes—is captured with breathtaking clarity.
               </p>
             </div>
           </div>
