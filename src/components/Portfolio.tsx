@@ -85,55 +85,57 @@ const Portfolio = () => {
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
 
   return (
-    <section id="portfolio" className="section-padding bg-primary">
+    <section id="portfolio" className="section-padding bg-charcoal">
       <div className="section-container">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-primary-foreground mb-4">
+        <div className="text-center mb-20">
+          <span className="text-cream/50 text-sm tracking-[0.3em] uppercase font-light mb-4 block">
             Our Work
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-cream mb-6">
+            Portfolio
           </h2>
-          <div className="w-24 h-px bg-accent mx-auto mb-6" />
-          <p className="text-lg text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed">
+          <div className="w-20 h-px bg-cream/30 mx-auto mb-8" />
+          <p className="text-lg text-cream/70 max-w-3xl mx-auto font-light leading-relaxed">
             Every couple has a unique rhythm and our films are crafted to
             reflect it. From intimate coastside ceremonies to elegant hotel
-            celebrations, we focus on genuine emotion, natural storytelling, and
-            timeless cinematics.
+            celebrations.
           </p>
         </div>
 
         {/* Portfolio Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {portfolioItems.map((item, index) => (
             <div
               key={item.id}
               onClick={() => setSelectedItem(item)}
-              className="group cursor-pointer relative aspect-[4/3] rounded-2xl overflow-hidden"
+              className="group cursor-pointer relative aspect-[4/5] overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Thumbnail */}
               <img
                 src={item.thumbnail}
                 alt={`${item.coupleName} - ${item.eventType}`}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent opacity-60 group-hover:opacity-90 transition-all duration-500" />
 
               {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 bg-accent/90 rounded-full flex items-center justify-center transform scale-90 opacity-80 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300">
-                  <Play className="w-7 h-7 text-accent-foreground ml-1" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <div className="w-20 h-20 border-2 border-cream flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-500">
+                  <Play className="w-8 h-8 text-cream ml-1" />
                 </div>
               </div>
 
               {/* Info */}
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="text-xs font-medium text-accent uppercase tracking-wider">
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <span className="text-xs font-medium text-cream/60 uppercase tracking-[0.2em] mb-2 block">
                   {item.eventType}
                 </span>
-                <h3 className="text-xl font-serif font-medium text-white mt-1">
+                <h3 className="text-2xl font-serif font-medium text-cream">
                   {item.coupleName}
                 </h3>
               </div>
@@ -144,44 +146,44 @@ const Portfolio = () => {
 
       {/* Video Modal */}
       <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
-        <DialogContent className="max-w-4xl w-full p-0 bg-primary border-none overflow-hidden">
+        <DialogContent className="max-w-5xl w-full p-0 bg-charcoal border-cream/10 overflow-hidden">
           <button
             onClick={() => setSelectedItem(null)}
-            className="absolute top-4 right-4 z-10 w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary transition-colors"
+            className="absolute top-6 right-6 z-10 w-12 h-12 border border-cream/20 flex items-center justify-center text-cream hover:bg-cream hover:text-charcoal transition-all duration-300"
           >
             <X className="w-5 h-5" />
           </button>
 
           {selectedItem && (
-            <div className="p-6">
+            <div className="p-8 md:p-12">
               {/* Video Embed Placeholder */}
-              <div className="aspect-video bg-charcoal-light rounded-lg flex items-center justify-center mb-6">
-                <div className="text-center text-primary-foreground/60">
+              <div className="aspect-video bg-charcoal-light border border-cream/10 flex items-center justify-center mb-8">
+                <div className="text-center text-cream/60">
                   <Play className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p className="text-sm">
+                  <p className="text-sm tracking-widest uppercase">
                     Video will load here
-                    <br />
-                    <span className="text-xs opacity-70">
-                      Replace with your Vimeo embed
-                    </span>
+                  </p>
+                  <p className="text-xs opacity-50 mt-2">
+                    Replace with your Vimeo embed
                   </p>
                 </div>
               </div>
 
               {/* Video Info */}
-              <div className="text-primary-foreground">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-xs font-medium text-accent uppercase tracking-wider">
+              <div className="text-cream">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-xs font-medium text-cream/60 uppercase tracking-[0.2em]">
                     {selectedItem.eventType}
                   </span>
-                  <span className="text-xs text-primary-foreground/50">
+                  <span className="text-cream/30">•</span>
+                  <span className="text-xs text-cream/50">
                     {selectedItem.date}
                   </span>
                 </div>
-                <h3 className="text-2xl font-serif font-medium mb-3">
+                <h3 className="text-3xl font-serif font-medium mb-4">
                   {selectedItem.coupleName}
                 </h3>
-                <p className="text-primary-foreground/80 italic">
+                <p className="text-cream/70 font-script text-xl italic">
                   "{selectedItem.caption}"
                 </p>
               </div>

@@ -16,7 +16,7 @@ const services = [
   },
   {
     icon: Heart,
-    title: "Engagement & Pre-Wedding Stories",
+    title: "Engagement & Pre-Wedding",
     description:
       "Romantic pre-wedding shoots that tell your love story in stunning locations before the big day arrives.",
   },
@@ -34,7 +34,7 @@ const services = [
   },
   {
     icon: Sparkles,
-    title: "Classic Sri Lankan Cultural Weddings",
+    title: "Cultural Weddings",
     description:
       "Expertise in capturing traditional Kandyan, Poruwa, and other cultural wedding ceremonies.",
   },
@@ -48,35 +48,38 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="section-padding bg-background">
+    <section id="services" className="section-padding bg-cream">
       <div className="section-container">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-foreground mb-4">
+        <div className="text-center mb-20">
+          <span className="text-charcoal/50 text-sm tracking-[0.3em] uppercase font-light mb-4 block">
+            What We Offer
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-charcoal mb-6">
             Our Services
           </h2>
-          <div className="w-24 h-px bg-accent mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-20 h-px bg-charcoal/30 mx-auto mb-8" />
+          <p className="text-lg text-charcoal/70 max-w-2xl mx-auto font-light">
             From intimate ceremonies to grand celebrations, we offer a range of
             filmmaking services tailored to your unique vision.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-charcoal/10">
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="group bg-card border border-border rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:shadow-accent/10 hover:-translate-y-1 hover:border-accent/30"
+              className="group bg-cream p-10 md:p-12 transition-all duration-500 hover:bg-charcoal"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
-                <service.icon className="w-7 h-7 text-accent-foreground group-hover:text-primary transition-colors duration-300" />
+              <div className="mb-8">
+                <service.icon className="w-10 h-10 text-charcoal group-hover:text-cream transition-colors duration-500" />
               </div>
-              <h3 className="text-xl font-serif font-medium text-foreground mb-3">
+              <h3 className="text-xl font-serif font-medium text-charcoal group-hover:text-cream mb-4 transition-colors duration-500">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-charcoal/70 group-hover:text-cream/70 leading-relaxed transition-colors duration-500">
                 {service.description}
               </p>
             </div>

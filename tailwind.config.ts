@@ -10,6 +10,7 @@ export default {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
         serif: ["Playfair Display", "Georgia", "serif"],
+        script: ["Cormorant Garamond", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -25,14 +26,41 @@ export default {
         popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
         cream: { DEFAULT: "hsl(var(--cream))" },
-        charcoal: { DEFAULT: "hsl(var(--charcoal))" },
+        charcoal: { DEFAULT: "hsl(var(--charcoal))", light: "hsl(var(--charcoal-light))" },
       },
       borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
       keyframes: {
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
         "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
+        "fade-up": { 
+          from: { opacity: "0", transform: "translateY(40px)" }, 
+          to: { opacity: "1", transform: "translateY(0)" } 
+        },
+        "fade-in": { 
+          from: { opacity: "0" }, 
+          to: { opacity: "1" } 
+        },
+        "scale-in": { 
+          from: { opacity: "0", transform: "scale(0.95)" }, 
+          to: { opacity: "1", transform: "scale(1)" } 
+        },
+        "slide-up": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" }
+        },
       },
-      animation: { "accordion-down": "accordion-down 0.2s ease-out", "accordion-up": "accordion-up 0.2s ease-out" },
+      animation: { 
+        "accordion-down": "accordion-down 0.2s ease-out", 
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-up": "fade-up 0.8s ease-out forwards",
+        "fade-in": "fade-in 1s ease-out forwards",
+        "scale-in": "scale-in 0.6s ease-out forwards",
+        "slide-up": "slide-up 0.6s ease-out forwards",
+      },
+      letterSpacing: {
+        'widest': '0.2em',
+        'ultra': '0.3em',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

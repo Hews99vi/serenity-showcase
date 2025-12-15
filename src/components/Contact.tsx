@@ -1,87 +1,92 @@
-import { MessageCircle, Mail, Instagram, Facebook, Youtube } from "lucide-react";
+import { MessageCircle, Mail, Instagram, Facebook, Youtube, ArrowUpRight } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="section-padding bg-primary">
+    <section id="contact" className="section-padding bg-cream">
       <div className="section-container">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-primary-foreground mb-4">
-            Let's Connect
+        <div className="text-center mb-20">
+          <span className="text-charcoal/50 text-sm tracking-[0.3em] uppercase font-light mb-4 block">
+            Connect
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-charcoal mb-6">
+            Let's Talk
           </h2>
-          <div className="w-24 h-px bg-accent mx-auto mb-6" />
-          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            Ready to capture your special moments? Reach out to us through any
-            of these channels.
-          </p>
+          <div className="w-20 h-px bg-charcoal/30 mx-auto" />
         </div>
 
-        {/* Contact Options */}
-        <div className="max-w-3xl mx-auto">
-          <div className="grid sm:grid-cols-2 gap-6 mb-12">
+        {/* Contact Grid */}
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 mb-16">
             {/* WhatsApp */}
             <a
               href="https://wa.me/94771234567?text=Hi,%20I'm%20interested%20in%20your%20wedding%20films.%20Can%20we%20discuss%20my%20upcoming%20wedding?"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 bg-green-500 hover:bg-green-600 text-white p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+              className="group flex items-center justify-between bg-charcoal text-cream p-8 transition-all duration-500 hover:bg-charcoal/90"
             >
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <MessageCircle className="w-7 h-7" />
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 bg-cream/10 flex items-center justify-center">
+                  <MessageCircle className="w-8 h-8" />
+                </div>
+                <div>
+                  <p className="text-cream/60 text-sm tracking-wider uppercase mb-1">Chat with us</p>
+                  <p className="text-xl font-serif">WhatsApp</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm opacity-80 mb-1">Chat with us</p>
-                <p className="text-lg font-medium">WhatsApp</p>
-              </div>
+              <ArrowUpRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
 
             {/* Email */}
             <a
               href="mailto:hello@serenityweddingfilms.com"
-              className="group flex items-center gap-4 bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] border border-primary-foreground/20"
+              className="group flex items-center justify-between bg-charcoal/5 text-charcoal p-8 transition-all duration-500 hover:bg-charcoal hover:text-cream border border-charcoal/10"
             >
-              <div className="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Mail className="w-7 h-7 text-accent" />
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 bg-charcoal/10 group-hover:bg-cream/10 flex items-center justify-center transition-colors duration-500">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <div>
+                  <p className="text-charcoal/60 group-hover:text-cream/60 text-sm tracking-wider uppercase mb-1 transition-colors duration-500">Email us</p>
+                  <p className="text-xl font-serif">hello@serenity.com</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm opacity-80 mb-1">Email us</p>
-                <p className="text-lg font-medium">hello@serenityweddingfilms.com</p>
-              </div>
+              <ArrowUpRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
           </div>
 
           {/* Social Media */}
           <div className="text-center">
-            <p className="text-primary-foreground/60 text-sm mb-6">
-              Follow us on social media
+            <p className="text-charcoal/60 text-sm tracking-[0.2em] uppercase mb-8">
+              Follow Our Journey
             </p>
             <div className="flex justify-center gap-4">
               <a
                 href="https://instagram.com/serenityweddingfilms"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 bg-primary-foreground/10 hover:bg-accent rounded-full flex items-center justify-center text-primary-foreground hover:text-accent-foreground transition-all duration-300 hover:scale-110"
+                className="w-16 h-16 border border-charcoal/20 flex items-center justify-center text-charcoal hover:bg-charcoal hover:text-cream transition-all duration-300"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-6 h-6" />
               </a>
               <a
                 href="https://facebook.com/serenityweddingfilms"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 bg-primary-foreground/10 hover:bg-accent rounded-full flex items-center justify-center text-primary-foreground hover:text-accent-foreground transition-all duration-300 hover:scale-110"
+                className="w-16 h-16 border border-charcoal/20 flex items-center justify-center text-charcoal hover:bg-charcoal hover:text-cream transition-all duration-300"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="w-6 h-6" />
               </a>
               <a
                 href="https://youtube.com/@serenityweddingfilms"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 bg-primary-foreground/10 hover:bg-accent rounded-full flex items-center justify-center text-primary-foreground hover:text-accent-foreground transition-all duration-300 hover:scale-110"
+                className="w-16 h-16 border border-charcoal/20 flex items-center justify-center text-charcoal hover:bg-charcoal hover:text-cream transition-all duration-300"
                 aria-label="YouTube"
               >
-                <Youtube className="w-5 h-5" />
+                <Youtube className="w-6 h-6" />
               </a>
             </div>
           </div>
