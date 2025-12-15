@@ -19,13 +19,15 @@ const Hero = ({ onOpenBooking }: HeroProps) => {
     >
       {/* Video Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <iframe
-          src="https://galleries.vidflow.co/videos/c6b98410?autoplay=1&muted=1&mute=1&loop=1&controls=0&background=1"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full pointer-events-none scale-125"
-          frameBorder="0"
-          allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          loading="eager"
+        <video
+          className="absolute inset-0 h-full w-full object-cover pointer-events-none scale-125"
+          src="https://stream.vidflow.co/89710a190/studio/83b2c580/videos/c6b98410-d0860afb/u/Final_main.mp4"
+          poster="https://meta.vidflow.co/studio/83b2c580/media/1bam7wvl/Still2025-11-25211622181.png?width=2400&height=2400&optimize=image"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
         />
       </div>
 
