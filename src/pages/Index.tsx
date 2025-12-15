@@ -1,11 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/home/HeroSection";
-import BrandStory from "@/components/home/BrandStory";
-import ServicesPreview from "@/components/home/ServicesPreview";
-import FeaturedWork from "@/components/home/FeaturedWork";
-import CTASection from "@/components/home/CTASection";
-import Testimonials from "@/components/Testimonials";
+import FeaturedFilms from "@/components/home/FeaturedFilms";
+import FilmCategories from "@/components/home/FilmCategories";
+import Destinations from "@/components/home/Destinations";
+import Engagements from "@/components/home/Engagements";
+import ContactCTA from "@/components/home/ContactCTA";
+import SideNav from "@/components/home/SideNav";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -30,14 +31,23 @@ const Index = () => {
         <link rel="canonical" href="https://serenityweddingfilms.com" />
       </Helmet>
 
-      <main className="overflow-hidden">
+      <main className="overflow-hidden bg-charcoal">
         <Navbar />
+        <SideNav />
         <HeroSection />
-        <BrandStory />
-        <ServicesPreview />
-        <FeaturedWork />
-        <CTASection />
-        <Testimonials />
+        <div id="featured">
+          <FeaturedFilms />
+        </div>
+        <div id="teasers">
+          <FilmCategories />
+        </div>
+        <div id="destinations">
+          <Destinations />
+        </div>
+        <div id="engagements">
+          <Engagements />
+        </div>
+        <ContactCTA />
         <Footer />
       </main>
     </>
