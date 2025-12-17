@@ -12,6 +12,7 @@ const categories = [
       "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       "https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     ],
   },
   {
@@ -25,6 +26,7 @@ const categories = [
       "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1550005809-91ad75fb315f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     ],
   },
   {
@@ -38,6 +40,7 @@ const categories = [
       "https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     ],
   },
 ];
@@ -74,15 +77,15 @@ const FilmCategories = () => {
               view all
             </Link>
 
-            {/* Thumbnails Grid */}
-            <div className="flex gap-3 overflow-x-auto pb-4 -mx-6 px-6 scrollbar-hide">
-              {category.thumbnails.map((thumb, thumbIndex) => (
+            {/* Thumbnails Grid - 3x2 Instagram Reels Style */}
+            <div className="grid grid-cols-3 gap-3 md:gap-4">
+              {category.thumbnails.slice(0, 6).map((thumb, thumbIndex) => (
                 <Link
                   key={thumbIndex}
                   to="/portfolio"
-                  className="group flex-shrink-0 w-[180px] md:w-[200px]"
+                  className="group"
                 >
-                  <div className="relative aspect-[2/3] overflow-hidden bg-charcoal-light">
+                  <div className="relative aspect-[9/16] overflow-hidden bg-charcoal-light rounded-sm">
                     <img
                       src={thumb}
                       alt={`${category.title} film ${thumbIndex + 1}`}
@@ -90,7 +93,14 @@ const FilmCategories = () => {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500" />
-                    <div className="absolute inset-2 border border-cream/5 group-hover:border-cream/20 transition-colors duration-500" />
+                    <div className="absolute inset-[3px] border border-cream/5 group-hover:border-cream/20 transition-colors duration-500 rounded-sm" />
+                    
+                    {/* Play icon overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-cream/20 backdrop-blur-sm flex items-center justify-center">
+                        <div className="w-0 h-0 border-l-[12px] border-l-cream border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1" />
+                      </div>
+                    </div>
                   </div>
                 </Link>
               ))}
