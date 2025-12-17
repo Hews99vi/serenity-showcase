@@ -5,10 +5,10 @@ const ContactCTA = () => {
   return (
     <section id="contact" className="py-24 md:py-32 bg-charcoal border-t border-cream/10">
       <div className="section-container text-center">
-        <span className="text-cream/40 text-xs tracking-[0.4em] uppercase mb-6 block">
+        <span className="font-script text-cream/60 text-xl md:text-2xl mb-6 block">
           Let's Create Together
         </span>
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-medium text-cream leading-tight mb-8 max-w-3xl mx-auto">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif text-cream leading-tight mb-8 max-w-3xl mx-auto tracking-wide uppercase">
           Ready to tell your love story?
         </h2>
         <p className="text-cream/50 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed">

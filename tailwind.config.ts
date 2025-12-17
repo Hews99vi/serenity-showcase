@@ -9,8 +9,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        serif: ["Playfair Display", "Georgia", "serif"],
-        script: ["Cormorant Garamond", "Georgia", "serif"],
+        serif: ["Felix Titling", "Georgia", "serif"],
+        script: ["Montage", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

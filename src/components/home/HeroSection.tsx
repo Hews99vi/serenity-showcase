@@ -24,10 +24,10 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 section-container text-center py-32">
         <div className="max-w-4xl mx-auto">
-          <span className="text-cream/70 text-xs tracking-[0.4em] uppercase mb-6 block animate-fade-up">
+          <span className="font-script text-cream/80 text-xl md:text-2xl mb-6 block animate-fade-up">
             Cinematic Wedding Films
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-cream leading-tight tracking-tight animate-fade-up animation-delay-200 text-balance">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-cream leading-tight tracking-wider animate-fade-up animation-delay-200 text-balance uppercase">
             Where Serenity Meets Cinema, Love Becomes a Masterpiece
           </h1>
           <p className="mt-6 text-cream/80 text-lg md:text-xl font-light max-w-2xl mx-auto animate-fade-up animation-delay-400">

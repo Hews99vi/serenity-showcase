@@ -39,8 +39,8 @@ const FeaturedFilms = () => {
       <div className="section-container">
         {/* Section Header */}
         <div className="flex items-center justify-between mb-10">
-          <h2 className="text-2xl md:text-3xl font-serif font-medium text-cream tracking-wide">
-            OUR PICKS
+          <h2 className="text-2xl md:text-3xl font-serif text-cream tracking-wider uppercase">
+            Our Picks
           </h2>
           <Link
             to="/portfolio"

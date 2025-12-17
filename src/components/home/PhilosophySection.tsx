@@ -6,7 +6,7 @@ const PhilosophySection = () => {
             <span className="text-charcoal/60 text-xs tracking-[0.3em] uppercase mb-6 block">
               Our Philosophy
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-charcoal leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-charcoal leading-tight tracking-wide uppercase">
               Capturing timeless moments, one frame at a time.
             </h2>
           </div>

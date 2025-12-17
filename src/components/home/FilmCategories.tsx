@@ -53,7 +53,7 @@ const FilmCategories = () => {
           >
             {/* Category Header */}
             <div className="flex items-center gap-4 mb-4">
-              <h2 className="text-2xl md:text-3xl font-serif font-medium text-cream tracking-wide">
+              <h2 className="text-2xl md:text-3xl font-serif text-cream tracking-wider">
                 {category.title}
               </h2>
               <span className="px-4 py-1.5 border border-cream/30 text-cream/60 text-xs tracking-wider">
