@@ -1,5 +1,5 @@
 import { Instagram, Facebook, Youtube } from "lucide-react";
-import logo from "@/assets/serenity-logo.png";
+import logo from "@/assets/serenity-logo-full.png";
 
 const footerLinks = [
   { label: "Home", href: "#home" },
@@ -27,7 +27,7 @@ const Footer = () => {
             <img
               src={logo}
               alt="Serenity Wedding Films"
-              className="h-8 w-auto brightness-0 invert mx-auto md:mx-0 mb-6"
+              className="h-16 w-auto mx-auto md:mx-0 mb-6"
             />
             <p className="text-cream/50 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
               Cinematic wedding films crafted with elegance, emotion, and

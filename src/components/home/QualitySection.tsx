@@ -33,7 +33,7 @@ const QualitySection = () => {
               <span className="text-cream text-sm font-medium tracking-wider">4K CINEMATIC QUALITY</span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-cream leading-tight mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-cream leading-tight mb-6 tracking-wide uppercase">
               Capturing Your Love in 4K
             </h2>
             

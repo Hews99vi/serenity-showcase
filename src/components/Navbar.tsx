@@ -49,7 +49,7 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-sm tracking-widest uppercase font-light transition-colors duration-300 link-underline ${
+                className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 link-underline ${
                   location.pathname === link.href
                     ? "text-cream"
                     : "text-cream/80 hover:text-cream"

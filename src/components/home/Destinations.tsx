@@ -14,7 +14,7 @@ const Destinations = () => {
       <div className="section-container">
         {/* Section Header */}
         <div className="mb-10">
-          <h2 className="text-2xl md:text-3xl font-serif font-medium text-cream tracking-wide mb-4">
+          <h2 className="text-2xl md:text-3xl font-serif text-cream tracking-wider mb-4">
             DESTINATIONS
           </h2>
           <p className="text-cream/50 text-sm md:text-base max-w-xl leading-relaxed">
