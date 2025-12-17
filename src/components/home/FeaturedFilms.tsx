@@ -31,6 +31,12 @@ const featuredFilms = [
     coupleName: "THARINDU & NIMALI",
     venue: "Heritance Kandalama",
   },
+  {
+    id: 6,
+    thumbnail: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    coupleName: "NUWAN & ISHARA",
+    venue: "Jetwing Lighthouse",
+  },
 ];
 
 const FeaturedFilms = () => {
@@ -50,16 +56,16 @@ const FeaturedFilms = () => {
           </Link>
         </div>
 
-        {/* Films Grid - Horizontal Scroll */}
-        <div className="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 scrollbar-hide">
-          {featuredFilms.map((film) => (
+        {/* Films Grid - 3x2 Instagram Reels Style */}
+        <div className="grid grid-cols-3 gap-3 md:gap-4">
+          {featuredFilms.slice(0, 6).map((film) => (
             <Link
               key={film.id}
               to="/portfolio"
-              className="group flex-shrink-0 w-[220px] md:w-[260px]"
+              className="group"
             >
-              {/* Poster Card */}
-              <div className="relative aspect-[2/3] overflow-hidden bg-charcoal-light">
+              {/* Poster Card - Instagram Reels Aspect Ratio */}
+              <div className="relative aspect-[9/16] overflow-hidden bg-charcoal-light rounded-sm">
                 <img
                   src={film.thumbnail}
                   alt={film.coupleName}
@@ -68,25 +74,32 @@ const FeaturedFilms = () => {
                 />
                 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent opacity-90" />
                 
                 {/* Film border effect */}
-                <div className="absolute inset-2 border border-cream/10 pointer-events-none" />
+                <div className="absolute inset-[3px] border border-cream/10 pointer-events-none rounded-sm group-hover:border-cream/25 transition-colors duration-500" />
                 
                 {/* Couple Names - Movie Poster Style */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-cream text-center font-serif text-lg tracking-wider leading-tight">
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                  <h3 className="text-cream text-center font-serif text-xs md:text-sm lg:text-base tracking-wider leading-tight">
                     {film.coupleName.split(" & ")[0]}
-                    <span className="block text-cream/60 text-sm font-light my-1">&</span>
+                    <span className="block text-cream/60 text-[10px] md:text-xs font-light my-0.5">&</span>
                     {film.coupleName.split(" & ")[1]}
                   </h3>
                 </div>
 
                 {/* Top Badge */}
-                <div className="absolute top-4 left-0 right-0 flex justify-center">
-                  <span className="text-cream/40 text-[10px] tracking-[0.3em] uppercase">
+                <div className="absolute top-3 left-0 right-0 flex justify-center">
+                  <span className="text-cream/40 text-[8px] md:text-[10px] tracking-[0.2em] uppercase">
                     Serenity Films
                   </span>
+                </div>
+
+                {/* Play icon overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-cream/20 backdrop-blur-sm flex items-center justify-center">
+                    <div className="w-0 h-0 border-l-[12px] border-l-cream border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1" />
+                  </div>
                 </div>
               </div>
             </Link>
