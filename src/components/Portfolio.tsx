@@ -166,20 +166,77 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="bg-charcoal">
       {/* Hero Section */}
-      <div className="min-h-[50vh] flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-[40vh] flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/95 to-charcoal" />
-        <div className="relative z-10 text-center px-6 py-24 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-6 py-20 max-w-4xl mx-auto">
           <span className="text-cream/40 text-xs tracking-[0.4em] uppercase font-light mb-6 block">
             Portfolio
           </span>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif uppercase tracking-[0.15em] text-cream mb-8">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif uppercase tracking-[0.15em] text-cream mb-6">
             Our Work
           </h1>
-          <div className="w-24 h-px bg-cream/20 mx-auto mb-10" />
-          <p className="text-cream/70 text-lg md:text-xl leading-relaxed font-light max-w-3xl mx-auto">
-            Every couple has a unique rhythm — and our films are crafted to reflect it.
-            Explore our collection of cinematic stories.
-          </p>
+          <div className="w-24 h-px bg-cream/20 mx-auto" />
+        </div>
+      </div>
+
+      {/* Intro Section */}
+      <div className="py-16 px-6 border-t border-cream/10">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
+            {/* Intro Text */}
+            <div className="space-y-6">
+              <p className="text-cream/70 text-base leading-relaxed">
+                Every couple has a unique rhythm — and our films are crafted to reflect it.
+                From intimate coastside ceremonies to elegant hotel celebrations, we focus on genuine
+                emotion, natural storytelling, and timeless cinematics.
+              </p>
+              <p className="text-cream/70 text-base leading-relaxed">
+                Our work blends real moments, clean visuals, and thoughtful sound design to create films
+                that feel personal, emotional, and beautifully true to you.
+              </p>
+              <p className="text-cream/70 text-base leading-relaxed">
+                Explore our portfolio and see how we capture love in its most authentic form — quietly,
+                powerfully, and with heart.
+              </p>
+            </div>
+
+            {/* We Create List */}
+            <div>
+              <span className="text-cream/40 text-xs tracking-[0.3em] uppercase mb-6 block">
+                We Create
+              </span>
+              <ul className="space-y-3 mb-8">
+                <li className="text-cream/80 font-light flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 bg-cream/40 rounded-full" />
+                  Cinematic Wedding Films
+                </li>
+                <li className="text-cream/80 font-light flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 bg-cream/40 rounded-full" />
+                  Engagement & Pre-Wedding Stories
+                </li>
+                <li className="text-cream/80 font-light flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 bg-cream/40 rounded-full" />
+                  Homecoming Films
+                </li>
+                <li className="text-cream/80 font-light flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 bg-cream/40 rounded-full" />
+                  Outdoor / Scenic Shoots
+                </li>
+                <li className="text-cream/80 font-light flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 bg-cream/40 rounded-full" />
+                  Classic Sri Lankan Cultural Weddings
+                </li>
+                <li className="text-cream/80 font-light flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 bg-cream/40 rounded-full" />
+                  Modern Hotel Weddings
+                </li>
+              </ul>
+              <p className="text-cream/50 text-sm italic font-script">
+                Each film is carefully edited with soft tones, emotional pacing, and storytelling that highlights
+                the essence of your day.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
