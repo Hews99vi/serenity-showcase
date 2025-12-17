@@ -1,10 +1,39 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Play, Mail } from "lucide-react";
+
 const HeroSection = () => {
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [needsTapToPlay, setNeedsTapToPlay] = useState(false);
+
+  const tryPlay = useCallback(async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    try {
+      // Ensure iOS treats this as a muted inline autoplay attempt
+      video.muted = true;
+      video.playsInline = true;
+
+      const p = video.play();
+      if (p) await p;
+      setNeedsTapToPlay(false);
+    } catch {
+      // iOS can block autoplay (e.g. Low Power Mode). Provide a tap-to-play fallback.
+      setNeedsTapToPlay(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    void tryPlay();
+  }, [tryPlay]);
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 overflow-hidden">
         <video
+          ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover pointer-events-none"
           src="https://stream.vidflow.co/89710a190/studio/83b2c580/videos/c6b98410-d0860afb/u/Final_main.mp4"
           poster="https://meta.vidflow.co/studio/83b2c580/media/1bam7wvl/Still2025-11-25211622181.png?width=2400&height=2400&optimize=image"
@@ -13,7 +42,25 @@ const HeroSection = () => {
           loop
           playsInline
           preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          onCanPlay={tryPlay}
+          aria-hidden="true"
         />
+
+        {needsTapToPlay && (
+          <button
+            type="button"
+            onClick={tryPlay}
+            className="absolute inset-0 z-10 flex items-center justify-center bg-charcoal/30"
+            aria-label="Play background video"
+          >
+            <span className="inline-flex items-center gap-3 rounded-full border border-cream/30 bg-charcoal/60 px-6 py-3 text-cream backdrop-blur-sm">
+              <Play className="h-5 w-5" />
+              Tap to play
+            </span>
+          </button>
+        )}
       </div>
 
       {/* Gradient Overlay */}
@@ -31,14 +78,20 @@ const HeroSection = () => {
           <p className="mt-6 text-cream/80 text-lg md:text-xl font-light max-w-2xl mx-auto animate-fade-up animation-delay-400 text-center my-[23px]">
             Cinematic wedding films crafted with elegance, emotion, and timeless beauty.
           </p>
-          
+
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animation-delay-600">
-            <Link to="/portfolio" className="group flex items-center gap-3 bg-cream text-charcoal px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105">
+            <Link
+              to="/portfolio"
+              className="group flex items-center gap-3 bg-cream text-charcoal px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105"
+            >
               <Play className="w-5 h-5" />
               Watch Our Films
             </Link>
-            <Link to="/contact" className="group flex items-center gap-3 border border-cream/40 text-cream px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream">
+            <Link
+              to="/contact"
+              className="group flex items-center gap-3 border border-cream/40 text-cream px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream"
+            >
               <Mail className="w-5 h-5" />
               Request a Quote
             </Link>
@@ -51,6 +104,8 @@ const HeroSection = () => {
         <span className="text-cream/40 text-xs tracking-[0.2em] uppercase">Scroll</span>
         <div className="w-px h-8 bg-cream/30 animate-pulse" />
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
