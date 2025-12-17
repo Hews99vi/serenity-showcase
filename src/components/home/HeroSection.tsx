@@ -1,42 +1,22 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Play, Mail } from "lucide-react";
 
 const HeroSection = () => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [needsTapToPlay, setNeedsTapToPlay] = useState(false);
-
-  const tryPlay = useCallback(async () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    try {
-      // Ensure iOS treats this as a muted inline autoplay attempt
-      video.muted = true;
-      video.playsInline = true;
-
-      const p = video.play();
-      if (p) await p;
-      setNeedsTapToPlay(false);
-    } catch {
-      // iOS can block autoplay (e.g. Low Power Mode). Provide a tap-to-play fallback.
-      setNeedsTapToPlay(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    void tryPlay();
-  }, [tryPlay]);
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background with poster fallback */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Poster image as fallback background */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('https://meta.vidflow.co/studio/83b2c580/media/1bam7wvl/Still2025-11-25211622181.png?width=2400&height=2400&optimize=image')" }}
+          aria-hidden="true"
+        />
+        
+        {/* Video overlay - will play if browser allows, otherwise poster shows through */}
         <video
-          ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover pointer-events-none"
           src="https://stream.vidflow.co/89710a190/studio/83b2c580/videos/c6b98410-d0860afb/u/Final_main.mp4"
-          poster="https://meta.vidflow.co/studio/83b2c580/media/1bam7wvl/Still2025-11-25211622181.png?width=2400&height=2400&optimize=image"
           autoPlay
           muted
           loop
@@ -44,23 +24,8 @@ const HeroSection = () => {
           preload="auto"
           disablePictureInPicture
           disableRemotePlayback
-          onCanPlay={tryPlay}
           aria-hidden="true"
         />
-
-        {needsTapToPlay && (
-          <button
-            type="button"
-            onClick={tryPlay}
-            className="absolute inset-0 z-10 flex items-center justify-center bg-charcoal/30"
-            aria-label="Play background video"
-          >
-            <span className="inline-flex items-center gap-3 rounded-full border border-cream/30 bg-charcoal/60 px-6 py-3 text-cream backdrop-blur-sm">
-              <Play className="h-5 w-5" />
-              Tap to play
-            </span>
-          </button>
-        )}
       </div>
 
       {/* Gradient Overlay */}
