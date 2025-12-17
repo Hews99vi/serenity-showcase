@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/serenity-logo.png";
+import logo from "@/assets/serenity-logo-full.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -39,7 +39,7 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Serenity Wedding Films"
-              className="h-8 md:h-10 w-auto brightness-0 invert"
+              className="h-12 md:h-16 w-auto"
             />
           </Link>
 
