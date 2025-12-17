@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import { Play, Mail } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen flex items-end overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 overflow-hidden">
         <video
@@ -18,24 +19,45 @@ const HeroSection = () => {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-charcoal/30" />
 
       {/* Content */}
-      <div className="relative z-10 section-container pb-24 md:pb-32">
-        <div className="max-w-2xl">
-          <span className="text-cream/70 text-xs tracking-[0.4em] uppercase mb-4 block animate-fade-up">
+      <div className="relative z-10 section-container text-center py-32">
+        <div className="max-w-4xl mx-auto">
+          <span className="text-cream/70 text-xs tracking-[0.4em] uppercase mb-6 block animate-fade-up">
             Cinematic Wedding Films
           </span>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium text-cream leading-[0.9] tracking-tight animate-fade-up animation-delay-200">
-            SERENITY
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-cream leading-tight tracking-tight animate-fade-up animation-delay-200 text-balance">
+            Where Serenity Meets Cinema, Love Becomes a Masterpiece
           </h1>
+          <p className="mt-6 text-cream/80 text-lg md:text-xl font-light max-w-2xl mx-auto animate-fade-up animation-delay-400">
+            Cinematic wedding films crafted with elegance, emotion, and timeless beauty.
+          </p>
+          
+          {/* CTA Buttons */}
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animation-delay-600">
+            <Link
+              to="/portfolio"
+              className="group flex items-center gap-3 bg-cream text-charcoal px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105"
+            >
+              <Play className="w-5 h-5" />
+              Watch Our Films
+            </Link>
+            <Link
+              to="/contact"
+              className="group flex items-center gap-3 border border-cream/40 text-cream px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream"
+            >
+              <Mail className="w-5 h-5" />
+              Request a Quote
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 right-8 flex items-center gap-3">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <span className="text-cream/40 text-xs tracking-[0.2em] uppercase">Scroll</span>
-        <div className="w-px h-8 bg-cream/30" />
+        <div className="w-px h-8 bg-cream/30 animate-pulse" />
       </div>
     </section>
   );
