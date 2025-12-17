@@ -11,7 +11,8 @@ const IntroSection = () => {
           </h2>
           
           <div className="space-y-6 text-cream/80 text-lg md:text-xl leading-relaxed font-light animate-fade-up animation-delay-400">
-            <p>We're stepping into a new chapter with a refreshed identity crafted with elegance, warmth, and timeless storytelling.</p>
+            <p className="text-center">We're stepping into a new chapter with a refreshed identity crafted 
+with elegance, warmth, and timeless storytelling.</p>
             <p>
               At Serenity Wedding Films, every love story becomes a cinematic journey filled with 
               emotion and beauty. We believe your wedding film should feel personal, meaningful, 
