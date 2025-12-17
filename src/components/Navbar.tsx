@@ -15,6 +15,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,13 +25,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // On home page: transparent when not scrolled, dark when scrolled
+  // On other pages: always dark background
+  const navBackground = isScrolled || !isHomePage
+    ? "bg-charcoal/95 backdrop-blur-md py-3"
+    : "bg-transparent py-6";
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-charcoal/95 backdrop-blur-md py-3"
-          : "bg-transparent py-6"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBackground}`}
     >
       <div className="section-container">
         <div className="flex items-center justify-between">
