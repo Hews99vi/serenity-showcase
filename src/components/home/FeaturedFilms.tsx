@@ -87,14 +87,6 @@ const FeaturedFilms = () => {
                 {/* Film border effect */}
                 <div className="absolute inset-[3px] border border-cream/10 pointer-events-none rounded-sm group-hover:border-cream/25 transition-colors duration-500" />
                 
-                {/* Couple Names - Movie Poster Style */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 pointer-events-none">
-                  <h3 className="text-cream text-center font-serif text-xs md:text-sm lg:text-base tracking-wider leading-tight">
-                    {film.coupleName.split(" & ")[0]}
-                    <span className="block text-cream/60 text-[10px] md:text-xs font-light my-0.5">&</span>
-                    {film.coupleName.split(" & ")[1]}
-                  </h3>
-                </div>
 
                 {/* Top Badge */}
                 <div className="absolute top-3 left-0 right-0 flex justify-center pointer-events-none">
