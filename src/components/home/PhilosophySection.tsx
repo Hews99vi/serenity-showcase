@@ -1,6 +1,5 @@
 const PhilosophySection = () => {
-  return (
-    <section className="section-light section-padding">
+  return <section className="section-light section-padding">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -14,10 +13,7 @@ const PhilosophySection = () => {
           
           <div className="grid md:grid-cols-2 gap-12 mt-16">
             <div className="space-y-6">
-              <p className="text-charcoal/80 text-lg leading-relaxed">
-                We believe wedding filmmaking is more than documenting events — it's creating 
-                an emotional journey.
-              </p>
+              <p className="text-charcoal/80 text-lg leading-relaxed">We believe wedding filmmaking is more than documenting events, it's creating an emotional journey.</p>
               <p className="text-charcoal/80 text-lg leading-relaxed">
                 Our goal is to preserve the feelings, the atmosphere, and the unique charm 
                 of your union in a film you will cherish for life.
@@ -39,8 +35,6 @@ const PhilosophySection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PhilosophySection;
