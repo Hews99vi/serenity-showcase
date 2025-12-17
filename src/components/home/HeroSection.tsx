@@ -2,9 +2,18 @@ import { Link } from "react-router-dom";
 import { Play, Mail } from "lucide-react";
 const HeroSection = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* YouTube Video Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <iframe className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full" src="https://www.youtube.com/embed/lvgxweA0t3U?autoplay=1&mute=1&loop=1&playlist=lvgxweA0t3U&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Background video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+      {/* Video Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+          src="https://stream.vidflow.co/89710a190/studio/83b2c580/videos/c6b98410-d0860afb/u/Final_main.mp4"
+          poster="https://meta.vidflow.co/studio/83b2c580/media/1bam7wvl/Still2025-11-25211622181.png?width=2400&height=2400&optimize=image"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
       </div>
 
       {/* Gradient Overlay */}
