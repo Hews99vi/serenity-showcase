@@ -19,7 +19,7 @@ const HeroSection = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-cream leading-tight tracking-wider animate-fade-up animation-delay-200 text-balance uppercase">
             Where Serenity Meets Cinema, Love Becomes a Masterpiece
           </h1>
-          <p className="mt-6 text-cream/80 text-lg md:text-xl font-light max-w-2xl mx-auto animate-fade-up animation-delay-400 text-justify">
+          <p className="mt-6 text-cream/80 text-lg md:text-xl font-light max-w-2xl mx-auto animate-fade-up animation-delay-400 text-center">
             Cinematic wedding films crafted with elegance, emotion, and timeless beauty.
           </p>
           
