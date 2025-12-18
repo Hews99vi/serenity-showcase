@@ -1,5 +1,5 @@
 const PhilosophySection = () => {
-  return <section className="section-light section-padding">
+  return <section id="philosophy" className="section-light section-padding">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
