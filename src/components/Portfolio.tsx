@@ -351,48 +351,87 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="bg-charcoal overflow-hidden">
       {/* Hero Section */}
-      <div ref={heroRef} className="min-h-[50vh] flex items-center justify-center relative overflow-hidden">
-        {/* Decorative Elements */}
+      <div ref={heroRef} className="min-h-[60vh] flex items-center justify-center relative overflow-hidden">
+        {/* Background Image with Overlay */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-32 h-32 border border-cream/5 rounded-full" />
-          <div className="absolute bottom-20 right-20 w-48 h-48 border border-cream/5 rounded-full" />
-          <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-cream/20 rounded-full" />
-          <div className="absolute bottom-1/3 left-1/4 w-1 h-1 bg-cream/30 rounded-full" />
+          <img
+            src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+            alt="Wedding cinematography"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/95 to-charcoal" />
         </div>
 
-        <div className="relative z-10 text-center px-6 py-24 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-cream/40" />
-              <Sparkles className="w-4 h-4 text-cream/40" />
-              <span className="text-cream/50 text-xs tracking-[0.4em] uppercase font-light">
-                Portfolio
-              </span>
-              <Sparkles className="w-4 h-4 text-cream/40" />
-              <div className="w-12 h-px bg-gradient-to-l from-transparent to-cream/40" />
-            </div>
-          </motion.div>
+        {/* Subtle Film Grain Texture */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }} />
 
+        <div className="relative z-10 text-center px-6 py-32 max-w-5xl mx-auto">
+          {/* Top Decorative Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={heroInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="w-24 h-px bg-cream/30 mx-auto mb-10"
+          />
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-cream/50 text-xs tracking-[0.35em] uppercase mb-6"
+          >
+            A Collection of Love Stories
+          </motion.p>
+
+          {/* Main Title */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-6xl lg:text-8xl font-serif uppercase tracking-[0.2em] text-cream mb-8"
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif uppercase tracking-[0.15em] text-cream mb-8"
           >
             Our Work
           </motion.h1>
 
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="font-script text-cream/60 text-xl md:text-2xl italic max-w-lg mx-auto mb-10"
+          >
+            Where every frame tells your story
+          </motion.p>
+
+          {/* Bottom Decorative Element */}
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={heroInView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="w-32 h-px bg-gradient-to-r from-transparent via-cream/50 to-transparent mx-auto"
-          />
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="flex items-center justify-center gap-4"
+          >
+            <div className="w-16 h-px bg-gradient-to-r from-transparent to-cream/30" />
+            <Film className="w-4 h-4 text-cream/40" />
+            <div className="w-16 h-px bg-gradient-to-l from-transparent to-cream/30" />
+          </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={heroInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 border border-cream/20 rounded-full flex items-start justify-center p-2"
+          >
+            <div className="w-1 h-2 bg-cream/40 rounded-full" />
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Intro Section */}
