@@ -7,7 +7,7 @@ const PortfolioPage = () => {
   return (
     <>
       <Helmet>
-        <title>Portfolio | Serenity Wedding Films</title>
+        <title>Our Work | Serenity Wedding Films</title>
         <meta
           name="description"
           content="Explore our collection of cinematic wedding films. Watch beautiful wedding stories from couples across Sri Lanka."
