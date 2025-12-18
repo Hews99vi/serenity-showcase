@@ -63,9 +63,9 @@ const SideNav = () => {
             <button
               onClick={() => scrollToSection(item.id)}
               className={`text-xs tracking-[0.15em] transition-colors duration-300 text-right block w-full ${
-                activeSection === item.id
-                  ? textColor
-                  : textColorMuted
+                isOverLightSection 
+                  ? "text-charcoal hover:text-charcoal/70" 
+                  : "text-cream hover:text-cream/70"
               }`}
             >
               {item.label}
