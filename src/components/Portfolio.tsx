@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Play, X, Film } from "lucide-react";
+import { Play, X, Film, Sparkles } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion, useInView } from "framer-motion";
 
@@ -343,55 +343,95 @@ const CategorySection = ({ category, categoryIndex }: { category: CategorySectio
 };
 
 const Portfolio = () => {
+  const heroRef = useRef(null);
   const introRef = useRef(null);
+  const heroInView = useInView(heroRef, { once: true });
   const introInView = useInView(introRef, { once: true, margin: "-100px" });
 
   return (
     <section id="portfolio" className="bg-charcoal overflow-hidden">
-      {/* Hero Section - Clean & Modern */}
-      <div className="section-dark section-padding">
-        <div className="section-container">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="text-cream/60 text-xs tracking-[0.3em] uppercase mb-8 block animate-fade-up">
-              Our Portfolio
-            </span>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif text-cream leading-tight mb-8 animate-fade-up animation-delay-200 tracking-wide uppercase">
-              Our Work
-            </h1>
-            
-            <p className="text-cream/80 text-lg md:text-xl leading-relaxed font-light animate-fade-up animation-delay-400 max-w-2xl mx-auto">
-              Every couple has a unique rhythm — and our films are crafted to reflect it.
-              From intimate coastside ceremonies to elegant hotel celebrations.
-            </p>
-            
-            <p className="mt-8 text-xl md:text-2xl font-script text-cream/90 animate-fade-up animation-delay-600 italic">
-              Where every frame tells your story
-            </p>
-          </div>
+      {/* Hero Section */}
+      <div ref={heroRef} className="min-h-[60vh] flex items-center justify-center relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+            alt="Wedding cinematography"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/95 to-charcoal" />
         </div>
-      </div>
 
-      {/* Categories Quick Nav */}
-      <div className="py-10 px-6 border-y border-cream/10">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {categories.map((category, index) => (
-              <button
-                key={category}
-                onClick={() => {
-                  const id = portfolioData[index]?.id;
-                  if (id) {
-                    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="text-cream/60 text-xs tracking-[0.12em] uppercase hover:text-cream transition-colors duration-300 py-2.5 px-5 border border-cream/15 hover:border-cream/40 rounded-full hover:bg-cream/5"
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+        {/* Subtle Film Grain Texture */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }} />
+
+        <div className="relative z-10 text-center px-6 py-32 max-w-5xl mx-auto">
+          {/* Top Decorative Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={heroInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="w-24 h-px bg-cream/30 mx-auto mb-10"
+          />
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-cream/50 text-xs tracking-[0.35em] uppercase mb-6"
+          >
+            A Collection of Love Stories
+          </motion.p>
+
+          {/* Main Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif uppercase tracking-[0.15em] text-cream mb-8"
+          >
+            Our Work
+          </motion.h1>
+
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="font-script text-cream/60 text-xl md:text-2xl italic max-w-lg mx-auto mb-10"
+          >
+            Where every frame tells your story
+          </motion.p>
+
+          {/* Bottom Decorative Element */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="flex items-center justify-center gap-4"
+          >
+            <div className="w-16 h-px bg-gradient-to-r from-transparent to-cream/30" />
+            <Film className="w-4 h-4 text-cream/40" />
+            <div className="w-16 h-px bg-gradient-to-l from-transparent to-cream/30" />
+          </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={heroInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 border border-cream/20 rounded-full flex items-start justify-center p-2"
+          >
+            <div className="w-1 h-2 bg-cream/40 rounded-full" />
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Intro Section */}
@@ -400,22 +440,30 @@ const Portfolio = () => {
         initial={{ opacity: 0 }}
         animate={introInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.8 }}
-        className="py-16 px-6"
+        className="py-20 px-6 border-t border-cream/10 relative"
       >
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
+        {/* Background Accent */}
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-cream/10 to-transparent" />
+
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-5 gap-12 lg:gap-20">
             {/* Intro Text */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={introInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={introInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-5"
+              className="md:col-span-3 space-y-6"
             >
-              <p className="text-cream/75 text-base leading-relaxed">
+              <p className="text-cream/70 text-lg leading-relaxed">
+                Every couple has a unique rhythm — and our films are crafted to reflect it.
+                From intimate coastside ceremonies to elegant hotel celebrations, we focus on genuine
+                emotion, natural storytelling, and timeless cinematics.
+              </p>
+              <p className="text-cream/60 text-base leading-relaxed">
                 Our work blends real moments, clean visuals, and thoughtful sound design to create films
                 that feel personal, emotional, and beautifully true to you.
               </p>
-              <p className="text-cream/60 text-sm leading-relaxed">
+              <p className="text-cream/60 text-base leading-relaxed">
                 Explore our portfolio and see how we capture love in its most authentic form — quietly,
                 powerfully, and with heart.
               </p>
@@ -423,29 +471,38 @@ const Portfolio = () => {
 
             {/* We Create List */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={introInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={introInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="md:col-span-2"
             >
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3 mb-6">
                 <Film className="w-4 h-4 text-cream/40" />
                 <span className="text-cream/50 text-xs tracking-[0.3em] uppercase">
-                  What We Create
+                  We Create
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <ul className="space-y-4 mb-8">
                 {categories.map((category, index) => (
-                  <motion.div
+                  <motion.li
                     key={index}
-                    initial={{ opacity: 0 }}
-                    animate={introInView ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
-                    className="text-cream/70 text-sm font-light flex items-center gap-2"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={introInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                    transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                    className="text-cream/80 font-light flex items-center gap-4 group"
                   >
-                    <span className="w-1 h-1 bg-cream/40 rounded-full" />
-                    <span>{category}</span>
-                  </motion.div>
+                    <span className="w-2 h-2 bg-cream/30 rounded-full group-hover:bg-cream/60 transition-colors duration-300" />
+                    <span className="group-hover:text-cream transition-colors duration-300">
+                      {category}
+                    </span>
+                  </motion.li>
                 ))}
+              </ul>
+              <div className="pl-6 border-l border-cream/20">
+                <p className="text-cream/40 text-sm italic font-script leading-relaxed">
+                  Each film is carefully edited with soft tones, emotional pacing, and storytelling that highlights
+                  the essence of your day.
+                </p>
               </div>
             </motion.div>
           </div>
