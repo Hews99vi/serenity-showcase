@@ -5,7 +5,7 @@ import IntroSection from "@/components/home/IntroSection";
 import PhilosophySection from "@/components/home/PhilosophySection";
 import QualitySection from "@/components/home/QualitySection";
 import FeaturedFilms from "@/components/home/FeaturedFilms";
-import FilmCategories from "@/components/home/FilmCategories";
+import Testimonials from "@/components/Testimonials";
 import Destinations from "@/components/home/Destinations";
 import Engagements from "@/components/home/Engagements";
 import ContactCTA from "@/components/home/ContactCTA";
@@ -44,8 +44,8 @@ const Index = () => {
         <div id="featured">
           <FeaturedFilms />
         </div>
-        <div id="teasers">
-          <FilmCategories />
+        <div id="testimonials">
+          <Testimonials />
         </div>
         <div id="destinations">
           <Destinations />

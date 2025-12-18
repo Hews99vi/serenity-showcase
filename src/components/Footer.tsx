@@ -1,22 +1,15 @@
 import { Instagram, Facebook, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/serenity-logo-full.png";
 
 const footerLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Our Work", href: "/portfolio" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const Footer = () => {
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <footer className="bg-charcoal text-cream py-16 md:py-20">
       <div className="section-container">
@@ -42,17 +35,13 @@ const Footer = () => {
             </h4>
             <nav className="flex flex-col gap-3">
               {footerLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
+                  to={link.href}
                   className="text-sm text-cream/50 hover:text-cream transition-colors duration-300"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

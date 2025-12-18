@@ -5,8 +5,7 @@ import logo from "@/assets/serenity-logo-full.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Our Work", href: "/portfolio" },
   { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
 ];
