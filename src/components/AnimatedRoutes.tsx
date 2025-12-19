@@ -6,12 +6,15 @@ import ServicesPage from "@/pages/ServicesPage";
 import ContactPage from "@/pages/ContactPage";
 import NotFound from "@/pages/NotFound";
 import PageTransition from "./PageTransition";
+import ScrollToTop from "./ScrollToTop";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    <>
+      <ScrollToTop />
+      <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route
           path="/"
@@ -54,7 +57,8 @@ const AnimatedRoutes = () => {
           }
         />
       </Routes>
-    </AnimatePresence>
+      </AnimatePresence>
+    </>
   );
 };
 
