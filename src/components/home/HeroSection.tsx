@@ -19,8 +19,8 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 section-container text-center py-32">
         <div className="max-w-4xl mx-auto">
-          <span className="font-script text-cream/80 text-xl md:text-2xl mb-6 block animate-fade-up">Where Serenity meets Cinema, Love Becomes a MasterPiece</span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-cream leading-tight tracking-wider animate-fade-up animation-delay-200 text-balance uppercase">SERENITY WEDDING FILMS</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-cream leading-tight tracking-wider animate-fade-up text-balance uppercase">SERENITY WEDDING FILMS</h1>
+          <span className="font-script text-cream/80 text-xl md:text-2xl mt-6 block animate-fade-up animation-delay-200">Where Serenity meets Cinema, Love Becomes a MasterPiece</span>
           
 
           {/* CTA Buttons */}
