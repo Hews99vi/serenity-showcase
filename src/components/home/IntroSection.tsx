@@ -70,22 +70,19 @@ function DesktopReelStory() {
     offset: ["start start", "end end"],
   });
 
-  // Reel motion: a single "reel" window that scrolls through 3 stacked visuals.
-  // This is the key difference vs crossfading — it *moves* like a reel.
-  const reelY = useTransform(scrollYProgress, (v) => {
-    const travel = (sections.length - 1) * 100;
-    return `${-v * travel}%`;
-  });
+  // Reel motion with snap-like easing at each section
+  // Creates 3 "zones" that snap: 0-33% = slide 1, 33-66% = slide 2, 66-100% = slide 3
+  const reelY = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], ["0%", "-100%", "-200%", "-200%"]);
 
-  // Text motion: stays in place and swaps smoothly alongside the reel.
-  const t1Opacity = useTransform(scrollYProgress, [0, 0.26, 0.34], [1, 1, 0]);
-  const t1Y = useTransform(scrollYProgress, [0, 0.34], [0, -18]);
+  // Text motion: snaps in sync with reel
+  const t1Opacity = useTransform(scrollYProgress, [0, 0.28, 0.33], [1, 1, 0]);
+  const t1Y = useTransform(scrollYProgress, [0, 0.33], [0, -20]);
 
-  const t2Opacity = useTransform(scrollYProgress, [0.26, 0.34, 0.6, 0.68], [0, 1, 1, 0]);
-  const t2Y = useTransform(scrollYProgress, [0.26, 0.34, 0.68], [18, 0, -18]);
+  const t2Opacity = useTransform(scrollYProgress, [0.28, 0.33, 0.61, 0.66], [0, 1, 1, 0]);
+  const t2Y = useTransform(scrollYProgress, [0.28, 0.33, 0.66], [20, 0, -20]);
 
-  const t3Opacity = useTransform(scrollYProgress, [0.6, 0.68, 1], [0, 1, 1]);
-  const t3Y = useTransform(scrollYProgress, [0.6, 0.68], [18, 0]);
+  const t3Opacity = useTransform(scrollYProgress, [0.61, 0.66, 1], [0, 1, 1]);
+  const t3Y = useTransform(scrollYProgress, [0.61, 0.66], [20, 0]);
 
   const textOpacities = [t1Opacity, t2Opacity, t3Opacity];
   const textYs = [t1Y, t2Y, t3Y];
