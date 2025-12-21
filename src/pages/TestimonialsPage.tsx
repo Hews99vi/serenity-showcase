@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { ArrowRight, Quote } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+import { ArrowRight, Quote, Film, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
   Dialog,
   DialogContent,
@@ -68,70 +72,200 @@ const testimonials: Testimonial[] = [
     eventDate: "November 2023",
     eventType: "Wedding",
   },
+  {
+    id: 6,
+    coupleName: "Nuwan & Sanduni",
+    quote:
+      "Every frame tells our story. The attention to detail and the creative vision exceeded everything we hoped for...",
+    fullQuote:
+      "Every frame tells our story. The attention to detail and the creative vision exceeded everything we hoped for. From the first consultation to the final delivery, the experience was nothing short of magical. They understood our vision perfectly and translated it into a cinematic masterpiece. The way they captured the light, the emotions, and the small intimate moments was incredible. We've recommended them to everyone we know, and we'll forever be grateful for the beautiful memories they've preserved for us.",
+    eventDate: "October 2023",
+    eventType: "Wedding",
+  },
+  {
+    id: 7,
+    coupleName: "Chamara & Hiruni",
+    quote:
+      "Working with Serenity was an absolute pleasure. They made our engagement shoot feel natural and effortless...",
+    fullQuote:
+      "Working with Serenity was an absolute pleasure. They made our engagement shoot feel natural and effortless. We were nervous at first, but the team put us at ease immediately. The final film was breathtaking - every shot was perfectly composed and the storytelling was seamless. They have a unique ability to capture genuine emotions and turn them into art. We can't wait to work with them again for our wedding!",
+    eventDate: "September 2023",
+    eventType: "Engagement",
+  },
+  {
+    id: 8,
+    coupleName: "Lahiru & Kavindi",
+    quote:
+      "The documentary-style approach was exactly what we wanted. Our wedding film feels like a movie...",
+    fullQuote:
+      "The documentary-style approach was exactly what we wanted. Our wedding film feels like a movie about our love story. The team captured moments we didn't even know were happening - the tearful eyes of my father, the joyful laughter of our friends, the tender moments between us. Every time we watch it, we discover something new. The quality is outstanding and the emotional impact is undeniable. Thank you for creating something we'll treasure forever.",
+    eventDate: "August 2023",
+    eventType: "Wedding",
+  },
 ];
 
-const Testimonials = () => {
+const TestimonialsPage = () => {
   const [selectedTestimonial, setSelectedTestimonial] =
     useState<Testimonial | null>(null);
 
   return (
-    <section id="testimonials" className="section-padding bg-charcoal">
-      <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left Side - Title */}
-          <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-cream mb-6 leading-tight">
-              Wedding
-              <br />
-              <span className="font-script italic">testimonials</span>
+    <>
+      <Helmet>
+        <title>Client Testimonials | Serenity Wedding Films</title>
+        <meta
+          name="description"
+          content="Read what our couples say about their experience with Serenity Wedding Films. Real stories from real weddings."
+        />
+      </Helmet>
+
+      <Navbar />
+
+      <main className="min-h-screen bg-charcoal">
+        {/* Hero Section */}
+        <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+            }}
+          />
+
+          {/* Overlays */}
+          <div className="absolute inset-0 bg-charcoal/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
+
+          {/* Film Grain Texture */}
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            }}
+          />
+
+          {/* Content */}
+          <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            {/* Decorative Line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="w-24 h-px bg-cream/40 mx-auto mb-8"
+            />
+
+            {/* Icon */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex justify-center mb-6"
+            >
+              <Film className="w-8 h-8 text-cream/60" />
+            </motion.div>
+
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-serif text-cream mb-4"
+            >
+              Testimonials
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg md:text-xl font-script text-cream/70 mb-4"
+            >
+              Words from Our Couples
+            </motion.p>
+
+            {/* Tagline */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-cream/50 text-sm tracking-[0.2em] uppercase"
+            >
+              Real Stories, Real Emotions
+            </motion.p>
+
+            {/* Decorative Line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="w-24 h-px bg-cream/40 mx-auto mt-8"
+            />
+          </div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              className="flex flex-col items-center gap-2"
+            >
+              <span className="text-cream/40 text-xs tracking-widest uppercase">
+                Scroll
+              </span>
+              <ChevronDown className="w-5 h-5 text-cream/40" />
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* Testimonials Grid */}
+        <section className="section-padding">
+          <div className="section-container">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <TestimonialCard
+                    testimonial={testimonial}
+                    onClick={() => setSelectedTestimonial(testimonial)}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="section-padding bg-cream/5">
+          <div className="section-container text-center">
+            <h2 className="text-3xl md:text-4xl font-serif text-cream mb-4">
+              Ready to Create Your Story?
             </h2>
-            <p className="text-cream/60 text-sm md:text-base mb-8 max-w-sm">
-              Check out what our clients have to say about their experience with
-              us
+            <p className="text-cream/60 mb-8 max-w-lg mx-auto">
+              Let us capture the beautiful moments of your special day
             </p>
             <a
-              href="/testimonials"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-cream/30 text-cream text-sm tracking-wide hover:bg-cream hover:text-charcoal transition-all duration-300 group"
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-cream text-charcoal font-medium tracking-wide hover:bg-cream/90 transition-all duration-300 group"
             >
-              View More
+              Get in Touch
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
+        </section>
+      </main>
 
-          {/* Right Side - Testimonial Cards */}
-          <div className="lg:col-span-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Left Column */}
-              <div className="flex flex-col gap-6">
-                {testimonials
-                  .filter((_, i) => i % 2 === 0)
-                  .map((testimonial, index) => (
-                    <TestimonialCard
-                      key={testimonial.id}
-                      testimonial={testimonial}
-                      onClick={() => setSelectedTestimonial(testimonial)}
-                      index={index}
-                    />
-                  ))}
-              </div>
-
-              {/* Right Column - Offset */}
-              <div className="flex flex-col gap-6 md:mt-12">
-                {testimonials
-                  .filter((_, i) => i % 2 === 1)
-                  .map((testimonial, index) => (
-                    <TestimonialCard
-                      key={testimonial.id}
-                      testimonial={testimonial}
-                      onClick={() => setSelectedTestimonial(testimonial)}
-                      index={index}
-                    />
-                  ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Footer />
 
       {/* Testimonial Modal */}
       <Dialog
@@ -198,26 +332,20 @@ const Testimonials = () => {
           )}
         </DialogContent>
       </Dialog>
-    </section>
+    </>
   );
 };
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
   onClick: () => void;
-  index: number;
 }
 
-const TestimonialCard = ({
-  testimonial,
-  onClick,
-  index,
-}: TestimonialCardProps) => {
+const TestimonialCard = ({ testimonial, onClick }: TestimonialCardProps) => {
   return (
     <div
-      className="group relative bg-cream/5 backdrop-blur-sm rounded-sm p-6 hover:bg-cream/10 transition-all duration-300 cursor-pointer"
+      className="group relative bg-cream/5 backdrop-blur-sm rounded-sm p-6 hover:bg-cream/10 transition-all duration-300 cursor-pointer h-full flex flex-col"
       onClick={onClick}
-      style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Quote Icon */}
       <Quote className="w-8 h-8 text-cream/20 mb-4 rotate-180" />
@@ -227,15 +355,20 @@ const TestimonialCard = ({
         {testimonial.coupleName}
       </h3>
 
+      {/* Event Type Badge */}
+      <span className="inline-block text-cream/40 text-xs tracking-widest uppercase mb-3">
+        {testimonial.eventType} • {testimonial.eventDate}
+      </span>
+
       {/* Quote Preview */}
-      <p className="text-cream/60 text-sm leading-relaxed mb-6 line-clamp-4">
+      <p className="text-cream/60 text-sm leading-relaxed mb-6 line-clamp-4 flex-grow">
         {testimonial.quote}
       </p>
 
       {/* Read More */}
       <button className="inline-flex items-center gap-2 text-cream/80 text-sm hover:text-cream transition-colors group/btn">
         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-        Read More...
+        Read Full Story
       </button>
 
       {/* Avatar Placeholder */}
@@ -251,4 +384,4 @@ const TestimonialCard = ({
   );
 };
 
-export default Testimonials;
+export default TestimonialsPage;
