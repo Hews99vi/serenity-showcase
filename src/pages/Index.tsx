@@ -32,7 +32,7 @@ const Index = () => {
         <link rel="canonical" href="https://serenityweddingfilms.com" />
       </Helmet>
 
-      <main className="overflow-hidden bg-charcoal">
+      <main className="overflow-x-hidden bg-charcoal">
         <Navbar />
         <SideNav />
         <HeroSection />
