@@ -168,9 +168,6 @@ const FeaturedFilms = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-gold/20 backdrop-blur-sm rounded-full text-gold text-xs md:text-sm font-medium mb-3 border border-gold/30">
-                    Featured Film
-                  </span>
                   <h3 className="font-serif text-2xl md:text-4xl lg:text-5xl text-cream mb-2">{films[0].title}</h3>
                   <p className="text-cream/60 text-sm md:text-lg">{films[0].subtitle}</p>
                 </motion.div>
@@ -234,12 +231,6 @@ const FeaturedFilms = () => {
                     transition={{ duration: 0.6 }}
                   />
                   
-                  {/* Film number badge */}
-                  <div className="absolute top-3 left-3 md:top-5 md:left-5">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-charcoal/80 backdrop-blur-sm rounded-full flex items-center justify-center border border-gold/30">
-                      <span className="font-serif text-gold text-lg md:text-xl">0{film.id}</span>
-                    </div>
-                  </div>
                   
                   {/* Play button */}
                   <div className="absolute inset-0 flex items-center justify-center">
