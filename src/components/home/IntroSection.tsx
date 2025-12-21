@@ -67,28 +67,36 @@ function DesktopReelStory() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
+    // "start start" = animation begins when section top hits viewport top
+    // "end end" = animation ends when section bottom hits viewport bottom
     offset: ["start start", "end end"],
   });
 
-  // Reel motion with snap-like easing at each section
-  // Creates 3 "zones" that snap: 0-33% = slide 1, 33-66% = slide 2, 66-100% = slide 3
-  const reelY = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], ["0%", "-100%", "-200%", "-200%"]);
+  // Reel motion with snap-like behavior at each section
+  // 0-33% scroll = show slide 1, 33-66% = slide 2, 66-100% = slide 3
+  const reelY = useTransform(
+    scrollYProgress, 
+    [0, 0.3, 0.35, 0.63, 0.68, 1], 
+    ["0%", "0%", "-100%", "-100%", "-200%", "-200%"]
+  );
 
-  // Text motion: snaps in sync with reel
-  const t1Opacity = useTransform(scrollYProgress, [0, 0.28, 0.33], [1, 1, 0]);
-  const t1Y = useTransform(scrollYProgress, [0, 0.33], [0, -20]);
+  // Text motion: snaps in sync with reel with smooth transitions
+  const t1Opacity = useTransform(scrollYProgress, [0, 0.28, 0.35], [1, 1, 0]);
+  const t1Y = useTransform(scrollYProgress, [0, 0.35], [0, -30]);
 
-  const t2Opacity = useTransform(scrollYProgress, [0.28, 0.33, 0.61, 0.66], [0, 1, 1, 0]);
-  const t2Y = useTransform(scrollYProgress, [0.28, 0.33, 0.66], [20, 0, -20]);
+  const t2Opacity = useTransform(scrollYProgress, [0.3, 0.35, 0.63, 0.68], [0, 1, 1, 0]);
+  const t2Y = useTransform(scrollYProgress, [0.3, 0.35, 0.68], [30, 0, -30]);
 
-  const t3Opacity = useTransform(scrollYProgress, [0.61, 0.66, 1], [0, 1, 1]);
-  const t3Y = useTransform(scrollYProgress, [0.61, 0.66], [20, 0]);
+  const t3Opacity = useTransform(scrollYProgress, [0.63, 0.68, 1], [0, 1, 1]);
+  const t3Y = useTransform(scrollYProgress, [0.63, 0.68], [30, 0]);
 
   const textOpacities = [t1Opacity, t2Opacity, t3Opacity];
   const textYs = [t1Y, t2Y, t3Y];
 
   return (
-    <div ref={containerRef} className="hidden lg:block relative h-[300vh]">
+    // Height determines how much scrolling is needed to complete the animation
+    // 400vh = user scrolls 4x viewport height while section stays pinned
+    <div ref={containerRef} className="hidden lg:block relative h-[400vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-charcoal">
         <div className="h-full w-full grid grid-cols-2">
           {/* Left: Reel window */}
