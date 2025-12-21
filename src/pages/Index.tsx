@@ -6,8 +6,6 @@ import PhilosophySection from "@/components/home/PhilosophySection";
 import QualitySection from "@/components/home/QualitySection";
 import FeaturedFilms from "@/components/home/FeaturedFilms";
 import Testimonials from "@/components/Testimonials";
-import Destinations from "@/components/home/Destinations";
-import Engagements from "@/components/home/Engagements";
 import ContactCTA from "@/components/home/ContactCTA";
 import SideNav from "@/components/home/SideNav";
 import Footer from "@/components/Footer";
@@ -46,12 +44,6 @@ const Index = () => {
         </div>
         <div id="testimonials">
           <Testimonials />
-        </div>
-        <div id="destinations">
-          <Destinations />
-        </div>
-        <div id="engagements">
-          <Engagements />
         </div>
         <ContactCTA />
         <Footer />

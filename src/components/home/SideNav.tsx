@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 
 const navItems = [
-  { id: "featured", label: "FEATURED" },
+  { id: "featured", label: "OUR WORK" },
   { id: "testimonials", label: "TESTIMONIALS" },
-  { id: "destinations", label: "DESTINATIONS" },
-  { id: "engagements", label: "ENGAGEMENTS" },
   { id: "contact", label: "CONTACT" },
 ];
 
