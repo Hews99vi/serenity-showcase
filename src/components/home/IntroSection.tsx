@@ -37,10 +37,13 @@ function DesktopReelStory() {
   });
 
   // Snap-like reel motion (holds each slide, then jumps to next zone)
+  // NOTE: translateY(%) is relative to the reel stack height (which is 300%),
+  // so each “step” must be 100/sections.length to move exactly one frame.
+  const step = 100 / sections.length;
   const reelY = useTransform(
     scrollYProgress,
     [0, 0.3, 0.35, 0.63, 0.68, 1],
-    ["0%", "0%", "-100%", "-100%", "-200%", "-200%"]
+    ["0%", "0%", `-${step}%`, `-${step}%`, `-${step * 2}%`, `-${step * 2}%`]
   );
 
   // Text motion synced with reel
