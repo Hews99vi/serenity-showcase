@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const sections = [
   {
@@ -8,7 +8,7 @@ const sections = [
     title: "A New Chapter in Cinematic Storytelling",
     description:
       "We're stepping into a new chapter with a refreshed identity crafted with elegance, warmth, and timeless storytelling.",
-    videoId: "DLhYYb76hJw",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&showinfo=0",
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const sections = [
     title: "Every Love Story Becomes Cinematic",
     description:
       "At Serenity Wedding Films, every love story becomes a cinematic journey filled with emotion and beauty. We believe your wedding film should feel personal, meaningful, and deeply connected to who you are.",
-    videoId: "7lJUUoLLG1g",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&showinfo=0",
   },
   {
     id: 3,
@@ -24,182 +24,199 @@ const sections = [
     title: "Documenting Every Precious Moment",
     description:
       "From the intimate glances to the joyous celebrations, we're here to document every precious moment of your special day — naturally, artistically, and with intention.",
-    videoId: "vY0qjnKNh-A",
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&showinfo=0",
   },
-] as const;
+];
 
-function DesktopReelStory() {
+const PhoneMockup = ({ videoUrl, index }: { videoUrl: string; index: number }) => {
+  return (
+    <div 
+      className="relative w-[180px] md:w-[220px] lg:w-[260px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-2xl"
+      style={{
+        background: "linear-gradient(145deg, hsl(var(--charcoal-light)), hsl(var(--charcoal)))",
+        border: "3px solid hsl(var(--cream) / 0.2)",
+      }}
+    >
+      {/* Phone notch */}
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-5 bg-charcoal rounded-full z-10" />
+      
+      {/* Video content */}
+      <div className="absolute inset-2 rounded-[1.5rem] overflow-hidden bg-charcoal">
+        <iframe
+          src={videoUrl}
+          className="w-full h-full object-cover scale-150"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          title={`Reel ${index + 1}`}
+        />
+      </div>
+      
+      {/* Phone reflection */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cream/5 via-transparent to-transparent pointer-events-none" />
+    </div>
+  );
+};
+
+const IntroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const reelViewportRef = useRef<HTMLDivElement>(null);
-  const [frameHeight, setFrameHeight] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const el = reelViewportRef.current;
-    if (!el) return;
-
-    const update = () => {
-      setFrameHeight(el.getBoundingClientRect().height);
-    };
-
-    update();
-
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-
-    return () => ro.disconnect();
-  }, []);
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Track active section for video autoplay
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.33) setActiveIndex(0);
-    else if (latest < 0.66) setActiveIndex(1);
-    else setActiveIndex(2);
-  });
+  // Transform values for the phone stack
+  const phone1Y = useTransform(scrollYProgress, [0, 0.33], [0, -100]);
+  const phone1Rotate = useTransform(scrollYProgress, [0, 0.33], [-15, -5]);
+  const phone1Opacity = useTransform(scrollYProgress, [0, 0.25, 0.4], [1, 1, 0.3]);
 
-  // Smoother reel motion with extended transition zones
-  const reelY = useTransform(
-    scrollYProgress,
-    [0, 0.28, 0.38, 0.58, 0.72, 1],
-    [0, 0, -frameHeight, -frameHeight, -frameHeight * 2, -frameHeight * 2]
-  );
+  const phone2Y = useTransform(scrollYProgress, [0, 0.33, 0.66], [50, 0, -100]);
+  const phone2Rotate = useTransform(scrollYProgress, [0, 0.33, 0.66], [0, 0, 5]);
+  const phone2Opacity = useTransform(scrollYProgress, [0.2, 0.33, 0.5, 0.7], [0.3, 1, 1, 0.3]);
 
-  // Smoother text transitions with longer crossfade
-  const t1Opacity = useTransform(scrollYProgress, [0, 0.25, 0.38], [1, 1, 0]);
-  const t1Y = useTransform(scrollYProgress, [0, 0.38], [0, -40]);
+  const phone3Y = useTransform(scrollYProgress, [0.33, 0.66, 1], [100, 50, 0]);
+  const phone3Rotate = useTransform(scrollYProgress, [0.33, 0.66, 1], [15, 10, 5]);
+  const phone3Opacity = useTransform(scrollYProgress, [0.5, 0.66, 1], [0.3, 1, 1]);
 
-  const t2Opacity = useTransform(scrollYProgress, [0.28, 0.38, 0.58, 0.72], [0, 1, 1, 0]);
-  const t2Y = useTransform(scrollYProgress, [0.28, 0.38, 0.72], [40, 0, -40]);
+  // Text section transforms
+  const text1Opacity = useTransform(scrollYProgress, [0, 0.2, 0.33], [1, 1, 0]);
+  const text1Y = useTransform(scrollYProgress, [0, 0.33], [0, -50]);
 
-  const t3Opacity = useTransform(scrollYProgress, [0.58, 0.72, 1], [0, 1, 1]);
-  const t3Y = useTransform(scrollYProgress, [0.58, 0.72], [40, 0]);
+  const text2Opacity = useTransform(scrollYProgress, [0.2, 0.33, 0.5, 0.66], [0, 1, 1, 0]);
+  const text2Y = useTransform(scrollYProgress, [0.2, 0.33, 0.66], [50, 0, -50]);
 
-  const textOpacities = [t1Opacity, t2Opacity, t3Opacity];
-  const textYs = [t1Y, t2Y, t3Y];
-
-  // Debug overlay (enable with ?debugScroll=1)
-  const showDebug =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).get("debugScroll") === "1";
-  const debugWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
-  // Progress indicator transforms - moved outside JSX to fix hooks violation
-  const p1Scale = useTransform(t1Opacity, [0, 1], [0.35, 1]);
-  const p1Opacity = useTransform(t1Opacity, [0, 1], [0.35, 1]);
-  const p2Scale = useTransform(t2Opacity, [0, 1], [0.35, 1]);
-  const p2Opacity = useTransform(t2Opacity, [0, 1], [0.35, 1]);
-  const p3Scale = useTransform(t3Opacity, [0, 1], [0.35, 1]);
-  const p3Opacity = useTransform(t3Opacity, [0, 1], [0.35, 1]);
-
-  const progressScales = [p1Scale, p2Scale, p3Scale];
-  const progressOpacities = [p1Opacity, p2Opacity, p3Opacity];
+  const text3Opacity = useTransform(scrollYProgress, [0.5, 0.66, 1], [0, 1, 1]);
+  const text3Y = useTransform(scrollYProgress, [0.5, 0.66], [50, 0]);
 
   return (
-    // This tall "track" is what makes the main page scroll feel "locked" here
-    <div ref={containerRef} className="relative h-[400vh]">
-      <div className="sticky top-0 h-screen overflow-hidden bg-charcoal">
-        {showDebug && (
-          <div className="pointer-events-none absolute left-4 top-4 z-50 rounded-md border border-cream/10 bg-charcoal/70 px-3 py-2 text-xs text-cream backdrop-blur">
-            <div className="flex items-center gap-3">
-              <span className="tracking-[0.3em] uppercase text-cream/60">Scroll</span>
-              <div className="h-1 w-32 overflow-hidden rounded bg-cream/15">
-                <motion.div className="h-full bg-cream" style={{ width: debugWidth }} />
-              </div>
+    <section ref={containerRef} className="relative h-[300vh] bg-charcoal">
+      {/* Sticky container */}
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+        <div className="section-container w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Left: Text Content */}
+            <div className="relative h-[300px] md:h-[400px]">
+              {sections.map((section, index) => {
+                const opacities = [text1Opacity, text2Opacity, text3Opacity];
+                const yTransforms = [text1Y, text2Y, text3Y];
+                
+                return (
+                  <motion.div
+                    key={section.id}
+                    className="absolute inset-0 flex flex-col justify-center"
+                    style={{
+                      opacity: opacities[index],
+                      y: yTransforms[index],
+                    }}
+                  >
+                    <span className="text-cream/60 text-xs tracking-[0.3em] uppercase mb-4 block">
+                      {section.label}
+                    </span>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-cream leading-tight mb-6 tracking-wide uppercase">
+                      {section.title}
+                    </h2>
+                    <p className="text-cream/80 text-base md:text-lg leading-relaxed font-light max-w-lg">
+                      {section.description}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Right: Phone Mockups Stack */}
+            <div className="relative h-[400px] md:h-[500px] flex items-center justify-center">
+              {/* Phone 1 */}
+              <motion.div
+                className="absolute"
+                style={{
+                  y: phone1Y,
+                  rotate: phone1Rotate,
+                  opacity: phone1Opacity,
+                  x: -40,
+                  zIndex: 1,
+                }}
+              >
+                <PhoneMockup videoUrl={sections[0].video} index={0} />
+              </motion.div>
+
+              {/* Phone 2 */}
+              <motion.div
+                className="absolute"
+                style={{
+                  y: phone2Y,
+                  rotate: phone2Rotate,
+                  opacity: phone2Opacity,
+                  x: 0,
+                  zIndex: 2,
+                }}
+              >
+                <PhoneMockup videoUrl={sections[1].video} index={1} />
+              </motion.div>
+
+              {/* Phone 3 */}
+              <motion.div
+                className="absolute"
+                style={{
+                  y: phone3Y,
+                  rotate: phone3Rotate,
+                  opacity: phone3Opacity,
+                  x: 40,
+                  zIndex: 3,
+                }}
+              >
+                <PhoneMockup videoUrl={sections[2].video} index={2} />
+              </motion.div>
+
+              {/* Decorative elements */}
+              <div className="absolute -z-10 w-[400px] h-[400px] rounded-full bg-cream/5 blur-3xl" />
             </div>
           </div>
-        )}
 
-        <div className="h-full w-full flex flex-col lg:flex-row">
-          {/* Left: Reel window */}
-          <aside className="relative flex items-center justify-center h-[56vh] lg:h-full lg:w-1/2 px-6 sm:px-10 lg:px-0">
-            <div
-              ref={reelViewportRef}
-              className="relative w-auto h-[70vh] lg:h-[80vh] aspect-[9/16] rounded-[2.5rem] overflow-hidden border border-cream/15 bg-charcoal shadow-2xl"
-            >
-              <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-charcoal to-transparent z-10" />
+          {/* Signature at bottom */}
+          <motion.p 
+            className="absolute bottom-20 left-1/2 -translate-x-1/2 text-2xl md:text-3xl font-script text-cream/80 text-center"
+            style={{
+              opacity: useTransform(scrollYProgress, [0.8, 1], [0, 1]),
+            }}
+          >
+            Let's create your masterpiece together.
+          </motion.p>
 
-              <motion.div
-                className="absolute top-0 left-0 right-0 will-change-transform"
-                style={{ 
-                  y: reelY, 
-                  height: `${sections.length * 100}%`,
-                }}
-                transition={{ type: "tween", ease: [0.25, 0.1, 0.25, 1], duration: 0.6 }}
-              >
-                {sections.map((s, idx) => (
-                  <div key={s.id} className="relative" style={{ height: `${100 / sections.length}%` }}>
-                    <iframe
-                      src={`https://www.youtube.com/embed/${s.videoId}?autoplay=${activeIndex === idx ? 1 : 0}&mute=1&loop=1&playlist=${s.videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`}
-                      title={`${s.title} — cinematic wedding storytelling`}
-                      className="absolute inset-0 h-full w-full object-cover pointer-events-none"
-                      style={{ border: 'none' }}
-                      allow="autoplay; encrypted-media"
-                      loading={idx === 0 ? "eager" : "lazy"}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-charcoal/30 via-transparent to-charcoal/60 pointer-events-none" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--charcoal)/0)_0%,hsl(var(--charcoal)/0.4)_100%)] pointer-events-none" />
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </aside>
-
-          {/* Right: Copy (swaps as you keep scrolling) */}
-          <main className="relative flex-1 lg:w-1/2 flex items-center px-6 sm:px-10 lg:px-16 xl:px-24">
-            <div className="relative w-full min-h-[38vh] lg:min-h-0">
-              {sections.map((s, idx) => (
-                <motion.article
-                  key={s.id}
-                  className="absolute inset-0 flex flex-col justify-center"
-                  style={{ opacity: textOpacities[idx], y: textYs[idx] }}
-                >
-                  <span className="text-cream/50 text-xs tracking-[0.3em] uppercase mb-5 block">
-                    {s.label}
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-serif text-cream leading-[1.05] mb-6 sm:mb-8 tracking-wide">
-                    {s.title}
-                  </h2>
-                  <p className="text-cream/70 text-base sm:text-lg xl:text-xl leading-relaxed font-light max-w-xl">
-                    {s.description}
-                  </p>
-                </motion.article>
-              ))}
-            </div>
-
-            {/* Minimal progress marks (desktop only) */}
-            <div className="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5">
-              {sections.map((s, idx) => (
-                <motion.div
-                  key={s.id}
-                  className="h-px w-10 bg-cream/25 origin-left"
-                  style={{
-                    scaleX: progressScales[idx],
-                    opacity: progressOpacities[idx],
-                  }}
-                />
-              ))}
-            </div>
-          </main>
+          {/* Scroll indicator */}
+          <motion.div 
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+            style={{
+              opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]),
+            }}
+          >
+            <span className="text-cream/40 text-xs tracking-widest uppercase">Scroll</span>
+            <div className="w-px h-8 bg-gradient-to-b from-cream/40 to-transparent" />
+          </motion.div>
         </div>
       </div>
-    </div>
-  );
-}
 
-
-const IntroSection = () => {
-  return (
-    <section className="bg-charcoal">
-      <DesktopReelStory />
+      {/* Progress indicators */}
+      <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-3">
+        {sections.map((section, index) => {
+          const opacities = [text1Opacity, text2Opacity, text3Opacity];
+          return (
+            <motion.div
+              key={section.id}
+              className="w-2 h-2 rounded-full bg-cream/30"
+              style={{
+                scale: useTransform(opacities[index], [0.5, 1], [1, 1.5]),
+                backgroundColor: useTransform(
+                  opacities[index],
+                  [0.5, 1],
+                  ["hsl(var(--cream) / 0.3)", "hsl(var(--cream))"]
+                ),
+              }}
+            />
+          );
+        })}
+      </div>
     </section>
   );
 };
 
 export default IntroSection;
-
-
