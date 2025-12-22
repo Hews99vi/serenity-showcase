@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Play, Mail } from "lucide-react";
+import heroLogo from "@/assets/serenity-hero-logo.png";
+
 const HeroSection = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background with poster fallback */}
@@ -17,19 +19,27 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-charcoal/30" />
 
       {/* Content */}
-      <div className="relative z-10 section-container text-center py-32">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-cream leading-tight tracking-wider animate-fade-up text-balance uppercase">SERENITY WEDDING FILMS</h1>
-          <span className="font-script text-cream/80 text-xl md:text-2xl mt-6 block animate-fade-up animation-delay-200">Where Serenity meets Cinema, Love Becomes a MasterPiece</span>
+      <div className="relative z-10 section-container text-center flex flex-col items-center justify-center min-h-screen py-20">
+        <div className="flex flex-col items-center max-w-4xl mx-auto">
+          {/* Hero Logo */}
+          <img 
+            src={heroLogo} 
+            alt="Serenity Wedding Films" 
+            className="w-64 sm:w-80 md:w-96 lg:w-[28rem] h-auto animate-fade-up drop-shadow-2xl"
+          />
           
-
-          {/* CTA Buttons */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animation-delay-600">
-            <Link to="/portfolio" className="group flex items-center gap-3 bg-cream text-charcoal px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105">
+          {/* Tagline - positioned lower */}
+          <span className="font-script text-cream/80 text-xl md:text-2xl mt-16 md:mt-20 block animate-fade-up animation-delay-200">
+            Where Serenity meets Cinema, Love Becomes a MasterPiece
+          </span>
+          
+          {/* CTA Buttons - positioned even lower */}
+          <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animation-delay-600">
+            <Link to="/portfolio" className="group flex items-center gap-3 bg-cream text-charcoal px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105 shadow-lg">
               <Play className="w-5 h-5" />
               Watch Our Films
             </Link>
-            <Link to="/contact" className="group flex items-center gap-3 border border-cream/40 text-cream px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream">
+            <Link to="/contact" className="group flex items-center gap-3 border border-cream/40 text-cream px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream backdrop-blur-sm">
               <Mail className="w-5 h-5" />
               Request a Quote
             </Link>
