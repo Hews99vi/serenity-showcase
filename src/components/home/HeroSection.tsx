@@ -30,8 +30,8 @@ const HeroSection = () => {
           </div>
           
           {/* Tagline - positioned lower with staggered animation */}
-          <span className="text-cream/80 text-xl md:text-2xl mt-16 md:mt-20 block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans">
-            Where Serenity meets Cinema, Love Becomes a MasterPiece
+          <span className="text-cream/80 text-xl mt-16 md:mt-20 block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans font-extralight md:text-xl">
+            Where Serenity Meets Cinema, Love Becomes a Masterpiece
           </span>
           
           {/* CTA Buttons - positioned even lower with staggered animations */}
