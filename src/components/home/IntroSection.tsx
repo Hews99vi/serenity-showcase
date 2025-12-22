@@ -1,6 +1,5 @@
 const IntroSection = () => {
-  return (
-    <section className="section-dark section-padding">
+  return <section className="section-dark section-padding">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Text Content - Left */}
@@ -9,9 +8,7 @@ const IntroSection = () => {
               About Serenity
             </span>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-cream leading-tight mb-8 animate-fade-up animation-delay-200 tracking-wide uppercase">
-              A New Chapter in Cinematic Storytelling
-            </h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-cream leading-tight mb-8 animate-fade-up animation-delay-200 tracking-wide uppercase">A NEW CHAPTER IN SERENITY</h2>
             
             <div className="space-y-6 text-cream/80 text-lg leading-relaxed font-light animate-fade-up animation-delay-400">
               <p>We're stepping into a new chapter with a refreshed identity crafted with elegance, warmth, and timeless storytelling.</p>
@@ -35,13 +32,7 @@ const IntroSection = () => {
               <div className="absolute -inset-8 border border-cream/10 rounded-3xl" />
               
               <div className="relative w-[280px] h-[500px] rounded-xl overflow-hidden shadow-2xl">
-                <iframe
-                  src="https://www.youtube.com/embed/y9bfEwjzwUA?autoplay=0&mute=1&loop=1&playlist=y9bfEwjzwUA&controls=0&showinfo=0&rel=0"
-                  title="Serenity Wedding Films Reel"
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                <iframe src="https://www.youtube.com/embed/y9bfEwjzwUA?autoplay=0&mute=1&loop=1&playlist=y9bfEwjzwUA&controls=0&showinfo=0&rel=0" title="Serenity Wedding Films Reel" className="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
               </div>
               
               {/* Subtle glow effect */}
@@ -50,8 +41,6 @@ const IntroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default IntroSection;
