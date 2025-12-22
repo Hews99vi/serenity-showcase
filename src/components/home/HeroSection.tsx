@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Play, Mail } from "lucide-react";
 import heroLogo from "@/assets/serenity-hero-logo.png";
-
 const HeroSection = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background with poster fallback */}
@@ -23,40 +22,25 @@ const HeroSection = () => {
         <div className="flex flex-col items-center max-w-4xl mx-auto">
           {/* Hero Logo with breathing glow effect */}
           <div className="relative animate-fade-up">
-            <img 
-              src={heroLogo} 
-              alt="Serenity Wedding Films" 
-              className="w-64 sm:w-80 md:w-96 lg:w-[28rem] h-auto drop-shadow-2xl animate-[breathe_4s_ease-in-out_infinite]"
-            />
+            <img src={heroLogo} alt="Serenity Wedding Films" className="w-64 sm:w-80 md:w-96 lg:w-[28rem] h-auto drop-shadow-2xl animate-[breathe_4s_ease-in-out_infinite]" />
             {/* Soft glow behind logo */}
             <div className="absolute inset-0 -z-10 blur-2xl opacity-40 animate-[glow_4s_ease-in-out_infinite]">
-              <img 
-                src={heroLogo} 
-                alt="" 
-                className="w-full h-full"
-                aria-hidden="true"
-              />
+              <img src={heroLogo} alt="" className="w-full h-full" aria-hidden="true" />
             </div>
           </div>
           
           {/* Tagline - positioned lower with staggered animation */}
-          <span className="font-script text-cream/80 text-xl md:text-2xl mt-16 md:mt-20 block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards]">
+          <span className="text-cream/80 text-xl md:text-2xl mt-16 md:mt-20 block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans">
             Where Serenity meets Cinema, Love Becomes a MasterPiece
           </span>
           
           {/* CTA Buttons - positioned even lower with staggered animations */}
           <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link 
-              to="/portfolio" 
-              className="group flex items-center gap-3 bg-cream text-charcoal px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105 shadow-lg opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1s_forwards]"
-            >
+            <Link to="/portfolio" className="group flex items-center gap-3 bg-cream text-charcoal px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105 shadow-lg opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1s_forwards]">
               <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
               Watch Our Films
             </Link>
-            <Link 
-              to="/contact" 
-              className="group flex items-center gap-3 border border-cream/40 text-cream px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream backdrop-blur-sm opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1.3s_forwards]"
-            >
+            <Link to="/contact" className="group flex items-center gap-3 border border-cream/40 text-cream px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream backdrop-blur-sm opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1.3s_forwards]">
               <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
               Request a Quote
             </Link>
