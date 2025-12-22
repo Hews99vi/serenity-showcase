@@ -119,7 +119,7 @@ function DesktopReelStory() {
           <aside className="relative flex items-center justify-center h-[56vh] lg:h-full lg:w-1/2 px-6 sm:px-10 lg:px-0">
             <div
               ref={reelViewportRef}
-              className="relative w-[min(92vw,560px)] lg:w-[min(44vw,560px)] h-full lg:h-[78vh] rounded-[2.5rem] overflow-hidden border border-cream/15 bg-charcoal shadow-2xl"
+              className="relative w-auto h-[70vh] lg:h-[80vh] aspect-[9/16] rounded-[2.5rem] overflow-hidden border border-cream/15 bg-charcoal shadow-2xl"
             >
               <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-charcoal to-transparent z-10" />
 
@@ -136,8 +136,8 @@ function DesktopReelStory() {
                     <iframe
                       src={`https://www.youtube.com/embed/${s.videoId}?autoplay=${activeIndex === idx ? 1 : 0}&mute=1&loop=1&playlist=${s.videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`}
                       title={`${s.title} — cinematic wedding storytelling`}
-                      className="h-full w-full object-cover pointer-events-none"
-                      style={{ border: 'none', aspectRatio: '9/16' }}
+                      className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+                      style={{ border: 'none' }}
                       allow="autoplay; encrypted-media"
                       loading={idx === 0 ? "eager" : "lazy"}
                     />
