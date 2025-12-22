@@ -59,6 +59,17 @@ function DesktopReelStory() {
   const textOpacities = [t1Opacity, t2Opacity, t3Opacity];
   const textYs = [t1Y, t2Y, t3Y];
 
+  // Progress indicator transforms - moved outside JSX to fix hooks violation
+  const p1Scale = useTransform(t1Opacity, [0, 1], [0.35, 1]);
+  const p1Opacity = useTransform(t1Opacity, [0, 1], [0.35, 1]);
+  const p2Scale = useTransform(t2Opacity, [0, 1], [0.35, 1]);
+  const p2Opacity = useTransform(t2Opacity, [0, 1], [0.35, 1]);
+  const p3Scale = useTransform(t3Opacity, [0, 1], [0.35, 1]);
+  const p3Opacity = useTransform(t3Opacity, [0, 1], [0.35, 1]);
+
+  const progressScales = [p1Scale, p2Scale, p3Scale];
+  const progressOpacities = [p1Opacity, p2Opacity, p3Opacity];
+
   return (
     // This tall "track" is what makes the main page scroll feel "locked" here
     <div ref={containerRef} className="relative h-[400vh]">
@@ -116,8 +127,8 @@ function DesktopReelStory() {
                   key={s.id}
                   className="h-px w-10 bg-cream/25 origin-left"
                   style={{
-                    scaleX: useTransform(textOpacities[idx], [0, 1], [0.35, 1]),
-                    opacity: useTransform(textOpacities[idx], [0, 1], [0.35, 1]),
+                    scaleX: progressScales[idx],
+                    opacity: progressOpacities[idx],
                   }}
                 />
               ))}
