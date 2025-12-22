@@ -21,12 +21,23 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 section-container text-center flex flex-col items-center justify-center min-h-screen py-20">
         <div className="flex flex-col items-center max-w-4xl mx-auto">
-          {/* Hero Logo */}
-          <img 
-            src={heroLogo} 
-            alt="Serenity Wedding Films" 
-            className="w-64 sm:w-80 md:w-96 lg:w-[28rem] h-auto animate-fade-up drop-shadow-2xl"
-          />
+          {/* Hero Logo with breathing glow effect */}
+          <div className="relative animate-fade-up">
+            <img 
+              src={heroLogo} 
+              alt="Serenity Wedding Films" 
+              className="w-64 sm:w-80 md:w-96 lg:w-[28rem] h-auto drop-shadow-2xl animate-[breathe_4s_ease-in-out_infinite]"
+            />
+            {/* Soft glow behind logo */}
+            <div className="absolute inset-0 -z-10 blur-2xl opacity-40 animate-[glow_4s_ease-in-out_infinite]">
+              <img 
+                src={heroLogo} 
+                alt="" 
+                className="w-full h-full"
+                aria-hidden="true"
+              />
+            </div>
+          </div>
           
           {/* Tagline - positioned lower */}
           <span className="font-script text-cream/80 text-xl md:text-2xl mt-16 md:mt-20 block animate-fade-up animation-delay-200">
