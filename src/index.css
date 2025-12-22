@@ -76,7 +76,8 @@
     @apply border-border;
   }
   html {
-    scroll-behavior: smooth;
+    /* Avoid conflicts with scroll-linked animations (Framer Motion useScroll) */
+    scroll-behavior: auto;
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
