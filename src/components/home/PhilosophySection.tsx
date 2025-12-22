@@ -1,6 +1,5 @@
 const PhilosophySection = () => {
-  return (
-    <section id="philosophy" className="section-light section-padding">
+  return <section id="philosophy" className="section-light section-padding">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Video - Left */}
@@ -11,13 +10,7 @@ const PhilosophySection = () => {
               <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-charcoal/20" />
               
               <div className="relative w-[280px] h-[500px] rounded-xl overflow-hidden shadow-xl">
-                <iframe
-                  src="https://www.youtube.com/embed/Ycc-1d4hfEc?autoplay=1&mute=1&loop=1&playlist=Ycc-1d4hfEc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-                  title="Serenity Wedding Films Philosophy"
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                <iframe src="https://www.youtube.com/embed/Ycc-1d4hfEc?autoplay=1&mute=1&loop=1&playlist=Ycc-1d4hfEc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" title="Serenity Wedding Films Philosophy" className="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
               </div>
             </div>
           </div>
@@ -28,7 +21,7 @@ const PhilosophySection = () => {
               <span className="text-charcoal/60 text-xs tracking-[0.3em] uppercase mb-6 block">
                 Our Philosophy
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-charcoal leading-tight tracking-wide uppercase">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-charcoal leading-tight tracking-wide uppercase text-center">
                 Capturing timeless moments, one frame at a time.
               </h2>
             </div>
@@ -55,8 +48,6 @@ const PhilosophySection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PhilosophySection;
