@@ -84,7 +84,7 @@ const FeaturedFilms = () => {
         }}>
             Cinematic Stories
           </motion.span>
-          <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-cream mb-6 tracking-wide">
+          <h2 className="font-serif text-4xl md:text-6xl text-cream mb-6 tracking-wide lg:text-6xl">
             Our Work
           </h2>
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -114,16 +114,11 @@ const FeaturedFilms = () => {
           <div className="relative group cursor-pointer overflow-hidden rounded-lg md:rounded-2xl" onClick={() => openVideo(films[0].youtubeId)} onMouseEnter={() => setHoveredId(films[0].id)} onMouseLeave={() => setHoveredId(null)}>
             {/* Main image container */}
             <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
-              {hoveredId === films[0].id ? (
-                <iframe
-                  src={`https://www.youtube.com/embed/${films[0].youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${films[0].youtubeId}`}
-                  className="w-full h-full object-cover scale-[1.2]"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
-              ) : (
-                <motion.img src={films[0].thumbnail} alt={films[0].title} className="w-full h-full object-cover" initial={{ scale: 1 }} transition={{ duration: 0.7 }} />
-              )}
+              {hoveredId === films[0].id ? <iframe src={`https://www.youtube.com/embed/${films[0].youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${films[0].youtubeId}`} className="w-full h-full object-cover scale-[1.2]" allow="autoplay; encrypted-media" allowFullScreen /> : <motion.img src={films[0].thumbnail} alt={films[0].title} className="w-full h-full object-cover" initial={{
+              scale: 1
+            }} transition={{
+              duration: 0.7
+            }} />}
               
               {/* Gradient overlays */}
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent" />
@@ -216,16 +211,11 @@ const FeaturedFilms = () => {
         }}>
               <div className="relative group cursor-pointer overflow-hidden rounded-lg md:rounded-xl" onClick={() => openVideo(film.youtubeId)} onMouseEnter={() => setHoveredId(film.id)} onMouseLeave={() => setHoveredId(null)}>
                 <div className="relative aspect-video overflow-hidden">
-                  {hoveredId === film.id ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${film.youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${film.youtubeId}`}
-                      className="w-full h-full object-cover scale-[1.2]"
-                      allow="autoplay; encrypted-media"
-                      allowFullScreen
-                    />
-                  ) : (
-                    <motion.img src={film.thumbnail} alt={film.title} className="w-full h-full object-cover" initial={{ scale: 1 }} transition={{ duration: 0.7 }} />
-                  )}
+                  {hoveredId === film.id ? <iframe src={`https://www.youtube.com/embed/${film.youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${film.youtubeId}`} className="w-full h-full object-cover scale-[1.2]" allow="autoplay; encrypted-media" allowFullScreen /> : <motion.img src={film.thumbnail} alt={film.title} className="w-full h-full object-cover" initial={{
+                scale: 1
+              }} transition={{
+                duration: 0.7
+              }} />}
                   
                   {/* Overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent" />

@@ -20,7 +20,7 @@ const QualitySection = () => {
       </div>
       
       <div className="section-container relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center text-3xl">
           {/* Text Content - Left */}
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-3 bg-cream/10 border border-cream/20 rounded-full px-6 py-2 mb-8">

@@ -8,7 +8,7 @@ const IntroSection = () => {
               About Serenity
             </span>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-cream leading-tight mb-8 animate-fade-up animation-delay-200 tracking-wide uppercase text-left">A NEW CHAPTER IN SERENITY</h2>
+            <h2 className="text-3xl md:text-4xl font-serif text-cream leading-tight mb-8 animate-fade-up animation-delay-200 tracking-wide uppercase text-left lg:text-3xl">A NEW CHAPTER IN SERENITY</h2>
             
             <div className="space-y-6 text-cream/80 text-lg leading-relaxed font-light animate-fade-up animation-delay-400">
               <p>We're stepping into a new chapter with a refreshed identity crafted with elegance, warmth, and timeless storytelling.</p>
