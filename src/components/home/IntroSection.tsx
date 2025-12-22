@@ -32,7 +32,7 @@ const IntroSection = () => {
               <div className="absolute -inset-8 border border-cream/10 rounded-3xl" />
               
               <div className="relative w-[280px] h-[500px] rounded-xl overflow-hidden shadow-2xl">
-                <iframe src="https://www.youtube.com/embed/y9bfEwjzwUA?autoplay=0&mute=1&loop=1&playlist=y9bfEwjzwUA&controls=0&showinfo=0&rel=0" title="Serenity Wedding Films Reel" className="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                <iframe src="https://www.youtube.com/embed/y9bfEwjzwUA?autoplay=1&mute=1&loop=1&playlist=y9bfEwjzwUA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" title="Serenity Wedding Films Reel" className="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
               </div>
               
               {/* Subtle glow effect */}
