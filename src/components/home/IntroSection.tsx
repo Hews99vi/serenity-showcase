@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const sections = [
@@ -30,6 +30,25 @@ const sections = [
 
 function DesktopReelStory() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const reelViewportRef = useRef<HTMLDivElement>(null);
+  const [frameHeight, setFrameHeight] = useState(0);
+
+  useEffect(() => {
+    const el = reelViewportRef.current;
+    if (!el) return;
+
+    const update = () => {
+      setFrameHeight(el.getBoundingClientRect().height);
+    };
+
+    update();
+
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+
+    return () => ro.disconnect();
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     // Animation begins when section top hits viewport top, ends after the scroll "track" finishes
@@ -37,13 +56,11 @@ function DesktopReelStory() {
   });
 
   // Snap-like reel motion (holds each slide, then jumps to next zone)
-  // NOTE: translateY(%) is relative to the reel stack height (which is 300%),
-  // so each “step” must be 100/sections.length to move exactly one frame.
-  const step = 100 / sections.length;
+  // Use pixel-based transforms derived from the reel viewport height for reliability.
   const reelY = useTransform(
     scrollYProgress,
     [0, 0.3, 0.35, 0.63, 0.68, 1],
-    ["0%", "0%", `-${step}%`, `-${step}%`, `-${step * 2}%`, `-${step * 2}%`]
+    [0, 0, -frameHeight, -frameHeight, -frameHeight * 2, -frameHeight * 2]
   );
 
   // Text motion synced with reel
@@ -58,6 +75,12 @@ function DesktopReelStory() {
 
   const textOpacities = [t1Opacity, t2Opacity, t3Opacity];
   const textYs = [t1Y, t2Y, t3Y];
+
+  // Debug overlay (enable with ?debugScroll=1)
+  const showDebug =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("debugScroll") === "1";
+  const debugWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   // Progress indicator transforms - moved outside JSX to fix hooks violation
   const p1Scale = useTransform(t1Opacity, [0, 1], [0.35, 1]);
@@ -74,13 +97,30 @@ function DesktopReelStory() {
     // This tall "track" is what makes the main page scroll feel "locked" here
     <div ref={containerRef} className="relative h-[400vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-charcoal">
+        {showDebug && (
+          <div className="pointer-events-none absolute left-4 top-4 z-50 rounded-md border border-cream/10 bg-charcoal/70 px-3 py-2 text-xs text-cream backdrop-blur">
+            <div className="flex items-center gap-3">
+              <span className="tracking-[0.3em] uppercase text-cream/60">Scroll</span>
+              <div className="h-1 w-32 overflow-hidden rounded bg-cream/15">
+                <motion.div className="h-full bg-cream" style={{ width: debugWidth }} />
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="h-full w-full flex flex-col lg:flex-row">
           {/* Left: Reel window */}
           <aside className="relative flex items-center justify-center h-[56vh] lg:h-full lg:w-1/2 px-6 sm:px-10 lg:px-0">
-            <div className="relative w-[min(92vw,560px)] lg:w-[min(44vw,560px)] h-full lg:h-[78vh] rounded-[2.5rem] overflow-hidden border border-cream/15 bg-charcoal shadow-2xl">
+            <div
+              ref={reelViewportRef}
+              className="relative w-[min(92vw,560px)] lg:w-[min(44vw,560px)] h-full lg:h-[78vh] rounded-[2.5rem] overflow-hidden border border-cream/15 bg-charcoal shadow-2xl"
+            >
               <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-charcoal to-transparent z-10" />
 
-              <motion.div className="absolute top-0 left-0 right-0" style={{ y: reelY, height: `${sections.length * 100}%` }}>
+              <motion.div
+                className="absolute top-0 left-0 right-0"
+                style={{ y: reelY, height: `${sections.length * 100}%` }}
+              >
                 {sections.map((s) => (
                   <div key={s.id} className="relative" style={{ height: `${100 / sections.length}%` }}>
                     <img
@@ -139,6 +179,7 @@ function DesktopReelStory() {
     </div>
   );
 }
+
 
 const IntroSection = () => {
   return (
