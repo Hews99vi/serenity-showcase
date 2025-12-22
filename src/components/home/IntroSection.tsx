@@ -66,7 +66,7 @@ function DesktopReelStory() {
             <div className="relative w-[min(92vw,560px)] lg:w-[min(44vw,560px)] h-full lg:h-[78vh] rounded-[2.5rem] overflow-hidden border border-cream/15 bg-charcoal shadow-2xl">
               <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-charcoal to-transparent z-10" />
 
-              <motion.div className="absolute inset-0" style={{ y: reelY, height: `${sections.length * 100}%` }}>
+              <motion.div className="absolute top-0 left-0 right-0" style={{ y: reelY, height: `${sections.length * 100}%` }}>
                 {sections.map((s) => (
                   <div key={s.id} className="relative" style={{ height: `${100 / sections.length}%` }}>
                     <img
