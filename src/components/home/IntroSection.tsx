@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 
 const sections = [
   {
@@ -8,7 +8,7 @@ const sections = [
     title: "A New Chapter in Cinematic Storytelling",
     description:
       "We're stepping into a new chapter with a refreshed identity crafted with elegance, warmth, and timeless storytelling.",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80&auto=format&fit=crop",
+    videoId: "DLhYYb76hJw",
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const sections = [
     title: "Every Love Story Becomes Cinematic",
     description:
       "At Serenity Wedding Films, every love story becomes a cinematic journey filled with emotion and beauty. We believe your wedding film should feel personal, meaningful, and deeply connected to who you are.",
-    image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1600&q=80&auto=format&fit=crop",
+    videoId: "7lJUUoLLG1g",
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const sections = [
     title: "Documenting Every Precious Moment",
     description:
       "From the intimate glances to the joyous celebrations, we're here to document every precious moment of your special day — naturally, artistically, and with intention.",
-    image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=1600&q=80&auto=format&fit=crop",
+    videoId: "vY0qjnKNh-A",
   },
 ] as const;
 
@@ -32,6 +32,7 @@ function DesktopReelStory() {
   const containerRef = useRef<HTMLDivElement>(null);
   const reelViewportRef = useRef<HTMLDivElement>(null);
   const [frameHeight, setFrameHeight] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const el = reelViewportRef.current;
@@ -51,27 +52,32 @@ function DesktopReelStory() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    // Animation begins when section top hits viewport top, ends after the scroll "track" finishes
     offset: ["start start", "end end"],
   });
 
-  // Snap-like reel motion (holds each slide, then jumps to next zone)
-  // Use pixel-based transforms derived from the reel viewport height for reliability.
+  // Track active section for video autoplay
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest < 0.33) setActiveIndex(0);
+    else if (latest < 0.66) setActiveIndex(1);
+    else setActiveIndex(2);
+  });
+
+  // Smoother reel motion with extended transition zones
   const reelY = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.35, 0.63, 0.68, 1],
+    [0, 0.28, 0.38, 0.58, 0.72, 1],
     [0, 0, -frameHeight, -frameHeight, -frameHeight * 2, -frameHeight * 2]
   );
 
-  // Text motion synced with reel
-  const t1Opacity = useTransform(scrollYProgress, [0, 0.28, 0.35], [1, 1, 0]);
-  const t1Y = useTransform(scrollYProgress, [0, 0.35], [0, -30]);
+  // Smoother text transitions with longer crossfade
+  const t1Opacity = useTransform(scrollYProgress, [0, 0.25, 0.38], [1, 1, 0]);
+  const t1Y = useTransform(scrollYProgress, [0, 0.38], [0, -40]);
 
-  const t2Opacity = useTransform(scrollYProgress, [0.3, 0.35, 0.63, 0.68], [0, 1, 1, 0]);
-  const t2Y = useTransform(scrollYProgress, [0.3, 0.35, 0.68], [30, 0, -30]);
+  const t2Opacity = useTransform(scrollYProgress, [0.28, 0.38, 0.58, 0.72], [0, 1, 1, 0]);
+  const t2Y = useTransform(scrollYProgress, [0.28, 0.38, 0.72], [40, 0, -40]);
 
-  const t3Opacity = useTransform(scrollYProgress, [0.63, 0.68, 1], [0, 1, 1]);
-  const t3Y = useTransform(scrollYProgress, [0.63, 0.68], [30, 0]);
+  const t3Opacity = useTransform(scrollYProgress, [0.58, 0.72, 1], [0, 1, 1]);
+  const t3Y = useTransform(scrollYProgress, [0.58, 0.72], [40, 0]);
 
   const textOpacities = [t1Opacity, t2Opacity, t3Opacity];
   const textYs = [t1Y, t2Y, t3Y];
@@ -118,20 +124,25 @@ function DesktopReelStory() {
               <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-charcoal to-transparent z-10" />
 
               <motion.div
-                className="absolute top-0 left-0 right-0"
-                style={{ y: reelY, height: `${sections.length * 100}%` }}
+                className="absolute top-0 left-0 right-0 will-change-transform"
+                style={{ 
+                  y: reelY, 
+                  height: `${sections.length * 100}%`,
+                }}
+                transition={{ type: "tween", ease: [0.25, 0.1, 0.25, 1], duration: 0.6 }}
               >
-                {sections.map((s) => (
+                {sections.map((s, idx) => (
                   <div key={s.id} className="relative" style={{ height: `${100 / sections.length}%` }}>
-                    <img
-                      src={s.image}
-                      alt={`${s.title} — cinematic wedding storytelling`}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover"
+                    <iframe
+                      src={`https://www.youtube.com/embed/${s.videoId}?autoplay=${activeIndex === idx ? 1 : 0}&mute=1&loop=1&playlist=${s.videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`}
+                      title={`${s.title} — cinematic wedding storytelling`}
+                      className="h-full w-full object-cover pointer-events-none"
+                      style={{ border: 'none', aspectRatio: '9/16' }}
+                      allow="autoplay; encrypted-media"
+                      loading={idx === 0 ? "eager" : "lazy"}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-charcoal/20 via-transparent to-charcoal" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--charcoal)/0)_0%,hsl(var(--charcoal)/0.35)_100%)]" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-charcoal/30 via-transparent to-charcoal/60 pointer-events-none" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--charcoal)/0)_0%,hsl(var(--charcoal)/0.4)_100%)] pointer-events-none" />
                   </div>
                 ))}
               </motion.div>
