@@ -12,7 +12,7 @@ const PhilosophySection = () => {
               
               <div className="relative w-[280px] h-[500px] rounded-xl overflow-hidden shadow-xl">
                 <iframe
-                  src="https://www.youtube.com/embed/Ycc-1d4hfEc?autoplay=0&mute=1&loop=1&playlist=Ycc-1d4hfEc&controls=0&showinfo=0&rel=0"
+                  src="https://www.youtube.com/embed/Ycc-1d4hfEc?autoplay=1&mute=1&loop=1&playlist=Ycc-1d4hfEc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
                   title="Serenity Wedding Films Philosophy"
                   className="w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
