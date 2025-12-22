@@ -30,6 +30,14 @@ export default {
       },
       borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
       keyframes: {
+        breathe: {
+          '0%, 100%': { transform: 'scale(1)', filter: 'brightness(1)' },
+          '50%': { transform: 'scale(1.02)', filter: 'brightness(1.1)' },
+        },
+        glow: {
+          '0%, 100%': { opacity: '0.3', transform: 'scale(1.05)' },
+          '50%': { opacity: '0.5', transform: 'scale(1.1)' },
+        },
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
         "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
         "fade-up": { 
