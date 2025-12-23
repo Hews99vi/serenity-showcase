@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [{
   shortQuote: "Our families still talk about how beautiful the film was.",
   fullQuote: "Our families still talk about how beautiful the film was. Every detail of our traditional homecoming was captured with such care and artistry. The team was respectful of our traditions and customs while still creating a modern, cinematic masterpiece. They managed to capture the essence of our Sri Lankan heritage beautifully.",
   eventDate: "December 2023",
-  eventType: "Homecoming",
+  eventType: "Wedding",
   youtubeId: "EfD3jBkdvZs",
   location: "Negombo, Sri Lanka"
 }, {
