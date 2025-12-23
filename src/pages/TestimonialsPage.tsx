@@ -209,7 +209,7 @@ const TestimonialsPage = () => {
               <p className="text-cream/40 text-xs tracking-[0.2em] uppercase mb-3">
                 Watch Their Stories
               </p>
-              <h2 className="text-3xl md:text-4xl font-serif text-cream">Testimonial</h2>
+              <h2 className="text-3xl font-serif text-cream text-center md:text-5xl">Testimonial</h2>
             </motion.div>
 
             {/* Reels Grid */}
