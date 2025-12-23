@@ -264,7 +264,7 @@ const Portfolio = () => {
               duration: 0.8
             }} className="flex items-center gap-3">
                 <span className="w-12 h-px bg-cream/40" />
-                <span className="text-cream/50 text-xs tracking-[0.3em] uppercase">Our Philosophy</span>
+                
               </motion.div>
 
               <motion.h2 initial={{
@@ -350,13 +350,7 @@ const Portfolio = () => {
               
               {/* Autoplay Video */}
               <div className="relative aspect-[4/3] overflow-hidden">
-                <iframe
-                  src="https://www.youtube.com/embed/gINkgjJelU4?autoplay=1&mute=1&loop=1&playlist=gINkgjJelU4&controls=0&showinfo=0&rel=0&modestbranding=1"
-                  title="Featured wedding film"
-                  className="absolute inset-0 w-full h-full"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
+                <iframe src="https://www.youtube.com/embed/gINkgjJelU4?autoplay=1&mute=1&loop=1&playlist=gINkgjJelU4&controls=0&showinfo=0&rel=0&modestbranding=1" title="Featured wedding film" className="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media" allowFullScreen />
               </div>
 
               {/* Floating accent */}
