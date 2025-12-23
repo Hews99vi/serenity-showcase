@@ -212,79 +212,195 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Intro Section */}
-      <section ref={introRef} className="py-20 md:py-28 border-t border-cream/10">
-        <div className="section-container">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={isIntroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8 }}
-              className="text-cream/80 text-lg md:text-xl leading-relaxed font-light mb-8"
-            >
-              Every couple has a unique rhythm — and our films are crafted to reflect it. From intimate coastside ceremonies to elegant hotel celebrations, we focus on genuine emotion, natural storytelling, and timeless cinematics.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={isIntroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-cream/60 text-base md:text-lg leading-relaxed font-light mb-12"
-            >
-              Our work blends real moments, clean visuals, and thoughtful sound design to create films that feel personal, emotional, and beautifully true to you. Explore our portfolio and see how we capture love in its most authentic form — quietly, powerfully, and with heart.
-            </motion.p>
+      {/* Intro Section - Two Column with Video */}
+      <section ref={introRef} className="py-20 md:py-32 border-t border-cream/10 relative overflow-hidden">
+        {/* Background accent */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cream/[0.02] to-transparent pointer-events-none" />
+        
+        <div className="section-container relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left - Text Content */}
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={isIntroInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+                transition={{ duration: 0.8 }}
+                className="flex items-center gap-3"
+              >
+                <span className="w-12 h-px bg-cream/40" />
+                <span className="text-cream/50 text-xs tracking-[0.3em] uppercase">Our Philosophy</span>
+              </motion.div>
 
-            {/* Decorative divider */}
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                animate={isIntroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="font-serif text-3xl md:text-4xl lg:text-5xl text-cream leading-tight"
+              >
+                Every couple has a <span className="italic text-cream/70">unique rhythm</span>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={isIntroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-cream/70 text-base md:text-lg leading-relaxed font-light"
+              >
+                From intimate coastside ceremonies to elegant hotel celebrations, we focus on genuine emotion, natural storytelling, and timeless cinematics.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={isIntroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-cream/50 text-sm md:text-base leading-relaxed font-light"
+              >
+                Our work blends real moments, clean visuals, and thoughtful sound design to create films that feel personal, emotional, and beautifully true to you.
+              </motion.p>
+
+              {/* Decorative quote */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={isIntroInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="pt-6 border-l-2 border-cream/20 pl-6"
+              >
+                <p className="text-cream/60 italic font-light text-sm md:text-base">
+                  "We capture love in its most authentic form — quietly, powerfully, and with heart."
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Right - Featured Video Preview */}
             <motion.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={isIntroInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="flex items-center justify-center gap-4"
+              initial={{ opacity: 0, x: 30 }}
+              animate={isIntroInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative group"
             >
-              <span className="w-16 md:w-24 h-px bg-cream/20" />
-              <Heart className="w-4 h-4 text-cream/40" />
-              <span className="w-16 md:w-24 h-px bg-cream/20" />
+              {/* Decorative frame */}
+              <div className="absolute -inset-4 border border-cream/10 -z-10" />
+              <div className="absolute -inset-8 border border-cream/5 -z-20" />
+              
+              {/* Video thumbnail */}
+              <div 
+                className="relative aspect-[4/3] overflow-hidden cursor-pointer"
+                onClick={() => openVideo("gINkgjJelU4")}
+              >
+                <img
+                  src="https://img.youtube.com/vi/gINkgjJelU4/maxresdefault.jpg"
+                  alt="Featured wedding film"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                
+                {/* Play overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-cream/20 backdrop-blur-sm border border-cream/40 flex items-center justify-center group-hover:bg-cream/30 transition-all duration-300">
+                    <Play className="w-6 h-6 text-cream fill-cream ml-1" />
+                  </div>
+                </div>
+
+                {/* Caption */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-cream/80 text-sm font-light">Watch our latest film</p>
+                </div>
+              </div>
+
+              {/* Floating accent */}
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-cream/10 flex items-center justify-center">
+                <Film className="w-6 h-6 text-cream/30" />
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section ref={servicesRef} className="py-16 md:py-24 bg-charcoal-light/30">
-        <div className="section-container">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isServicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8 }}
-            className="font-serif text-2xl md:text-3xl text-cream text-center mb-12"
-          >
-            We Create
-          </motion.h2>
+      {/* Services Section - Card Grid */}
+      <section ref={servicesRef} className="py-20 md:py-32 bg-charcoal-light/30 relative">
+        {/* Decorative pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--cream)) 1px, transparent 0)`,
+              backgroundSize: '32px 32px',
+            }}
+          />
+        </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+        <div className="section-container relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isServicesInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex items-center justify-center gap-4 mb-6"
+            >
+              <span className="w-12 md:w-20 h-px bg-cream/20" />
+              <Camera className="w-5 h-5 text-cream/40" />
+              <span className="w-12 md:w-20 h-px bg-cream/20" />
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isServicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8 }}
+              className="font-serif text-3xl md:text-4xl text-cream mb-4"
+            >
+              We Create
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isServicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-cream/50 text-sm md:text-base max-w-xl mx-auto"
+            >
+              Timeless films that capture the essence of your special moments
+            </motion.p>
+          </div>
+
+          {/* Services Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {services.map((service, index) => (
               <motion.div
                 key={service.text}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isServicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isServicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex items-center gap-3 text-cream/70 group"
+                className="group relative p-6 md:p-8 bg-charcoal/50 border border-cream/10 hover:border-cream/20 transition-all duration-500"
               >
-                <service.icon className="w-4 h-4 text-cream/50 group-hover:text-cream/80 transition-colors duration-300" />
-                <span className="text-sm md:text-base font-light tracking-wide group-hover:text-cream transition-colors duration-300">
+                {/* Icon */}
+                <div className="w-12 h-12 rounded-full bg-cream/5 flex items-center justify-center mb-4 group-hover:bg-cream/10 transition-colors duration-300">
+                  <service.icon className="w-5 h-5 text-cream/60 group-hover:text-cream/80 transition-colors duration-300" />
+                </div>
+
+                {/* Text */}
+                <h3 className="text-cream font-medium tracking-wide group-hover:text-cream transition-colors duration-300">
                   {service.text}
-                </span>
+                </h3>
+
+                {/* Hover accent line */}
+                <div className="absolute bottom-0 left-0 w-0 h-px bg-cream/40 group-hover:w-full transition-all duration-500" />
               </motion.div>
             ))}
           </div>
 
-          <motion.p
+          {/* Bottom tagline */}
+          <motion.div
             initial={{ opacity: 0 }}
             animate={isServicesInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-cream/50 text-sm md:text-base text-center mt-12 max-w-2xl mx-auto font-light italic"
+            className="text-center mt-16 pt-12 border-t border-cream/10"
           >
-            Each film is carefully edited with soft tones, emotional pacing, and storytelling that highlights the essence of your day.
-          </motion.p>
+            <p className="text-cream/40 text-sm md:text-base max-w-2xl mx-auto font-light italic flex items-center justify-center gap-4">
+              <Sparkles className="w-4 h-4" />
+              Each film is carefully edited with soft tones, emotional pacing, and storytelling that highlights the essence of your day.
+              <Sparkles className="w-4 h-4" />
+            </p>
+          </motion.div>
         </div>
       </section>
 
