@@ -27,9 +27,7 @@ const QualitySection = () => {
               <span className="text-cream text-sm font-medium tracking-wider">4K CINEMATIC QUALITY</span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-cream leading-tight mb-6 tracking-wide uppercase text-justify">
-              Capturing Your Love in 4K
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-serif text-cream leading-tight mb-6 tracking-wide uppercase lg:text-4xl text-left">CAPTURING YOUR LOVE IN 4K</h2>
             
             <p className="text-cream/70 text-lg md:text-xl leading-relaxed mb-10">
               4K filmmaking sets a new standard in preserving memories. With four times the 
