@@ -348,22 +348,15 @@ const Portfolio = () => {
               <div className="absolute -inset-4 border border-cream/10 -z-10" />
               <div className="absolute -inset-8 border border-cream/5 -z-20" />
               
-              {/* Video thumbnail */}
-              <div className="relative aspect-[4/3] overflow-hidden cursor-pointer" onClick={() => openVideo("gINkgjJelU4")}>
-                <img src="https://img.youtube.com/vi/gINkgjJelU4/maxresdefault.jpg" alt="Featured wedding film" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                
-                {/* Play overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-cream/20 backdrop-blur-sm border border-cream/40 flex items-center justify-center group-hover:bg-cream/30 transition-all duration-300">
-                    <Play className="w-6 h-6 text-cream fill-cream ml-1" />
-                  </div>
-                </div>
-
-                {/* Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-cream/80 text-sm font-light">Watch our latest film</p>
-                </div>
+              {/* Autoplay Video */}
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <iframe
+                  src="https://www.youtube.com/embed/gINkgjJelU4?autoplay=1&mute=1&loop=1&playlist=gINkgjJelU4&controls=0&showinfo=0&rel=0&modestbranding=1"
+                  title="Featured wedding film"
+                  className="absolute inset-0 w-full h-full"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
               </div>
 
               {/* Floating accent */}
