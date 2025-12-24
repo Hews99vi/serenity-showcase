@@ -317,9 +317,7 @@ const FeaturedFilms = () => {
         {/* Bottom decorative line */}
         <div className="mt-16 flex items-center justify-center gap-4">
           <div className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-cream/20" />
-          <span className="text-cream/30 text-[10px] tracking-[0.3em] uppercase">
-            Serenity Films
-          </span>
+          <span className="text-cream/30 text-[10px] tracking-[0.3em] uppercase">SERENITY WEDDING FILMS</span>
           <div className="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-cream/20" />
         </div>
       </div>
