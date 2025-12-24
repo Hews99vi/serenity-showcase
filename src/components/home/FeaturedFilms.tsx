@@ -97,7 +97,7 @@ const FeaturedFilms = () => {
       }} className="mb-6 md:mb-8">
           <div className="relative group cursor-pointer overflow-hidden rounded-lg md:rounded-2xl" onClick={() => openVideo(films[0].youtubeId)} onMouseEnter={() => setHoveredId(films[0].id)} onMouseLeave={() => setHoveredId(null)}>
             {/* Main image container */}
-            <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
+            <div className="relative aspect-video overflow-hidden">
               <iframe 
                 src={`https://www.youtube.com/embed/${films[0].youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${films[0].youtubeId}`} 
                 className="w-full h-full" 
