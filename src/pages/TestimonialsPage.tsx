@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, Quote, Play, X, Heart, ChevronDown } from "lucide-react";
+import { ArrowRight, Quote, Play, X, Heart, ChevronDown, Volume2, VolumeX } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
 interface Testimonial {
   id: number;
   coupleName: string;
@@ -14,6 +15,137 @@ interface Testimonial {
   youtubeId: string;
   location?: string;
 }
+
+// Custom hook for scroll-based autoplay
+const useIntersectionAutoplay = (threshold = 0.5) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio >= threshold);
+      },
+      {
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: "-10% 0px -10% 0px",
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, isVisible };
+};
+
+// Individual Reel Component with autoplay
+const TestimonialReel = ({ 
+  testimonial, 
+  onReadMore 
+}: { 
+  testimonial: Testimonial; 
+  onReadMore: () => void;
+}) => {
+  const { ref, isVisible } = useIntersectionAutoplay(0.5);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Preload iframe when component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div ref={ref} className="w-full max-w-[280px] md:max-w-[320px] flex-shrink-0 group">
+      <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-charcoal/80 border border-cream/10 shadow-2xl transition-all duration-500 group-hover:border-cream/30 group-hover:shadow-cream/10">
+        {/* Always render iframe for smooth autoplay */}
+        {isLoaded && (
+          <iframe
+            ref={iframeRef}
+            src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=${isVisible ? 1 : 0}&mute=${isMuted ? 1 : 0}&loop=1&playlist=${testimonial.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1&enablejsapi=1`}
+            className="absolute inset-0 w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={`${testimonial.coupleName} testimonial`}
+          />
+        )}
+        
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-charcoal/30 pointer-events-none opacity-60" />
+        
+        {/* Loading state / thumbnail fallback */}
+        {!isLoaded && (
+          <img
+            src={`https://img.youtube.com/vi/${testimonial.youtubeId}/maxresdefault.jpg`}
+            alt={testimonial.coupleName}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
+
+        {/* Event Badge */}
+        <div className="absolute top-4 left-4 z-10">
+          <span className="px-3 py-1.5 bg-charcoal/70 backdrop-blur-sm rounded-full text-cream/80 text-[10px] tracking-widest uppercase font-medium">
+            {testimonial.eventType}
+          </span>
+        </div>
+
+        {/* Mute/Unmute Button */}
+        <button
+          onClick={() => setIsMuted(!isMuted)}
+          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-charcoal/60 backdrop-blur-sm border border-cream/20 flex items-center justify-center text-cream/80 hover:bg-charcoal/80 hover:text-cream transition-all duration-300"
+        >
+          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+        </button>
+
+        {/* Playing Indicator */}
+        {isVisible && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="absolute bottom-4 left-4 z-10 flex items-center gap-2"
+          >
+            <div className="flex items-center gap-1">
+              <motion.div
+                animate={{ scaleY: [0.3, 1, 0.3] }}
+                transition={{ repeat: Infinity, duration: 0.8, delay: 0 }}
+                className="w-0.5 h-3 bg-cream/80 rounded-full"
+              />
+              <motion.div
+                animate={{ scaleY: [0.5, 0.3, 1, 0.5] }}
+                transition={{ repeat: Infinity, duration: 0.8, delay: 0.1 }}
+                className="w-0.5 h-3 bg-cream/80 rounded-full"
+              />
+              <motion.div
+                animate={{ scaleY: [1, 0.5, 0.3, 1] }}
+                transition={{ repeat: Infinity, duration: 0.8, delay: 0.2 }}
+                className="w-0.5 h-3 bg-cream/80 rounded-full"
+              />
+              <motion.div
+                animate={{ scaleY: [0.3, 1, 0.5, 0.3] }}
+                transition={{ repeat: Infinity, duration: 0.8, delay: 0.3 }}
+                className="w-0.5 h-3 bg-cream/80 rounded-full"
+              />
+            </div>
+            <span className="text-cream/60 text-[10px] uppercase tracking-wider">Playing</span>
+          </motion.div>
+        )}
+
+        {/* Couple Name Overlay */}
+        <div className="absolute bottom-4 right-4 z-10 text-right">
+          <p className="text-cream font-script text-lg">{testimonial.coupleName}</p>
+          <p className="text-cream/50 text-[10px] tracking-wider uppercase">{testimonial.location}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 const testimonials: Testimonial[] = [{
   id: 1,
   coupleName: "Sahan & Nethmi",
@@ -71,7 +203,6 @@ const testimonials: Testimonial[] = [{
 }];
 const TestimonialsPage = () => {
   const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
-  const [playingId, setPlayingId] = useState<number | null>(null);
   return <>
       <Helmet>
         <title>Client Testimonials | Serenity Wedding Films</title>
@@ -227,29 +358,11 @@ const TestimonialsPage = () => {
                 duration: 0.7,
                 delay: 0.1
               }} className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16 lg:gap-24`}>
-                    {/* Reel Video */}
-                    <div className="w-full max-w-[280px] md:max-w-[320px] flex-shrink-0 group">
-                      <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-charcoal/80 border border-cream/10 shadow-2xl transition-all duration-500 group-hover:border-cream/30 group-hover:shadow-cream/10">
-                        {playingId === testimonial.id ? <iframe src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&loop=1&playlist=${testimonial.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0`} className="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title={`${testimonial.coupleName} testimonial`} /> : <>
-                            <img src={`https://img.youtube.com/vi/${testimonial.youtubeId}/maxresdefault.jpg`} alt={testimonial.coupleName} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-transparent" />
-                            
-                            {/* Play Button */}
-                            <button onClick={() => setPlayingId(testimonial.id)} className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-16 h-16 rounded-full bg-cream/10 backdrop-blur-sm border border-cream/40 flex items-center justify-center opacity-80 group-hover:opacity-100 scale-100 group-hover:scale-110 transition-all duration-300">
-                                <Play className="w-7 h-7 text-cream fill-cream/50 ml-1" />
-                              </div>
-                            </button>
-
-                            {/* Event Badge */}
-                            <div className="absolute top-4 left-4">
-                              <span className="px-3 py-1.5 bg-charcoal/70 backdrop-blur-sm rounded-full text-cream/80 text-[10px] tracking-widest uppercase font-medium">
-                                {testimonial.eventType}
-                              </span>
-                            </div>
-                          </>}
-                      </div>
-                    </div>
+                    {/* Reel Video with Autoplay */}
+                    <TestimonialReel 
+                      testimonial={testimonial} 
+                      onReadMore={() => setSelectedTestimonial(testimonial)} 
+                    />
 
                     {/* Story Content */}
                     <div className={`flex-1 ${isEven ? 'md:text-left' : 'md:text-right'} text-center`}>
