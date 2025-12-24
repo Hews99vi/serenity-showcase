@@ -22,7 +22,7 @@ const Footer = () => {
           {/* Logo & Tagline */}
           <div className="text-center md:text-left">
             <img src={logo} alt="Serenity Wedding Films" className="h-16 w-auto mx-auto md:mx-0 mb-4" />
-            <p className="text-cream/60 leading-relaxed max-w-xs mx-auto md:mx-0 font-sans font-medium text-sm tracking-wide">Where Serenity Meets Cinema, 
+            <p className="text-cream/60 leading-relaxed max-w-xs mx-auto md:mx-0 font-sans font-medium text-sm tracking-wide">Where Serenity Meets Cinema,
 Love Becomes a Masterpiece</p>
           </div>
 
