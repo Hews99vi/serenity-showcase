@@ -197,57 +197,45 @@ const TestimonialsPage = () => {
         <section className="py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              className="text-center mb-20"
-            >
-              <p className="text-cream/40 text-xs tracking-[0.2em] uppercase mb-3">
-                Watch Their Stories
-              </p>
-              <h2 className="text-3xl font-serif text-cream md:text-5xl">Testimonials</h2>
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} className="text-center mb-20">
+              
+              
             </motion.div>
 
             {/* Alternating Testimonials */}
             <div className="space-y-24 md:space-y-32">
               {testimonials.map((testimonial, index) => {
-                const isEven = index % 2 === 0;
-                
-                return (
-                  <motion.div 
-                    key={testimonial.id} 
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.7, delay: 0.1 }}
-                    className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16 lg:gap-24`}
-                  >
+              const isEven = index % 2 === 0;
+              return <motion.div key={testimonial.id} initial={{
+                opacity: 0,
+                y: 50
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} viewport={{
+                once: true,
+                margin: "-100px"
+              }} transition={{
+                duration: 0.7,
+                delay: 0.1
+              }} className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16 lg:gap-24`}>
                     {/* Reel Video */}
                     <div className="w-full max-w-[280px] md:max-w-[320px] flex-shrink-0 group">
                       <div className="relative aspect-[9/16] rounded-2xl overflow-hidden bg-charcoal/80 border border-cream/10 shadow-2xl transition-all duration-500 group-hover:border-cream/30 group-hover:shadow-cream/10">
-                        {playingId === testimonial.id ? (
-                          <iframe 
-                            src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&loop=1&playlist=${testimonial.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0`}
-                            className="absolute inset-0 w-full h-full"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            title={`${testimonial.coupleName} testimonial`}
-                          />
-                        ) : (
-                          <>
-                            <img 
-                              src={`https://img.youtube.com/vi/${testimonial.youtubeId}/maxresdefault.jpg`}
-                              alt={testimonial.coupleName}
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
+                        {playingId === testimonial.id ? <iframe src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&loop=1&playlist=${testimonial.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0`} className="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title={`${testimonial.coupleName} testimonial`} /> : <>
+                            <img src={`https://img.youtube.com/vi/${testimonial.youtubeId}/maxresdefault.jpg`} alt={testimonial.coupleName} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-transparent" />
                             
                             {/* Play Button */}
-                            <button 
-                              onClick={() => setPlayingId(testimonial.id)}
-                              className="absolute inset-0 flex items-center justify-center"
-                            >
+                            <button onClick={() => setPlayingId(testimonial.id)} className="absolute inset-0 flex items-center justify-center">
                               <div className="w-16 h-16 rounded-full bg-cream/10 backdrop-blur-sm border border-cream/40 flex items-center justify-center opacity-80 group-hover:opacity-100 scale-100 group-hover:scale-110 transition-all duration-300">
                                 <Play className="w-7 h-7 text-cream fill-cream/50 ml-1" />
                               </div>
@@ -259,8 +247,7 @@ const TestimonialsPage = () => {
                                 {testimonial.eventType}
                               </span>
                             </div>
-                          </>
-                        )}
+                          </>}
                       </div>
                     </div>
 
@@ -294,18 +281,14 @@ const TestimonialsPage = () => {
                         </div>
 
                         {/* Read More Button */}
-                        <button 
-                          onClick={() => setSelectedTestimonial(testimonial)}
-                          className="mt-4 inline-flex items-center gap-2 text-cream/60 text-sm hover:text-cream transition-colors group/btn"
-                        >
+                        <button onClick={() => setSelectedTestimonial(testimonial)} className="mt-4 inline-flex items-center gap-2 text-cream/60 text-sm hover:text-cream transition-colors group/btn">
                           <span className="tracking-wide">Read Full Story</span>
                           <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </button>
                       </div>
                     </div>
-                  </motion.div>
-                );
-              })}
+                  </motion.div>;
+            })}
             </div>
           </div>
         </section>
