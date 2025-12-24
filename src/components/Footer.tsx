@@ -145,7 +145,7 @@ const Footer = () => {
               delay: 0.1
             }}>
                 <MapPin className="w-4 h-4 text-gold/60" />
-                <span className="text-sm">Sri Lanka & Worldwide</span>
+                <span className="text-sm">Sri Lanka </span>
               </motion.div>
             </div>
           </div>
