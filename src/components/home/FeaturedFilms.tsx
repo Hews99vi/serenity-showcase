@@ -100,7 +100,7 @@ const FeaturedFilms = () => {
             <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
               <iframe 
                 src={`https://www.youtube.com/embed/${films[0].youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${films[0].youtubeId}`} 
-                className="w-full h-full object-cover scale-[1.2]" 
+                className="w-full h-full" 
                 allow="autoplay; encrypted-media" 
                 allowFullScreen 
               />
