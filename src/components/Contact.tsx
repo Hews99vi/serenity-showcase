@@ -38,7 +38,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-charcoal/60 group-hover:text-cream/60 text-sm tracking-wider uppercase mb-1 transition-colors duration-500">Email us</p>
-                  <p className="text-xl font-serif">info@serenityweddingfilms.com</p>
+                  <p className="text-base md:text-lg font-serif break-all">info@serenityweddingfilms.com</p>
                 </div>
               </div>
               <ArrowUpRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
