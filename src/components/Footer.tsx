@@ -21,8 +21,10 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 md:gap-8 items-start mb-16">
           {/* Logo & Tagline */}
           <div className="text-center md:text-left">
-            <img src={logo} alt="Serenity Wedding Films" className="h-16 w-auto mx-auto md:mx-0 mb-6" />
-            <p className="text-cream/50 leading-relaxed max-w-xs mx-auto md:mx-0 font-sans font-medium text-base text-center">Where Serenity Meets Cinema, Love Becomes a Masterpiece</p>
+            <img src={logo} alt="Serenity Wedding Films" className="h-16 w-auto mx-auto md:mx-0 mb-4" />
+            <p className="text-cream/60 leading-relaxed max-w-xs mx-auto md:mx-0 font-sans font-medium text-sm tracking-wide">
+              Where Serenity Meets Cinema, Love Becomes a Masterpiece
+            </p>
           </div>
 
           {/* Quick Links */}
