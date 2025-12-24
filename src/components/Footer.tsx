@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "@/assets/serenity-logo-full.png";
 
-const footerLinks = [
+const footerLinksLeft = [
   { label: "Home", href: "/" },
   { label: "Our Work", href: "/portfolio" },
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/services" }
+];
+
+const footerLinksRight = [
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" }
 ];
@@ -60,24 +63,44 @@ const Footer = () => {
             <h4 className="text-xs tracking-[0.3em] uppercase mb-8 text-gold/80 font-medium">
               Navigation
             </h4>
-            <nav className="flex flex-col gap-4">
-              {footerLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <Link 
-                    to={link.href} 
-                    className="text-sm text-cream/50 hover:text-cream hover:pl-2 transition-all duration-300 inline-block"
+            <div className="flex justify-center md:justify-start gap-12">
+              <nav className="flex flex-col gap-4">
+                {footerLinksLeft.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
+                    <Link 
+                      to={link.href} 
+                      className="text-sm text-cream/50 hover:text-cream hover:pl-2 transition-all duration-300 inline-block"
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+              <nav className="flex flex-col gap-4">
+                {footerLinksRight.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    <Link 
+                      to={link.href} 
+                      className="text-sm text-cream/50 hover:text-cream hover:pl-2 transition-all duration-300 inline-block"
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+            </div>
           </div>
 
           {/* Contact Info */}
