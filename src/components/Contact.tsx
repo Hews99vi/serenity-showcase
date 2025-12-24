@@ -20,7 +20,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 gap-6 mb-16">
             {/* WhatsApp */}
             <a
-              href="https://wa.me/94771234567?text=Hi,%20I'm%20interested%20in%20your%20wedding%20films.%20Can%20we%20discuss%20my%20upcoming%20wedding?"
+              href="https://wa.me/message/CUNOJLDRQ6PME1"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-between bg-charcoal text-cream p-8 transition-all duration-500 hover:bg-charcoal/90"
