@@ -1,31 +1,28 @@
 import { Instagram, Facebook, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/serenity-logo-full.png";
-
-const footerLinks = [
-  { label: "Home", href: "/" },
-  { label: "Our Work", href: "/portfolio" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
-];
-
+const footerLinks = [{
+  label: "Home",
+  href: "/"
+}, {
+  label: "Our Work",
+  href: "/portfolio"
+}, {
+  label: "Services",
+  href: "/services"
+}, {
+  label: "Contact",
+  href: "/contact"
+}];
 const Footer = () => {
-  return (
-    <footer className="bg-charcoal text-cream py-16 md:py-20">
+  return <footer className="bg-charcoal text-cream py-16 md:py-20">
       <div className="section-container">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-3 gap-12 md:gap-8 items-start mb-16">
           {/* Logo & Tagline */}
           <div className="text-center md:text-left">
-            <img
-              src={logo}
-              alt="Serenity Wedding Films"
-              className="h-16 w-auto mx-auto md:mx-0 mb-6"
-            />
-            <p className="text-cream/50 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
-              Cinematic wedding films crafted with elegance, emotion, and
-              timeless beauty.
-            </p>
+            <img src={logo} alt="Serenity Wedding Films" className="h-16 w-auto mx-auto md:mx-0 mb-6" />
+            <p className="text-cream/50 leading-relaxed max-w-xs mx-auto md:mx-0 font-sans font-medium text-base text-center">Where Serenity Meets Cinema, Love Becomes a Masterpiece</p>
           </div>
 
           {/* Quick Links */}
@@ -34,15 +31,9 @@ const Footer = () => {
               Quick Links
             </h4>
             <nav className="flex flex-col gap-3">
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className="text-sm text-cream/50 hover:text-cream transition-colors duration-300"
-                >
+              {footerLinks.map(link => <Link key={link.href} to={link.href} className="text-sm text-cream/50 hover:text-cream transition-colors duration-300">
                   {link.label}
-                </Link>
-              ))}
+                </Link>)}
             </nav>
           </div>
 
@@ -52,31 +43,13 @@ const Footer = () => {
               Follow Us
             </h4>
             <div className="flex justify-center md:justify-end gap-3">
-              <a
-                href="https://instagram.com/serenityweddingfilms"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-cream/40 transition-all duration-300"
-                aria-label="Instagram"
-              >
+              <a href="https://instagram.com/serenityweddingfilms" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-cream/40 transition-all duration-300" aria-label="Instagram">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a
-                href="https://facebook.com/serenityweddingfilms"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-cream/40 transition-all duration-300"
-                aria-label="Facebook"
-              >
+              <a href="https://facebook.com/serenityweddingfilms" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-cream/40 transition-all duration-300" aria-label="Facebook">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a
-                href="https://youtube.com/@serenityweddingfilms"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-cream/40 transition-all duration-300"
-                aria-label="YouTube"
-              >
+              <a href="https://youtube.com/@serenityweddingfilms" target="_blank" rel="noopener noreferrer" className="w-12 h-12 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-cream/40 transition-all duration-300" aria-label="YouTube">
                 <Youtube className="w-5 h-5" />
               </a>
             </div>
@@ -91,8 +64,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
