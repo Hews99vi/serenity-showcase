@@ -36,22 +36,6 @@ const FeaturedFilms = () => {
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
         
-        {/* Floating decorative elements */}
-        <motion.div className="absolute top-20 right-20 w-64 h-64 border border-gold/10 rounded-full" animate={{
-        rotate: 360,
-        scale: [1, 1.1, 1]
-      }} transition={{
-        duration: 20,
-        repeat: Infinity,
-        ease: "linear"
-      }} />
-        <motion.div className="absolute bottom-40 left-10 w-48 h-48 border border-gold/5 rounded-full" animate={{
-        rotate: -360
-      }} transition={{
-        duration: 25,
-        repeat: Infinity,
-        ease: "linear"
-      }} />
         
         {/* Ambient glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-3xl" />
@@ -114,54 +98,16 @@ const FeaturedFilms = () => {
           <div className="relative group cursor-pointer overflow-hidden rounded-lg md:rounded-2xl" onClick={() => openVideo(films[0].youtubeId)} onMouseEnter={() => setHoveredId(films[0].id)} onMouseLeave={() => setHoveredId(null)}>
             {/* Main image container */}
             <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
-              {hoveredId === films[0].id ? <iframe src={`https://www.youtube.com/embed/${films[0].youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${films[0].youtubeId}`} className="w-full h-full object-cover scale-[1.2]" allow="autoplay; encrypted-media" allowFullScreen /> : <motion.img src={films[0].thumbnail} alt={films[0].title} className="w-full h-full object-cover" initial={{
-              scale: 1
-            }} transition={{
-              duration: 0.7
-            }} />}
+              <iframe 
+                src={`https://www.youtube.com/embed/${films[0].youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${films[0].youtubeId}`} 
+                className="w-full h-full object-cover scale-[1.2]" 
+                allow="autoplay; encrypted-media" 
+                allowFullScreen 
+              />
               
               {/* Gradient overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-charcoal/50 via-transparent to-charcoal/50" />
-              
-              {/* Animated shine effect on hover */}
-              <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12" initial={{
-              x: "-100%"
-            }} animate={{
-              x: hoveredId === films[0].id ? "200%" : "-100%"
-            }} transition={{
-              duration: 0.8
-            }} />
-              
-              {/* Play button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div className="relative" whileHover={{
-                scale: 1.1
-              }} whileTap={{
-                scale: 0.95
-              }}>
-                  {/* Pulsing ring */}
-                  <motion.div className="absolute inset-0 bg-gold/20 rounded-full" animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.6, 0, 0.6]
-                }} transition={{
-                  duration: 2,
-                  repeat: Infinity
-                }} />
-                  <motion.div className="absolute inset-0 bg-gold/10 rounded-full" animate={{
-                  scale: [1, 1.8, 1],
-                  opacity: [0.4, 0, 0.4]
-                }} transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: 0.3
-                }} />
-                  
-                  <div className="relative w-20 h-20 md:w-28 md:h-28 bg-gold/90 backdrop-blur-md rounded-full flex items-center justify-center border border-cream/20 shadow-2xl shadow-gold/20">
-                    <Play className="w-8 h-8 md:w-12 md:h-12 text-charcoal ml-1" fill="currentColor" />
-                  </div>
-                </motion.div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-charcoal/50 via-transparent to-charcoal/50 pointer-events-none" />
               
               {/* Content overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 lg:p-12">
