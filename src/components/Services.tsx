@@ -1,4 +1,6 @@
 import { Plane, Sparkles, Heart } from "lucide-react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -106,21 +108,35 @@ const faqs = [
 ];
 
 const Services = () => {
+  const location = useLocation();
+
+  // Smooth scroll to FAQ section when navigating with hash
+  useEffect(() => {
+    if (location.hash === "#faq") {
+      setTimeout(() => {
+        const element = document.getElementById("faq");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <>
       {/* Services Section */}
-      <section id="services" className="section-padding bg-cream">
+      <section id="services" className="section-padding bg-charcoal">
         <div className="section-container">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <span className="text-charcoal/50 text-sm tracking-[0.3em] uppercase font-light mb-4 block">
+            <span className="text-cream/50 text-sm tracking-[0.3em] uppercase font-light mb-4 block">
               What We Offer
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-charcoal mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-cream mb-6">
               Our Services
             </h2>
-            <div className="w-20 h-px bg-charcoal/30 mx-auto mb-8" />
-            <p className="text-lg text-charcoal/70 max-w-2xl mx-auto font-light">
+            <div className="w-20 h-px bg-cream/30 mx-auto mb-8" />
+            <p className="text-lg text-cream/70 max-w-2xl mx-auto font-light">
               From intimate ceremonies to grand celebrations, we offer premium
               filmmaking services tailored to your unique vision.
             </p>
@@ -128,18 +144,24 @@ const Services = () => {
 
           {/* Services Grid - 3 Cards */}
           <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service) => (
+            {services.map((service, index) => (
               <div
                 key={service.title}
-                className="group bg-white p-10 md:p-12 transition-all duration-500 hover:bg-charcoal border border-charcoal/10 hover:border-charcoal"
+                className="group relative bg-charcoal-light/50 p-10 md:p-12 transition-all duration-500 border border-cream/10 hover:border-cream/30 hover:bg-charcoal-light"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {/* Accent line */}
+                <div className="absolute top-0 left-0 w-0 h-0.5 bg-cream/60 group-hover:w-full transition-all duration-500" />
+                
                 <div className="mb-8">
-                  <service.icon className="w-12 h-12 text-charcoal group-hover:text-cream transition-colors duration-500" />
+                  <div className="w-16 h-16 border border-cream/20 flex items-center justify-center group-hover:border-cream/40 transition-colors duration-500">
+                    <service.icon className="w-8 h-8 text-cream/70 group-hover:text-cream transition-colors duration-500" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-serif font-medium text-charcoal group-hover:text-cream mb-4 transition-colors duration-500">
+                <h3 className="text-xl font-serif font-medium text-cream mb-4">
                   {service.title}
                 </h3>
-                <p className="text-charcoal/70 group-hover:text-cream/70 leading-relaxed transition-colors duration-500">
+                <p className="text-cream/60 leading-relaxed group-hover:text-cream/80 transition-colors duration-500">
                   {service.description}
                 </p>
               </div>
@@ -149,31 +171,31 @@ const Services = () => {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="section-padding bg-white">
+      <section id="faq" className="section-padding bg-charcoal-light scroll-mt-24">
         <div className="section-container max-w-4xl">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <span className="text-charcoal/50 text-sm tracking-[0.3em] uppercase font-light mb-4 block">
+            <span className="text-cream/50 text-sm tracking-[0.3em] uppercase font-light mb-4 block">
               Got Questions?
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-charcoal mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-cream mb-6">
               Frequently Asked Questions
             </h2>
-            <div className="w-20 h-px bg-charcoal/30 mx-auto" />
+            <div className="w-20 h-px bg-cream/30 mx-auto" />
           </div>
 
           {/* FAQ Accordion */}
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-charcoal/10 bg-cream/50 px-6 rounded-none data-[state=open]:bg-cream"
+                className="border border-cream/10 bg-charcoal/50 px-6 rounded-none data-[state=open]:bg-charcoal data-[state=open]:border-cream/20"
               >
-                <AccordionTrigger className="text-left text-charcoal font-medium py-6 hover:no-underline hover:text-charcoal/80 font-serif text-lg">
+                <AccordionTrigger className="text-left text-cream font-medium py-6 hover:no-underline hover:text-cream/80 font-serif text-lg">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-charcoal/70 pb-6 leading-relaxed">
+                <AccordionContent className="text-cream/60 pb-6 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
