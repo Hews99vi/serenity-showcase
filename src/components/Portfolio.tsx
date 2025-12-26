@@ -75,7 +75,7 @@ const categories = [
   }
 ];
 
-type CategoryType = "destination" | "cultural" | "engagement";
+type CategoryType = "all" | "destination" | "cultural" | "engagement";
 
 const VideoCard = ({
   video,
@@ -263,7 +263,7 @@ const CategoryCard = ({
 
 const Portfolio = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory] = useState<CategoryType>("destination");
+  const [activeCategory, setActiveCategory] = useState<CategoryType>("all");
   const heroRef = useRef(null);
   const introRef = useRef(null);
   const galleryRef = useRef(null);
@@ -273,7 +273,9 @@ const Portfolio = () => {
   const openVideo = (youtubeId: string) => setActiveVideo(youtubeId);
   const closeVideo = () => setActiveVideo(null);
 
-  const filteredVideos = videos.filter(v => v.category === activeCategory);
+  const filteredVideos = activeCategory === "all" 
+    ? videos 
+    : videos.filter(v => v.category === activeCategory);
 
   const scrollToGallery = () => {
     galleryRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -526,7 +528,9 @@ const Portfolio = () => {
               viewport={{ once: true }}
               className="font-serif text-2xl md:text-3xl text-cream/80"
             >
-              {categories.find(c => c.id === activeCategory)?.title}
+              {activeCategory === "all" 
+                ? "All Our Stories" 
+                : categories.find(c => c.id === activeCategory)?.title}
             </motion.h3>
           </div>
 
