@@ -286,8 +286,8 @@ const Portfolio = () => {
 
   return (
     <div className="bg-charcoal min-h-screen">
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative py-24 md:py-32 lg:py-40 overflow-hidden">
+      {/* Hero Section - Compact */}
+      <section ref={heroRef} className="relative pt-8 pb-12 md:pt-12 md:pb-16 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -346,7 +346,7 @@ const Portfolio = () => {
       </section>
 
       {/* Intro Section - Two Column with Video */}
-      <section ref={introRef} className="py-20 md:py-32 border-t border-cream/10 relative overflow-hidden">
+      <section ref={introRef} className="py-12 md:py-20 border-t border-cream/10 relative overflow-hidden">
         {/* Background accent */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cream/[0.02] to-transparent pointer-events-none" />
         
