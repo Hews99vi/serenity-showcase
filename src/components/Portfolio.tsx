@@ -75,7 +75,7 @@ const categories = [
   }
 ];
 
-type CategoryType = "all" | "destination" | "cultural" | "engagement";
+type CategoryType = "destination" | "cultural" | "engagement";
 
 const VideoCard = ({
   video,
@@ -263,17 +263,17 @@ const CategoryCard = ({
 
 const Portfolio = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory] = useState<CategoryType>("all");
+  const [activeCategory, setActiveCategory] = useState<CategoryType>("destination");
   const heroRef = useRef(null);
+  const introRef = useRef(null);
   const galleryRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true });
+  const isIntroInView = useInView(introRef, { once: true, margin: "-100px" });
 
   const openVideo = (youtubeId: string) => setActiveVideo(youtubeId);
   const closeVideo = () => setActiveVideo(null);
 
-  const filteredVideos = activeCategory === "all" 
-    ? videos 
-    : videos.filter(v => v.category === activeCategory);
+  const filteredVideos = videos.filter(v => v.category === activeCategory);
 
   const scrollToGallery = () => {
     galleryRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -286,39 +286,31 @@ const Portfolio = () => {
 
   return (
     <div className="bg-charcoal min-h-screen">
-      {/* Hero Section - Full Viewport */}
-      <section ref={heroRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 opacity-[0.03]" style={{
+      {/* Hero Section */}
+      <section ref={heroRef} className="relative py-24 md:py-32 lg:py-40 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--cream)) 1px, transparent 0)`,
-            backgroundSize: '50px 50px'
+            backgroundSize: '40px 40px'
           }} />
-          {/* Gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-transparent to-charcoal/90" />
-          <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-charcoal to-transparent" />
-          <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-charcoal to-transparent" />
         </div>
 
-        {/* Decorative floating elements */}
+        {/* Decorative Lines */}
         <motion.div
-          className="absolute top-20 left-10 w-px h-32 bg-gradient-to-b from-transparent via-cream/20 to-transparent"
-          animate={{ opacity: [0.3, 0.6, 0.3], y: [0, 10, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
+          initial={{ scaleX: 0 }}
+          animate={isHeroInView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="absolute top-1/2 left-0 w-24 md:w-40 h-px bg-gradient-to-r from-transparent to-cream/30 origin-left"
         />
         <motion.div
-          className="absolute top-40 right-16 w-px h-48 bg-gradient-to-b from-transparent via-cream/15 to-transparent"
-          animate={{ opacity: [0.2, 0.5, 0.2], y: [0, -15, 0] }}
-          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-        />
-        <motion.div
-          className="absolute bottom-40 left-20 w-24 h-px bg-gradient-to-r from-transparent via-cream/20 to-transparent"
-          animate={{ opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          initial={{ scaleX: 0 }}
+          animate={isHeroInView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="absolute top-1/2 right-0 w-24 md:w-40 h-px bg-gradient-to-l from-transparent to-cream/30 origin-right"
         />
 
-        {/* Hero Content */}
-        <div className="section-container text-center relative z-10 pt-24 pb-8">
+        <div className="section-container text-center relative z-10">
           {/* Decorative element */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -326,27 +318,17 @@ const Portfolio = () => {
             transition={{ duration: 0.8 }}
             className="flex items-center justify-center gap-4 mb-8"
           >
-            <motion.span 
-              className="w-12 md:w-20 h-px bg-cream/30"
-              initial={{ scaleX: 0 }}
-              animate={isHeroInView ? { scaleX: 1 } : { scaleX: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            />
-            <Film className="w-6 h-6 text-cream/50" />
-            <motion.span 
-              className="w-12 md:w-20 h-px bg-cream/30"
-              initial={{ scaleX: 0 }}
-              animate={isHeroInView ? { scaleX: 1 } : { scaleX: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            />
+            <span className="w-8 md:w-12 h-px bg-cream/40" />
+            <Film className="w-5 h-5 text-cream/60" />
+            <span className="w-8 md:w-12 h-px bg-cream/40" />
           </motion.div>
 
-          {/* Main Title */}
+          {/* Title */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-serif text-5xl md:text-7xl lg:text-8xl text-cream mb-6 tracking-wide"
+            className="font-serif text-5xl md:text-6xl text-cream mb-6 tracking-wide lg:text-6xl"
           >
             Our Work
           </motion.h1>
@@ -356,35 +338,149 @@ const Portfolio = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-script text-2xl md:text-3xl text-cream/60 mb-4"
+            className="font-script text-2xl text-cream/70 md:text-2xl"
           >
             Stories We've Told
           </motion.p>
+        </div>
+      </section>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-cream/40 text-sm md:text-base max-w-2xl mx-auto mb-12 font-light"
-          >
-            Every frame tells a story. Every moment preserved forever. 
-            Explore our collection of wedding films crafted with love and artistry.
-          </motion.p>
+      {/* Intro Section - Two Column with Video */}
+      <section ref={introRef} className="py-20 md:py-32 border-t border-cream/10 relative overflow-hidden">
+        {/* Background accent */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cream/[0.02] to-transparent pointer-events-none" />
+        
+        <div className="section-container relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left - Text Content */}
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={isIntroInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+                transition={{ duration: 0.8 }}
+                className="flex items-center gap-3"
+              >
+                <span className="w-12 h-px bg-cream/40" />
+              </motion.div>
 
-          {/* Filter instruction */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isHeroInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="text-cream/30 text-xs tracking-[0.2em] uppercase mb-8"
-          >
-            Select a category to explore
-          </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                animate={isIntroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="font-serif text-3xl md:text-4xl lg:text-5xl text-cream leading-tight"
+              >
+                Every couple has a <span className="italic text-cream/70">unique rhythm</span>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={isIntroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-cream/70 text-base md:text-lg leading-relaxed font-light"
+              >
+                From intimate coastside ceremonies to elegant hotel celebrations, we focus on genuine emotion, natural storytelling, and timeless cinematics.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={isIntroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-cream/50 text-sm md:text-base leading-relaxed font-light"
+              >
+                Our work blends real moments, clean visuals, and thoughtful sound design to create films that feel personal, emotional, and beautifully true to you.
+              </motion.p>
+
+              {/* Decorative quote */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={isIntroInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="pt-6 border-l-2 border-cream/20 pl-6"
+              >
+                <p className="text-cream/60 italic font-light text-sm md:text-base">
+                  "We capture love in its most authentic form quietly, powerfully, and with heart."
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Right - Featured Video Preview */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={isIntroInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative group"
+            >
+              {/* Decorative frame */}
+              <div className="absolute -inset-4 border border-cream/10 -z-10" />
+              <div className="absolute -inset-8 border border-cream/5 -z-20" />
+              
+              {/* Autoplay Video */}
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <iframe
+                  src="https://www.youtube.com/embed/gINkgjJelU4?autoplay=1&mute=1&loop=1&playlist=gINkgjJelU4&controls=0&showinfo=0&rel=0&modestbranding=1"
+                  title="Featured wedding film"
+                  className="absolute inset-0 w-full h-full"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
+              </div>
+
+              {/* Floating accent */}
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-cream/10 flex items-center justify-center">
+                <Film className="w-6 h-6 text-cream/30" />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filter Cards Section */}
+      <section className="py-20 md:py-32 bg-charcoal-light/30 relative">
+        {/* Decorative pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--cream)) 1px, transparent 0)`,
+            backgroundSize: '32px 32px'
+          }} />
         </div>
 
-        {/* Category Cards */}
-        <div className="section-container relative z-10 pb-20">
+        <div className="section-container relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex items-center justify-center gap-4 mb-6"
+            >
+              <span className="w-12 md:w-20 h-px bg-cream/20" />
+              <span className="text-cream/50 text-xs md:text-sm tracking-[0.3em] uppercase">Browse by Category</span>
+              <span className="w-12 md:w-20 h-px bg-cream/20" />
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="font-serif text-3xl md:text-4xl text-cream mb-4"
+            >
+              Our Collections
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-cream/50 text-sm md:text-base max-w-xl mx-auto"
+            >
+              Select a category to explore our featured wedding films
+            </motion.p>
+          </div>
+
+          {/* Category Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {categories.map((category, index) => (
               <CategoryCard
@@ -396,68 +492,11 @@ const Portfolio = () => {
               />
             ))}
           </div>
-
-          {/* View All Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="text-center mt-8"
-          >
-            <button
-              onClick={() => {
-                setActiveCategory("all");
-                setTimeout(() => scrollToGallery(), 100);
-              }}
-              className={`px-6 py-3 text-sm tracking-wide transition-all duration-300 ${
-                activeCategory === "all"
-                  ? "bg-cream/20 text-cream border border-cream/40"
-                  : "bg-transparent text-cream/50 border border-cream/20 hover:border-cream/40 hover:text-cream/70"
-              }`}
-            >
-              View All Films
-            </button>
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 8, 0] }}
-          transition={{ opacity: { delay: 1.5 }, y: { duration: 2, repeat: Infinity } }}
-        >
-          <div className="w-6 h-10 border border-cream/30 rounded-full flex justify-center pt-2">
-            <motion.div
-              className="w-1 h-2 bg-cream/50 rounded-full"
-              animate={{ opacity: [0.5, 1, 0.5], y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Decorative Transition Section */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal-light/20 to-charcoal" />
-        <div className="section-container relative z-10">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-6"
-          >
-            <span className="w-24 md:w-40 h-px bg-gradient-to-r from-transparent to-cream/20" />
-            <p className="text-cream/40 text-sm md:text-base font-light italic text-center max-w-md">
-              "We capture love in its most authentic form — quietly, powerfully, and with heart."
-            </p>
-            <span className="w-24 md:w-40 h-px bg-gradient-to-l from-transparent to-cream/20" />
-          </motion.div>
         </div>
       </section>
 
       {/* Video Gallery */}
-      <section ref={galleryRef} className="py-20 md:py-32 relative">
+      <section ref={galleryRef} className="py-24 md:py-32 relative">
         {/* Background texture */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0" style={{
@@ -468,7 +507,7 @@ const Portfolio = () => {
 
         <div className="section-container relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-12 md:mb-16">
+          <div className="text-center mb-16 md:mb-20">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -477,45 +516,18 @@ const Portfolio = () => {
               className="flex items-center justify-center gap-4 mb-6"
             >
               <span className="w-12 md:w-20 h-px bg-cream/20" />
-              <span className="text-cream/50 text-xs md:text-sm tracking-[0.3em] uppercase">
-                {activeCategory === "all" 
-                  ? "All Films" 
-                  : categories.find(c => c.id === activeCategory)?.title}
-              </span>
+              <span className="text-cream/50 text-xs md:text-sm tracking-[0.3em] uppercase">Featured Films</span>
               <span className="w-12 md:w-20 h-px bg-cream/20" />
             </motion.div>
 
-            {/* Filter Pills */}
-            <motion.div
+            <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex flex-wrap justify-center gap-3 mb-8"
+              className="font-serif text-2xl md:text-3xl text-cream/80"
             >
-              <button
-                onClick={() => setActiveCategory("all")}
-                className={`px-4 py-2 text-xs tracking-wide transition-all duration-300 ${
-                  activeCategory === "all"
-                    ? "bg-cream/20 text-cream border border-cream/40"
-                    : "bg-transparent text-cream/40 border border-cream/10 hover:border-cream/30 hover:text-cream/60"
-                }`}
-              >
-                All
-              </button>
-              {categories.map(cat => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id as CategoryType)}
-                  className={`px-4 py-2 text-xs tracking-wide transition-all duration-300 ${
-                    activeCategory === cat.id
-                      ? "bg-cream/20 text-cream border border-cream/40"
-                      : "bg-transparent text-cream/40 border border-cream/10 hover:border-cream/30 hover:text-cream/60"
-                  }`}
-                >
-                  {cat.title.split(' ').slice(0, 2).join(' ')}
-                </button>
-              ))}
-            </motion.div>
+              {categories.find(c => c.id === activeCategory)?.title}
+            </motion.h3>
           </div>
 
           {/* Video Grid */}
@@ -549,52 +561,24 @@ const Portfolio = () => {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-24 md:py-32 relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal-light/30 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cream/20 to-transparent" />
-        </div>
-
-        <div className="section-container text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center gap-4 mb-8"
-          >
-            <span className="w-8 h-px bg-cream/20" />
-            <Heart className="w-5 h-5 text-cream/30" />
-            <span className="w-8 h-px bg-cream/20" />
-          </motion.div>
-
+      <section className="py-20 md:py-28 border-t border-cream/10">
+        <div className="section-container text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-cream/60 text-xl md:text-2xl font-light mb-4 max-w-2xl mx-auto font-serif"
+            className="text-cream/60 text-lg md:text-xl font-light mb-8 max-w-2xl mx-auto"
           >
             Ready to tell your story?
           </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-cream/40 text-sm md:text-base mb-10 max-w-lg mx-auto"
-          >
-            Let us capture the moments that matter most to you
-          </motion.p>
-
           <motion.a
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             href="/contact"
-            className="inline-flex items-center gap-3 px-10 py-4 bg-cream text-charcoal font-medium tracking-wide hover:bg-cream/90 transition-all duration-300 group"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-cream text-charcoal font-medium tracking-wide hover:bg-cream/90 transition-all duration-300 group"
           >
             <span>Get in Touch</span>
             <motion.span
