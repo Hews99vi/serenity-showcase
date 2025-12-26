@@ -236,7 +236,7 @@ const Portfolio = () => {
         }} transition={{
           duration: 0.8,
           delay: 0.4
-        }} className="font-script text-2xl md:text-3xl text-cream/70">
+        }} className="font-script text-2xl text-cream/70 md:text-2xl">
             Stories We've Told
           </motion.p>
         </div>
