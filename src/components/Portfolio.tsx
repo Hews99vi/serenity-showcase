@@ -219,7 +219,7 @@ const Portfolio = () => {
         }} transition={{
           duration: 0.8,
           delay: 0.2
-        }} className="font-serif text-5xl md:text-6xl lg:text-7xl text-cream mb-6 tracking-wide">
+        }} className="font-serif text-5xl md:text-6xl text-cream mb-6 tracking-wide lg:text-6xl">
             Our Work
           </motion.h1>
 
