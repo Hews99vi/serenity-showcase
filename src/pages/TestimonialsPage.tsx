@@ -202,7 +202,20 @@ const testimonials: Testimonial[] = [{
   location: "Colombo, Sri Lanka"
 }];
 const TestimonialsPage = () => {
-  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(testimonials[0]);
+  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
+  const firstTestimonialRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to first testimonial on page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      firstTestimonialRef.current?.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return <>
       <Helmet>
         <title>Client Testimonials | Serenity Wedding Films</title>
@@ -345,7 +358,10 @@ const TestimonialsPage = () => {
             <div className="space-y-24 md:space-y-32">
               {testimonials.map((testimonial, index) => {
               const isEven = index % 2 === 0;
-              return <motion.div key={testimonial.id} initial={{
+              return <motion.div 
+                key={testimonial.id} 
+                ref={index === 0 ? firstTestimonialRef : undefined}
+                initial={{
                 opacity: 0,
                 y: 50
               }} whileInView={{
