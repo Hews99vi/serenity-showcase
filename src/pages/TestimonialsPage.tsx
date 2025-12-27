@@ -212,8 +212,8 @@ const TestimonialsPage = () => {
       <Navbar />
 
       <main className="min-h-screen bg-charcoal">
-        {/* Hero Section */}
-        <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        {/* Hero Section - Compact to show first testimonial */}
+        <section className="relative h-[35vh] min-h-[280px] flex items-center justify-center overflow-hidden pt-16">
           {/* Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-b from-cream/5 via-charcoal to-charcoal" />
           
@@ -325,7 +325,7 @@ const TestimonialsPage = () => {
         </section>
 
         {/* Testimonials Zigzag Layout */}
-        <section className="py-16 md:py-24">
+        <section className="py-8 md:py-12">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
             <motion.div initial={{
