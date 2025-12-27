@@ -251,8 +251,8 @@ const Portfolio = () => {
     setTimeout(() => scrollToGallery(), 100);
   };
   return <div className="bg-charcoal min-h-screen">
-      {/* Hero Section - Compact */}
-      <section ref={heroRef} className="relative pt-8 pb-12 md:pt-12 md:pb-16 overflow-hidden">
+      {/* Hero + Intro Section - Full Viewport */}
+      <section ref={heroRef} className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -271,7 +271,7 @@ const Portfolio = () => {
       }} transition={{
         duration: 1.2,
         ease: [0.25, 0.46, 0.45, 0.94]
-      }} className="absolute top-1/2 left-0 w-24 md:w-40 h-px bg-gradient-to-r from-transparent to-cream/30 origin-left" />
+      }} className="absolute top-32 left-0 w-24 md:w-40 h-px bg-gradient-to-r from-transparent to-cream/30 origin-left" />
         <motion.div initial={{
         scaleX: 0
       }} animate={isHeroInView ? {
@@ -282,72 +282,68 @@ const Portfolio = () => {
         duration: 1.2,
         delay: 0.2,
         ease: [0.25, 0.46, 0.45, 0.94]
-      }} className="absolute top-1/2 right-0 w-24 md:w-40 h-px bg-gradient-to-l from-transparent to-cream/30 origin-right" />
+      }} className="absolute top-32 right-0 w-24 md:w-40 h-px bg-gradient-to-l from-transparent to-cream/30 origin-right" />
 
-        <div className="section-container text-center relative z-10">
-          {/* Decorative element */}
-          <motion.div initial={{
-          opacity: 0,
-          scale: 0.8
-        }} animate={isHeroInView ? {
-          opacity: 1,
-          scale: 1
-        } : {
-          opacity: 0,
-          scale: 0.8
-        }} transition={{
-          duration: 0.8
-        }} className="flex items-center justify-center gap-4 mb-8">
-            <span className="w-8 md:w-12 h-px bg-cream/40" />
-            <Film className="w-5 h-5 text-cream/60" />
-            <span className="w-8 md:w-12 h-px bg-cream/40" />
-          </motion.div>
-
-          {/* Title */}
-          <motion.h1 initial={{
-          opacity: 0,
-          y: 30
-        }} animate={isHeroInView ? {
-          opacity: 1,
-          y: 0
-        } : {
-          opacity: 0,
-          y: 30
-        }} transition={{
-          duration: 0.8,
-          delay: 0.2
-        }} className="font-serif text-5xl md:text-6xl text-cream mb-6 tracking-wide lg:text-6xl">
-            Our Work
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p initial={{
-          opacity: 0,
-          y: 20
-        }} animate={isHeroInView ? {
-          opacity: 1,
-          y: 0
-        } : {
-          opacity: 0,
-          y: 20
-        }} transition={{
-          duration: 0.8,
-          delay: 0.4
-        }} className="font-script text-2xl text-cream/70 md:text-2xl">
-            Stories We've Told
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Intro Section - Two Column with Video */}
-      <section ref={introRef} className="py-12 md:py-20 border-t border-cream/10 relative overflow-hidden">
-        {/* Background accent */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cream/[0.02] to-transparent pointer-events-none" />
-        
         <div className="section-container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Hero Header */}
+          <div className="text-center mb-8 md:mb-12">
+            {/* Decorative element */}
+            <motion.div initial={{
+            opacity: 0,
+            scale: 0.8
+          }} animate={isHeroInView ? {
+            opacity: 1,
+            scale: 1
+          } : {
+            opacity: 0,
+            scale: 0.8
+          }} transition={{
+            duration: 0.8
+          }} className="flex items-center justify-center gap-4 mb-6">
+              <span className="w-8 md:w-12 h-px bg-cream/40" />
+              <Film className="w-5 h-5 text-cream/60" />
+              <span className="w-8 md:w-12 h-px bg-cream/40" />
+            </motion.div>
+
+            {/* Title */}
+            <motion.h1 initial={{
+            opacity: 0,
+            y: 30
+          }} animate={isHeroInView ? {
+            opacity: 1,
+            y: 0
+          } : {
+            opacity: 0,
+            y: 30
+          }} transition={{
+            duration: 0.8,
+            delay: 0.2
+          }} className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream mb-4 tracking-wide">
+              Our Work
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p initial={{
+            opacity: 0,
+            y: 20
+          }} animate={isHeroInView ? {
+            opacity: 1,
+            y: 0
+          } : {
+            opacity: 0,
+            y: 20
+          }} transition={{
+            duration: 0.8,
+            delay: 0.4
+          }} className="font-script text-xl md:text-2xl text-cream/70">
+              Stories We've Told
+            </motion.p>
+          </div>
+
+          {/* Two Column Layout */}
+          <div ref={introRef} className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left - Text Content */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               <motion.div initial={{
               opacity: 0,
               x: -30
@@ -375,7 +371,7 @@ const Portfolio = () => {
             }} transition={{
               duration: 0.8,
               delay: 0.1
-            }} className="font-serif text-3xl md:text-4xl lg:text-5xl text-cream leading-tight">
+            }} className="font-serif text-2xl md:text-3xl lg:text-4xl text-cream leading-tight">
                 Every couple has a <span className="italic text-cream/70">unique rhythm</span>
               </motion.h2>
 
@@ -391,7 +387,7 @@ const Portfolio = () => {
             }} transition={{
               duration: 0.8,
               delay: 0.2
-            }} className="text-cream/70 text-base md:text-lg leading-relaxed font-light">
+            }} className="text-cream/70 text-sm md:text-base leading-relaxed font-light">
                 From intimate coastside ceremonies to elegant hotel celebrations, we focus on genuine emotion, natural storytelling, and timeless cinematics.
               </motion.p>
 
@@ -407,7 +403,7 @@ const Portfolio = () => {
             }} transition={{
               duration: 0.8,
               delay: 0.3
-            }} className="text-cream/50 text-sm md:text-base leading-relaxed font-light">
+            }} className="text-cream/50 text-xs md:text-sm leading-relaxed font-light">
                 Our work blends real moments, clean visuals, and thoughtful sound design to create films that feel personal, emotional, and beautifully true to you.
               </motion.p>
 
@@ -421,8 +417,8 @@ const Portfolio = () => {
             }} transition={{
               duration: 0.8,
               delay: 0.5
-            }} className="pt-6 border-l-2 border-cream/20 pl-6">
-                <p className="text-cream/60 italic font-light text-sm md:text-base">
+            }} className="pt-4 border-l-2 border-cream/20 pl-6">
+                <p className="text-cream/60 italic font-light text-xs md:text-sm">
                   "We capture love in its most authentic form quietly, powerfully, and with heart."
                 </p>
               </motion.div>
@@ -443,8 +439,8 @@ const Portfolio = () => {
             delay: 0.3
           }} className="relative group">
               {/* Decorative frame */}
-              <div className="absolute -inset-4 border border-cream/10 -z-10" />
-              <div className="absolute -inset-8 border border-cream/5 -z-20" />
+              <div className="absolute -inset-3 border border-cream/10 -z-10" />
+              <div className="absolute -inset-6 border border-cream/5 -z-20" />
               
               {/* Autoplay Video */}
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -452,12 +448,28 @@ const Portfolio = () => {
               </div>
 
               {/* Floating accent */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-cream/10 flex items-center justify-center">
-                <Film className="w-6 h-6 text-cream/30" />
+              <div className="absolute -bottom-3 -right-3 w-16 h-16 border border-cream/10 flex items-center justify-center">
+                <Film className="w-5 h-5 text-cream/30" />
               </div>
             </motion.div>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-6 h-10 border border-cream/30 rounded-full flex items-start justify-center p-2"
+          >
+            <motion.div className="w-1 h-2 bg-cream/50 rounded-full" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Category Filter Cards Section */}
