@@ -27,6 +27,7 @@ export default {
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
         cream: { DEFAULT: "hsl(var(--cream))" },
         charcoal: { DEFAULT: "hsl(var(--charcoal))", light: "hsl(var(--charcoal-light))" },
+        gold: { DEFAULT: "hsl(var(--gold))", light: "hsl(var(--gold-light))" },
       },
       borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
       keyframes: {
