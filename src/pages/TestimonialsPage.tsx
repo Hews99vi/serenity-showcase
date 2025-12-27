@@ -202,7 +202,7 @@ const testimonials: Testimonial[] = [{
   location: "Colombo, Sri Lanka"
 }];
 const TestimonialsPage = () => {
-  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(testimonials[0]);
+  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
   return <>
       <Helmet>
         <title>Client Testimonials | Serenity Wedding Films</title>
@@ -211,9 +211,9 @@ const TestimonialsPage = () => {
 
       <Navbar />
 
-      <main className="min-h-screen bg-charcoal">
-        {/* Hero Section - Compact to show first testimonial */}
-        <section className="relative h-[35vh] min-h-[280px] flex items-center justify-center overflow-hidden pt-16">
+      <main className="min-h-screen bg-charcoal scroll-smooth">
+        {/* Full Viewport Hero with First Testimonial */}
+        <section className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-16">
           {/* Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-b from-cream/5 via-charcoal to-charcoal" />
           
@@ -225,107 +225,120 @@ const TestimonialsPage = () => {
 
           {/* Film Grain */}
           <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
-        }} />
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
+          }} />
 
-          {/* Content */}
-          <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <motion.div initial={{
-            scaleX: 0
-          }} animate={{
-            scaleX: 1
-          }} transition={{
-            duration: 1,
-            delay: 0.2
-          }} className="w-20 h-px bg-gradient-to-r from-transparent via-cream/50 to-transparent mx-auto mb-8" />
+          {/* Hero Content + First Testimonial */}
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto">
+            {/* Left: Hero Text */}
+            <div className="flex-1 text-center lg:text-left max-w-xl">
+              <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay: 0.2 }} 
+                className="w-20 h-px bg-gradient-to-r from-transparent via-cream/50 to-transparent mx-auto lg:mx-0 mb-6" />
 
-            <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.8,
-            delay: 0.3
-          }} className="flex justify-center mb-6">
-              <Heart className="w-6 h-6 text-cream/40" />
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} 
+                className="flex justify-center lg:justify-start mb-4">
+                <Heart className="w-5 h-5 text-cream/40" />
+              </motion.div>
+
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} 
+                className="text-cream/50 text-xs tracking-[0.3em] uppercase mb-3">
+                Words from Our Couples
+              </motion.p>
+
+              <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} 
+                className="text-4xl md:text-5xl lg:text-6xl font-serif text-cream mb-4">
+                Love Stories
+                <span className="block font-script text-3xl md:text-4xl lg:text-5xl text-cream/70 mt-2">
+                  Told by You
+                </span>
+              </motion.h1>
+
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.7 }} 
+                className="text-cream/50 text-sm max-w-md mx-auto lg:mx-0 leading-relaxed mb-6">
+                Real moments, genuine emotions, and heartfelt words from the couples 
+                who trusted us to capture their most precious day
+              </motion.p>
+
+              {/* First Testimonial Quote */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.9 }}
+                className="hidden lg:block">
+                <Quote className="w-8 h-8 text-cream/15 rotate-180 mb-3" />
+                <p className="text-cream/70 text-base font-serif italic leading-relaxed mb-4">
+                  "{testimonials[0].shortQuote}"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-px bg-cream/30" />
+                  <span className="text-cream font-script text-xl">{testimonials[0].coupleName}</span>
+                </div>
+                <button onClick={() => setSelectedTestimonial(testimonials[0])} 
+                  className="mt-4 inline-flex items-center gap-2 text-cream/60 text-sm hover:text-cream transition-colors group/btn">
+                  <span className="tracking-wide">Read Full Story</span>
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Right: First Testimonial Video - Full Height */}
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex-shrink-0">
+              <div className="relative w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] aspect-[9/16] rounded-2xl overflow-hidden bg-charcoal/80 border border-cream/10 shadow-2xl">
+                <iframe
+                  src={`https://www.youtube.com/embed/${testimonials[0].youtubeId}?autoplay=1&mute=1&loop=1&playlist=${testimonials[0].youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1`}
+                  className="absolute inset-0 w-full h-full object-contain"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={`${testimonials[0].coupleName} testimonial`}
+                />
+                
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-charcoal/20 pointer-events-none" />
+                
+                {/* Event Badge */}
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="px-3 py-1.5 bg-charcoal/70 backdrop-blur-sm rounded-full text-cream/80 text-[10px] tracking-widest uppercase font-medium">
+                    {testimonials[0].eventType}
+                  </span>
+                </div>
+
+                {/* Couple Name Overlay */}
+                <div className="absolute bottom-4 right-4 z-10 text-right">
+                  <p className="text-cream font-script text-lg">{testimonials[0].coupleName}</p>
+                  <p className="text-cream/50 text-[10px] tracking-wider uppercase">{testimonials[0].location}</p>
+                </div>
+              </div>
+              
+              {/* Mobile Quote */}
+              <div className="lg:hidden mt-6 text-center">
+                <p className="text-cream/70 text-sm font-serif italic mb-2">
+                  "{testimonials[0].shortQuote}"
+                </p>
+                <p className="text-cream font-script text-lg">{testimonials[0].coupleName}</p>
+                <button onClick={() => setSelectedTestimonial(testimonials[0])} 
+                  className="mt-3 inline-flex items-center gap-2 text-cream/60 text-xs hover:text-cream transition-colors group/btn">
+                  <span className="tracking-wide">Read Full Story</span>
+                  <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                </button>
+              </div>
             </motion.div>
-
-            <motion.p initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.8,
-            delay: 0.4
-          }} className="text-cream/50 text-xs tracking-[0.3em] uppercase mb-4">
-              Words from Our Couples
-            </motion.p>
-
-            <motion.h1 initial={{
-            opacity: 0,
-            y: 30
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.8,
-            delay: 0.5
-          }} className="text-5xl md:text-6xl lg:text-7xl font-serif text-cream mb-6">
-              Love Stories
-              <span className="block font-script text-4xl md:text-5xl lg:text-6xl text-cream/70 mt-2">
-                Told by You
-              </span>
-            </motion.h1>
-
-            <motion.p initial={{
-            opacity: 0
-          }} animate={{
-            opacity: 1
-          }} transition={{
-            duration: 0.8,
-            delay: 0.7
-          }} className="text-cream/50 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-              Real moments, genuine emotions, and heartfelt words from the couples 
-              who trusted us to capture their most precious day
-            </motion.p>
-
-            <motion.div initial={{
-            scaleX: 0
-          }} animate={{
-            scaleX: 1
-          }} transition={{
-            duration: 1,
-            delay: 0.9
-          }} className="w-20 h-px bg-gradient-to-r from-transparent via-cream/50 to-transparent mx-auto mt-8" />
           </div>
 
           {/* Scroll Indicator */}
-          <motion.div initial={{
-          opacity: 0
-        }} animate={{
-          opacity: 1
-        }} transition={{
-          delay: 1.2,
-          duration: 0.8
-        }} className="absolute bottom-6 left-1/2 -translate-x-1/2">
-            <motion.div animate={{
-            y: [0, 6, 0]
-          }} transition={{
-            repeat: Infinity,
-            duration: 1.5,
-            ease: "easeInOut"
-          }}>
+          <motion.a 
+            href="#more-stories"
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ delay: 1.2, duration: 0.8 }} 
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+          >
+            <span className="text-cream/40 text-[10px] tracking-widest uppercase">More Stories</span>
+            <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}>
               <ChevronDown className="w-5 h-5 text-cream/30" />
             </motion.div>
-          </motion.div>
+          </motion.a>
         </section>
 
-        {/* Testimonials Zigzag Layout */}
-        <section className="py-8 md:py-12">
+        {/* Testimonials Zigzag Layout - Rest of testimonials */}
+        <section id="more-stories" className="py-16 md:py-24 scroll-mt-8">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
             <motion.div initial={{
@@ -341,9 +354,9 @@ const TestimonialsPage = () => {
               
             </motion.div>
 
-            {/* Alternating Testimonials */}
+            {/* Alternating Testimonials - Skip first one since it's in hero */}
             <div className="space-y-24 md:space-y-32">
-              {testimonials.map((testimonial, index) => {
+              {testimonials.slice(1).map((testimonial, index) => {
               const isEven = index % 2 === 0;
               return <motion.div key={testimonial.id} initial={{
                 opacity: 0,
