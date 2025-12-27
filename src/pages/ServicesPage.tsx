@@ -16,9 +16,7 @@ const ServicesPage = () => {
 
       <main className="overflow-hidden">
         <Navbar />
-        <div className="pt-24">
-          <Services />
-        </div>
+        <Services />
         <Footer />
       </main>
     </>
