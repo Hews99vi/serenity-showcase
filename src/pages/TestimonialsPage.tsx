@@ -202,7 +202,7 @@ const testimonials: Testimonial[] = [{
   location: "Colombo, Sri Lanka"
 }];
 const TestimonialsPage = () => {
-  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
+  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(testimonials[0]);
   return <>
       <Helmet>
         <title>Client Testimonials | Serenity Wedding Films</title>
