@@ -281,7 +281,7 @@ const TestimonialsPage = () => {
             {/* Right: First Testimonial Video - Full Height */}
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.6 }}
               className="flex-shrink-0">
-              <div className="relative w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] aspect-[9/16] rounded-2xl overflow-hidden bg-charcoal/80 border border-cream/10 shadow-2xl">
+              <div className="relative w-[280px] md:w-[320px] aspect-[9/16] rounded-2xl overflow-hidden bg-charcoal/80 border border-cream/10 shadow-2xl">
                 <iframe
                   src={`https://www.youtube.com/embed/${testimonials[0].youtubeId}?autoplay=1&mute=1&loop=1&playlist=${testimonials[0].youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1`}
                   className="absolute inset-0 w-full h-full object-contain"
