@@ -252,7 +252,7 @@ const Portfolio = () => {
   };
   return <div className="bg-charcoal min-h-screen">
       {/* Hero + Intro Section - Full Viewport */}
-      <section ref={heroRef} className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-20">
+      <section ref={heroRef} className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-20 md:pt-24">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{

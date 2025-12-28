@@ -16,9 +16,8 @@ const PortfolioPage = () => {
 
       <main className="overflow-hidden">
         <Navbar />
-        <div className="pt-24">
-          <Portfolio />
-        </div>
+        <Portfolio />
+        <Footer />
         <Footer />
       </main>
     </>
