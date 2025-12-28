@@ -19,7 +19,7 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 section-container text-center flex flex-col items-center justify-center min-h-screen py-20">
-        <div className="flex flex-col items-center justify-center max-w-4xl mx-auto gap-6">
+        <div className="flex flex-col items-center justify-center max-w-4xl mx-auto gap-2">
           {/* Hero Logo with fade effect */}
           <div className="relative animate-fade-up">
             <div className="relative">
