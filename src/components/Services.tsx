@@ -1,6 +1,7 @@
-import { Plane, Sparkles, Heart } from "lucide-react";
+import { Plane, Sparkles, Heart, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import FAQSection from "@/components/services/FAQSection";
 
 const services = [
@@ -38,6 +39,13 @@ const Services = () => {
       }, 100);
     }
   }, [location]);
+
+  const scrollToFAQ = () => {
+    const faqElement = document.getElementById("faq");
+    if (faqElement) {
+      faqElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <>
@@ -83,6 +91,35 @@ const Services = () => {
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* Scroll to FAQ Indicator */}
+          <div className="flex flex-col items-center mt-12 md:mt-16">
+            <motion.button
+              onClick={scrollToFAQ}
+              className="group flex flex-col items-center gap-2 text-cream/50 hover:text-cream/80 transition-colors duration-300"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              <span className="text-xs tracking-[0.3em] uppercase font-light">
+                Have Questions?
+              </span>
+              <span className="text-sm font-light text-cream/70 group-hover:text-cream transition-colors">
+                Scroll to FAQ
+              </span>
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 1.5, 
+                  ease: "easeInOut" 
+                }}
+                className="mt-1"
+              >
+                <ChevronDown className="w-5 h-5" />
+              </motion.div>
+            </motion.button>
           </div>
         </div>
       </section>
