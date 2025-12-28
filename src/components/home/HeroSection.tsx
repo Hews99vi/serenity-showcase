@@ -35,7 +35,7 @@ const HeroSection = () => {
           </div>
           
           {/* Tagline - balanced with logo */}
-          <span className="text-cream/80 text-lg block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans font-extralight tracking-wide text-center max-w-md md:text-lg">
+          <span className="text-cream/80 text-base sm:text-lg block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans font-extralight tracking-wide text-center whitespace-nowrap">
             Where Serenity Meets Cinema, Love Becomes a Masterpiece
           </span>
           
