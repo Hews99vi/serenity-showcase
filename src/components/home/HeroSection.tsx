@@ -19,18 +19,28 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 section-container text-center flex flex-col items-center justify-center min-h-screen py-20">
-        <div className="flex flex-col items-center max-w-4xl mx-auto">
-          {/* Hero Logo with breathing glow effect */}
+        <div className="flex flex-col items-center justify-center max-w-4xl mx-auto gap-6">
+          {/* Hero Logo with fade effect */}
           <div className="relative animate-fade-up">
-            <img src={heroLogo} alt="Serenity Wedding Films" className="w-64 sm:w-80 md:w-96 lg:w-[28rem] h-auto drop-shadow-2xl animate-[breathe_4s_ease-in-out_infinite]" />
-            {/* Soft glow behind logo */}
-            <div className="absolute inset-0 -z-10 blur-2xl opacity-40 animate-[glow_4s_ease-in-out_infinite]">
-              <img src={heroLogo} alt="" className="w-full h-full" aria-hidden="true" />
+            <div className="relative">
+              <img 
+                src={heroLogo} 
+                alt="Serenity Wedding Films" 
+                className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto drop-shadow-2xl" 
+                style={{
+                  maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
+                }}
+              />
+              {/* Soft glow behind logo */}
+              <div className="absolute inset-0 -z-10 blur-2xl opacity-30">
+                <img src={heroLogo} alt="" className="w-full h-full" aria-hidden="true" />
+              </div>
             </div>
           </div>
           
-          {/* Tagline - positioned lower with staggered animation */}
-          <span className="text-cream/80 text-xl mt-16 md:mt-20 block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans font-extralight md:text-xl">
+          {/* Tagline - balanced with logo */}
+          <span className="text-cream/80 text-lg md:text-xl block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans font-extralight tracking-wide text-center max-w-md">
             Where Serenity Meets Cinema, Love Becomes a Masterpiece
           </span>
           
