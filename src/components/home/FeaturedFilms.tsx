@@ -30,7 +30,7 @@ const FeaturedFilms = () => {
   const closeVideo = () => {
     setActiveVideo(null);
   };
-  return <section id="featured" className="relative py-24 md:py-32 overflow-hidden bg-charcoal">
+  return <section id="featured" className="relative pt-8 md:pt-12 pb-24 md:pb-32 overflow-hidden bg-charcoal">
       {/* Decorative background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
