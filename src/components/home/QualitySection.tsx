@@ -1,4 +1,6 @@
-import { Film, Sparkles, Eye } from "lucide-react";
+import { Film, Sparkles, Eye, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+
 const QualitySection = () => {
   const features = [{
     icon: Eye,
@@ -13,6 +15,14 @@ const QualitySection = () => {
     title: "Pure Emotion",
     description: "We don't just capture moments — we preserve emotions in their purest form."
   }];
+
+  const scrollToFeatured = () => {
+    const element = document.getElementById("featured");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return <section className="section-dark section-padding relative overflow-hidden">
       {/* Subtle background accent */}
       <div className="absolute inset-0 opacity-5">
@@ -66,6 +76,7 @@ const QualitySection = () => {
           </div>
         </div>
         
+        {/* Quote Section */}
         <div className="text-center mt-20">
           <p className="text-2xl md:text-3xl font-script text-cream/80">
             At Serenity Wedding Films, we don't just capture moments —
@@ -73,6 +84,41 @@ const QualitySection = () => {
           <p className="text-2xl md:text-3xl font-script text-cream mt-2">
             We preserve emotions in their purest form.
           </p>
+        </div>
+
+        {/* Decorative Scroll Element */}
+        <div className="flex flex-col items-center mt-16 md:mt-20">
+          {/* Decorative Lines */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent to-cream/30" />
+            <div className="w-2 h-2 rounded-full bg-cream/40" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent to-cream/30" />
+          </div>
+
+          {/* Scroll Indicator */}
+          <motion.button
+            onClick={scrollToFeatured}
+            className="group flex flex-col items-center gap-3 text-cream/40 hover:text-cream/70 transition-colors duration-300"
+            whileHover={{ scale: 1.05 }}
+          >
+            <span className="text-xs tracking-[0.4em] uppercase font-light">
+              Explore Our Films
+            </span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ 
+                repeat: Infinity, 
+                duration: 2, 
+                ease: "easeInOut" 
+              }}
+              className="w-10 h-10 rounded-full border border-cream/20 flex items-center justify-center group-hover:border-cream/40 transition-colors"
+            >
+              <ChevronDown className="w-5 h-5" />
+            </motion.div>
+          </motion.button>
+
+          {/* Bottom decorative line */}
+          <div className="w-px h-12 bg-gradient-to-b from-cream/20 to-transparent mt-4" />
         </div>
       </div>
     </section>;
