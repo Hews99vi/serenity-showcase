@@ -1,4 +1,6 @@
+import { useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/home/HeroSection";
 import IntroSection from "@/components/home/IntroSection";
@@ -9,8 +11,15 @@ import Testimonials from "@/components/Testimonials";
 import ContactCTA from "@/components/home/ContactCTA";
 import SideNav from "@/components/home/SideNav";
 import Footer from "@/components/Footer";
+import IntroOverlay from "@/components/home/IntroOverlay";
 
 const Index = () => {
+  const [introComplete, setIntroComplete] = useState(false);
+
+  const handleIntroComplete = useCallback(() => {
+    setIntroComplete(true);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -32,7 +41,15 @@ const Index = () => {
         <link rel="canonical" href="https://serenityweddingfilms.com" />
       </Helmet>
 
-      <main className="overflow-hidden bg-charcoal">
+      {/* Cinematic Intro Overlay */}
+      <IntroOverlay onComplete={handleIntroComplete} />
+
+      <motion.main 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: introComplete ? 1 : 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="overflow-hidden bg-charcoal"
+      >
         <Navbar />
         <SideNav />
         <HeroSection />
@@ -47,7 +64,7 @@ const Index = () => {
         </div>
         <ContactCTA />
         <Footer />
-      </main>
+      </motion.main>
     </>
   );
 };
