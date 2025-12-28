@@ -24,8 +24,8 @@ const HeroSection = () => {
           <div className="relative animate-fade-up">
             <div className="relative">
               <img src={heroLogo} alt="Serenity Wedding Films" style={{
-              maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
+              maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)'
             }} className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto drop-shadow-2xl border-solid" />
               {/* Soft glow behind logo */}
               <div className="absolute inset-0 -z-10 blur-2xl opacity-30">
