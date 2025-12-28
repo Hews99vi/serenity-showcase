@@ -19,7 +19,7 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 section-container text-center flex flex-col items-center justify-center min-h-screen">
-        <div className="flex flex-col items-center justify-center max-w-4xl mx-auto gap-3">
+        <div className="flex flex-col items-center justify-center max-w-4xl mx-auto gap-6">
           {/* Hero Logo with fade effect */}
           <div className="relative animate-fade-up">
             <div className="relative">
@@ -36,8 +36,8 @@ const HeroSection = () => {
             Where Serenity Meets Cinema, Love Becomes a Masterpiece
           </span>
           
-          {/* CTA Buttons - positioned even lower with staggered animations */}
-          <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* CTA Buttons - positioned with balanced gap */}
+          <div className="mt-6 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/portfolio" className="group flex items-center gap-3 bg-cream text-charcoal px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105 shadow-lg opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1s_forwards]">
               <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
               Watch Our Films
