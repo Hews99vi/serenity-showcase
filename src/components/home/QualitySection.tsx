@@ -87,38 +87,38 @@ const QualitySection = () => {
         </div>
 
         {/* Decorative Scroll Element */}
-        <div className="flex flex-col items-center mt-16 md:mt-20">
+        <div className="flex flex-col items-center mt-10 md:mt-12 pb-4">
           {/* Decorative Lines */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent to-cream/30" />
-            <div className="w-2 h-2 rounded-full bg-cream/40" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent to-cream/30" />
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent to-cream/30" />
+            <div className="w-1.5 h-1.5 rounded-full bg-cream/40" />
+            <div className="w-12 md:w-16 h-px bg-gradient-to-l from-transparent to-cream/30" />
           </div>
 
           {/* Scroll Indicator */}
           <motion.button
             onClick={scrollToFeatured}
-            className="group flex flex-col items-center gap-3 text-cream/40 hover:text-cream/70 transition-colors duration-300"
+            className="group flex flex-col items-center gap-2 text-cream/40 hover:text-cream/70 transition-colors duration-300"
             whileHover={{ scale: 1.05 }}
           >
-            <span className="text-xs tracking-[0.4em] uppercase font-light">
+            <span className="text-xs tracking-[0.3em] uppercase font-light">
               Explore Our Films
             </span>
             <motion.div
-              animate={{ y: [0, 8, 0] }}
+              animate={{ y: [0, 6, 0] }}
               transition={{ 
                 repeat: Infinity, 
                 duration: 2, 
                 ease: "easeInOut" 
               }}
-              className="w-10 h-10 rounded-full border border-cream/20 flex items-center justify-center group-hover:border-cream/40 transition-colors"
+              className="w-8 h-8 rounded-full border border-cream/20 flex items-center justify-center group-hover:border-cream/40 transition-colors"
             >
-              <ChevronDown className="w-5 h-5" />
+              <ChevronDown className="w-4 h-4" />
             </motion.div>
           </motion.button>
 
           {/* Bottom decorative line */}
-          <div className="w-px h-12 bg-gradient-to-b from-cream/20 to-transparent mt-4" />
+          <div className="w-px h-6 bg-gradient-to-b from-cream/20 to-transparent mt-2" />
         </div>
       </div>
     </section>;
