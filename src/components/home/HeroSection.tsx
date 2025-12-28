@@ -26,7 +26,7 @@ const HeroSection = () => {
               <img src={heroLogo} alt="Serenity Wedding Films" style={{
               maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
               WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)'
-            }} className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto drop-shadow-2xl border-solid" />
+            }} className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto drop-shadow-2xl border-solid opacity-100 shadow-inner" />
               {/* Soft glow behind logo */}
               <div className="absolute inset-0 -z-10 blur-2xl opacity-30">
                 <img src={heroLogo} alt="" className="w-full h-full" aria-hidden="true" />
