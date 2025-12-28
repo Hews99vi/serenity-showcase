@@ -87,12 +87,12 @@ const QualitySection = () => {
         </div>
 
         {/* Decorative Scroll Element */}
-        <div className="flex flex-col items-center mt-10 md:mt-12 pb-4">
+        <div className="flex flex-col items-center mt-8 md:mt-10">
           {/* Decorative Lines */}
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent to-cream/30" />
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 md:w-14 h-px bg-gradient-to-r from-transparent to-cream/30" />
             <div className="w-1.5 h-1.5 rounded-full bg-cream/40" />
-            <div className="w-12 md:w-16 h-px bg-gradient-to-l from-transparent to-cream/30" />
+            <div className="w-10 md:w-14 h-px bg-gradient-to-l from-transparent to-cream/30" />
           </div>
 
           {/* Scroll Indicator */}
@@ -105,20 +105,17 @@ const QualitySection = () => {
               Explore Our Films
             </span>
             <motion.div
-              animate={{ y: [0, 6, 0] }}
+              animate={{ y: [0, 5, 0] }}
               transition={{ 
                 repeat: Infinity, 
                 duration: 2, 
                 ease: "easeInOut" 
               }}
-              className="w-8 h-8 rounded-full border border-cream/20 flex items-center justify-center group-hover:border-cream/40 transition-colors"
+              className="w-7 h-7 rounded-full border border-cream/20 flex items-center justify-center group-hover:border-cream/40 transition-colors"
             >
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="w-3.5 h-3.5" />
             </motion.div>
           </motion.button>
-
-          {/* Bottom decorative line */}
-          <div className="w-px h-6 bg-gradient-to-b from-cream/20 to-transparent mt-2" />
         </div>
       </div>
     </section>;
