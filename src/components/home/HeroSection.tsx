@@ -13,10 +13,11 @@ const HeroSection = () => {
         {/* Video overlay - will play if browser allows, otherwise poster shows through */}
         <iframe 
           className="absolute inset-0 w-full h-full scale-150 pointer-events-none" 
-          src="https://www.youtube.com/embed/lvgxweA0t3U?autoplay=1&mute=1&loop=1&playlist=lvgxweA0t3U&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&vq=hd1080" 
+          src="https://www.youtube.com/embed/lvgxweA0t3U?autoplay=1&mute=1&loop=1&playlist=lvgxweA0t3U&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&vq=hd1080&hd=1&quality=hd1080&highres=1" 
           title="Hero Background Video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          aria-hidden="true" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
+          aria-hidden="true"
+          loading="eager"
         />
       </div>
 
