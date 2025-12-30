@@ -100,7 +100,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation - Outside nav for full screen coverage */}
       <div
-        className={`lg:hidden fixed inset-0 z-[55] bg-charcoal/95 backdrop-blur-xl transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 z-[55] bg-charcoal/70 backdrop-blur-3xl transition-all duration-500 ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
       >
