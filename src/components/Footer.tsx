@@ -201,14 +201,14 @@ const Footer = () => {
 
         {/* Bottom section */}
         <div className="pt-8 border-t border-cream/10">
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
             <p className="text-[11px] text-cream/30 tracking-[0.15em] uppercase">
               © {new Date().getFullYear()} Serenity Wedding Films
             </p>
             <p className="text-[11px] text-cream/30 tracking-wide">
               Crafted with passion for storytelling
             </p>
-            <p className="text-xs text-cream/40 tracking-[0.2em] uppercase font-medium mt-2">
+            <p className="text-xs text-cream/40 tracking-[0.2em] uppercase font-medium">
               SERENITY WEDDING FILMS (PVT) LTD
             </p>
           </div>
