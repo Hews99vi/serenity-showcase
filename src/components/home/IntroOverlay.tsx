@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import serenityLogo from "@/assets/serenity-logo-icon.png";
 
 const IntroOverlay = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState<"logo" | "reveal" | "done">("logo");
 
+  // Colors as specified
+  const dark = "#303030";
+  const light = "#FFEFC2";
+
   useEffect(() => {
-    // Phase 1: Show logo briefly
+    // Phase 1: Show logo (800ms)
     const logoTimer = setTimeout(() => {
       setPhase("reveal");
-    }, 1200);
+    }, 900);
 
-    // Phase 2: Complete and unmount
+    // Phase 2: Complete reveal (1.5s total)
     const completeTimer = setTimeout(() => {
       setPhase("done");
       onComplete();
-    }, 1800);
+    }, 1600);
 
     return () => {
       clearTimeout(logoTimer);
@@ -26,68 +31,86 @@ const IntroOverlay = ({ onComplete }: { onComplete: () => void }) => {
     <AnimatePresence>
       {phase !== "done" && (
         <>
-          {/* Split curtain reveal - Left */}
+          {/* Dark panel - slides up */}
           <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: phase === "reveal" ? "-100%" : 0 }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed top-0 left-0 w-1/2 h-full z-[100] bg-cream"
-          >
-            {/* Elegant edge line */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: phase === "reveal" ? 0 : 0.3 }}
-              className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-cream/40 to-transparent"
-            />
-          </motion.div>
+            initial={{ y: 0 }}
+            animate={{ y: phase === "reveal" ? "-100%" : 0 }}
+            transition={{ 
+              duration: 0.7, 
+              ease: [0.4, 0, 0.2, 1],
+              delay: phase === "reveal" ? 0.05 : 0
+            }}
+            className="fixed top-0 left-0 w-full h-1/2 z-[100]"
+            style={{ backgroundColor: dark }}
+          />
 
-          {/* Split curtain reveal - Right */}
+          {/* Light panel - slides down */}
           <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: phase === "reveal" ? "100%" : 0 }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed top-0 right-0 w-1/2 h-full z-[100] bg-cream"
-          >
-            {/* Elegant edge line */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: phase === "reveal" ? 0 : 0.3 }}
-              className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-cream/40 to-transparent"
-            />
-          </motion.div>
+            initial={{ y: 0 }}
+            animate={{ y: phase === "reveal" ? "100%" : 0 }}
+            transition={{ 
+              duration: 0.7, 
+              ease: [0.4, 0, 0.2, 1],
+              delay: phase === "reveal" ? 0.05 : 0
+            }}
+            className="fixed bottom-0 left-0 w-full h-1/2 z-[100]"
+            style={{ backgroundColor: light }}
+          />
+
+          {/* Center divider line */}
+          <motion.div
+            initial={{ scaleX: 1, opacity: 1 }}
+            animate={{ 
+              scaleX: phase === "reveal" ? 0 : 1,
+              opacity: phase === "reveal" ? 0 : 1
+            }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            className="fixed top-1/2 left-0 w-full h-px z-[101]"
+            style={{ backgroundColor: light, transform: 'translateY(-50%)' }}
+          />
 
           {/* Centered logo */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: phase === "logo" ? 1 : 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-[101] flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ 
+              opacity: phase === "logo" ? 1 : 0, 
+              scale: phase === "logo" ? 1 : 1.05 
+            }}
+            transition={{ 
+              duration: 0.4, 
+              ease: [0.4, 0, 0.2, 1]
+            }}
+            className="fixed inset-0 z-[102] flex items-center justify-center pointer-events-none"
           >
-            <div className="flex flex-col items-center gap-3">
-              {/* Brand name with elegant typography */}
+            <div className="flex flex-col items-center gap-4">
+              {/* Logo icon */}
+              <motion.img
+                src={serenityLogo}
+                alt="Serenity"
+                className="w-16 h-16 sm:w-20 sm:h-20"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.15, ease: "easeOut" }}
+              />
+              
+              {/* Brand name */}
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-                className="text-charcoal font-serif text-2xl sm:text-3xl tracking-[0.2em] uppercase"
+                transition={{ duration: 0.35, delay: 0.25, ease: "easeOut" }}
+                className="font-serif text-2xl sm:text-3xl tracking-[0.25em] uppercase"
+                style={{ color: light }}
               >
                 Serenity
               </motion.div>
               
-              {/* Minimal line accent */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.4, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
-                className="w-12 h-px bg-charcoal/50"
-              />
-              
-              {/* Tagline */}
+              {/* Subtle tagline */}
               <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
-                transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
-                className="text-charcoal/60 text-[10px] tracking-[0.4em] uppercase font-light"
+                animate={{ opacity: 0.7 }}
+                transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" }}
+                className="text-[10px] sm:text-xs tracking-[0.4em] uppercase font-light"
+                style={{ color: light }}
               >
                 Wedding Films
               </motion.div>
