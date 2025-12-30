@@ -6,20 +6,20 @@ const films = [{
   id: 1,
   title: "Eternal Moments",
   subtitle: "A Love Story",
-  youtubeId: "d4EVqmeHXLM",
-  thumbnail: `https://img.youtube.com/vi/d4EVqmeHXLM/maxresdefault.jpg`
+  youtubeId: "0TvxJPETd-8",
+  thumbnail: `https://img.youtube.com/vi/0TvxJPETd-8/maxresdefault.jpg`
 }, {
   id: 2,
   title: "Golden Hours",
   subtitle: "Captured Forever",
-  youtubeId: "0TvxJPETd-8",
-  thumbnail: `https://img.youtube.com/vi/0TvxJPETd-8/maxresdefault.jpg`
+  youtubeId: "d4EVqmeHXLM",
+  thumbnail: `https://img.youtube.com/vi/d4EVqmeHXLM/maxresdefault.jpg`
 }, {
   id: 3,
   title: "Timeless Vows",
   subtitle: "Your Perfect Day",
-  youtubeId: "Jh254MxhU3g",
-  thumbnail: `https://img.youtube.com/vi/Jh254MxhU3g/maxresdefault.jpg`
+  youtubeId: "EQBWxoCvVdQ",
+  thumbnail: `https://img.youtube.com/vi/EQBWxoCvVdQ/maxresdefault.jpg`
 }];
 const FeaturedFilms = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);

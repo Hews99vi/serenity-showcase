@@ -11,7 +11,13 @@ const HeroSection = () => {
       }} aria-hidden="true" />
         
         {/* Video overlay - will play if browser allows, otherwise poster shows through */}
-        <video className="absolute inset-0 h-full w-full object-cover pointer-events-none" src="https://stream.vidflow.co/89710a190/studio/83b2c580/videos/c6b98410-d0860afb/u/Final_main.mp4" autoPlay muted loop playsInline preload="auto" disablePictureInPicture disableRemotePlayback aria-hidden="true" />
+        <iframe 
+          className="absolute inset-0 w-full h-full scale-150 pointer-events-none" 
+          src="https://www.youtube.com/embed/lvgxweA0t3U?autoplay=1&mute=1&loop=1&playlist=lvgxweA0t3U&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&vq=hd1080" 
+          title="Hero Background Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          aria-hidden="true" 
+        />
       </div>
 
       {/* Gradient Overlay */}
