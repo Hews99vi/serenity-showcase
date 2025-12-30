@@ -15,33 +15,33 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    coupleName: "Sahan & Nethmi",
-    shortQuote: "Every emotion, every laugh, every tear—perfectly captured.",
+    coupleName: "Udaraka & Uma",
+    shortQuote: "The video was absolutely beautiful. Thank you for your amazing work!",
     fullQuote:
-      "We were blown away by the final film. It captured every emotion, every laugh, every tear. Watching it brings us right back to that magical day. The team was incredibly professional and made us feel so comfortable throughout the entire process. From the initial consultation to the final delivery, everything was seamless. We couldn't have asked for a better experience. The cinematography was absolutely stunning, and the way they told our story was beyond anything we could have imagined. We've watched our wedding film countless times and it still gives us goosebumps. Thank you, Serenity Wedding Films, for capturing the most important day of our lives so beautifully!",
-    eventDate: "March 2024",
+      "A huge thank you for Serenity Wedding Films for the incredible job you did capturing our wedding day! The video was absolutely beautiful. Thank you so much Ishara malli for your amazing work and dedication.",
+    eventDate: "2024",
     eventType: "Wedding",
-    youtubeId: "EfD3jBkdvZs",
+    youtubeId: "GUipYDqu72k",
   },
   {
     id: 2,
-    coupleName: "Kasun & Dilini",
-    shortQuote: "Professional, creative, and made us feel so comfortable.",
+    coupleName: "Bashi & Dehemi",
+    shortQuote: "My work was beautifully done. Everyone said it was beautiful.",
     fullQuote:
-      "From the very first meeting, we knew we were in great hands. The team was professional, creative, and made us feel so comfortable. Their attention to detail was remarkable, and they captured moments we didn't even know happened. The pre-wedding shoot was an incredible experience - they knew exactly how to guide us to get the most natural and beautiful shots. The final film exceeded all our expectations. It's not just a video; it's a piece of art that we'll treasure forever. We highly recommend Serenity Wedding Films to anyone looking for exceptional wedding cinematography.",
-    eventDate: "February 2024",
-    eventType: "Pre-Wedding",
-    youtubeId: "JxeMUuvda9A",
+      "My work was beautifully done. Everyone said it was beautiful. It was beautiful than I expected. Good job. Thank you malli.",
+    eventDate: "2024",
+    eventType: "Wedding",
+    youtubeId: "pxaBIOkCW1M",
   },
   {
     id: 3,
-    coupleName: "Ravindu & Sachini",
-    shortQuote: "A film that felt like US—stunning cinematography.",
+    coupleName: "Nilmi & Tharindu",
+    shortQuote: "Thank you for finishing our video so lovely. We truly appreciate it.",
     fullQuote:
-      "Serenity Wedding Films understood exactly what we wanted—a film that felt like US. The cinematography was stunning and exceeded our expectations. They have an incredible ability to capture raw emotions and genuine moments. Every time we watch our wedding film, we're transported back to that magical day. The editing, the music selection, the color grading - everything was perfect. They truly are artists in their craft. We've recommended them to all our friends and family, and everyone who has worked with them has had the same amazing experience. Thank you for giving us the most precious gift!",
-    eventDate: "January 2024",
+      "Thank you so much for all the hard work you put into our wedding day video. We truly appreciate it. It meant so much to us that you finished our video so lovely. Thank you again @ishara malli.",
+    eventDate: "2024",
     eventType: "Wedding",
-    youtubeId: "co_WYnhlhi0",
+    youtubeId: "fSSQLuejmzg",
   },
 ];
 
