@@ -205,48 +205,58 @@ const CategoryCard = ({
   }} transition={{
     duration: 0.8,
     delay: index * 0.2
-  }} onClick={onClick} className={`group relative cursor-pointer overflow-hidden ${isActive ? "ring-2 ring-cream/60" : ""}`}>
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img src={category.image} alt={category.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-        <div className={`absolute inset-0 transition-all duration-500 ${isActive ? "bg-gradient-to-t from-charcoal/95 via-charcoal/80 to-charcoal/60" : "bg-gradient-to-t from-charcoal/90 via-charcoal/70 to-charcoal/40 group-hover:from-charcoal/95 group-hover:via-charcoal/75"}`} />
-      </div>
+  }} onClick={onClick} className={`group relative cursor-pointer overflow-hidden rounded-lg ${isActive ? "ring-2 ring-cream/60" : ""}`}>
+      {/* 16:9 Aspect Ratio Container */}
+      <div className="relative aspect-video">
+        {/* Background Image - Full brightness, object-position centered for faces */}
+        <img 
+          src={category.image} 
+          alt={category.title} 
+          className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" 
+        />
+        
+        {/* Soft bottom gradient only - max 25-30% opacity */}
+        <div className={`absolute inset-0 transition-all duration-500 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent ${isActive ? "from-charcoal/75" : "group-hover:from-charcoal/75"}`} />
+        
+        {/* Content positioned at bottom */}
+        <div className="absolute inset-0 z-10 p-5 md:p-6 flex flex-col justify-end">
+          {/* Text container with subtle backdrop for readability */}
+          <div className="relative">
+            {/* Icon */}
+            <motion.div className={`w-10 h-10 rounded-full flex items-center justify-center mb-3 transition-all duration-300 backdrop-blur-sm ${isActive ? "bg-cream/25" : "bg-cream/15 group-hover:bg-cream/25"}`} whileHover={{
+            scale: 1.1
+          }}>
+              <category.icon className={`w-4 h-4 transition-colors duration-300 ${isActive ? "text-cream" : "text-cream/90 group-hover:text-cream"}`} />
+            </motion.div>
 
-      {/* Content */}
-      <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-end min-h-[280px] md:min-h-[320px]">
-        {/* Icon */}
-        <motion.div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 transition-all duration-300 ${isActive ? "bg-cream/20" : "bg-cream/10 group-hover:bg-cream/20"}`} whileHover={{
-        scale: 1.1
-      }}>
-          <category.icon className={`w-5 h-5 transition-colors duration-300 ${isActive ? "text-cream" : "text-cream/70 group-hover:text-cream"}`} />
-        </motion.div>
+            {/* Subtitle */}
+            <p className="text-cream/80 text-xs tracking-[0.2em] uppercase mb-1.5 drop-shadow-md">
+              {category.subtitle}
+            </p>
 
-        {/* Subtitle */}
-        <p className="text-cream/50 text-xs tracking-[0.2em] uppercase mb-2">
-          {category.subtitle}
-        </p>
+            {/* Title with text shadow for readability */}
+            <h3 className={`font-serif text-lg md:text-xl mb-2 transition-colors duration-300 drop-shadow-lg ${isActive ? "text-cream" : "text-cream group-hover:text-cream"}`} style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+              {category.title}
+            </h3>
 
-        {/* Title */}
-        <h3 className={`font-serif text-xl md:text-2xl mb-3 transition-colors duration-300 ${isActive ? "text-cream" : "text-cream/90 group-hover:text-cream"}`}>
-          {category.title}
-        </h3>
+            {/* Description with subtle background */}
+            <p className="text-cream/90 text-sm font-light leading-relaxed drop-shadow-md" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
+              {category.description}
+            </p>
+          </div>
 
-        {/* Description */}
-        <p className="text-cream/50 text-sm font-light leading-relaxed">
-          {category.description}
-        </p>
-
-        {/* Active indicator */}
-        <motion.div className="absolute bottom-0 left-0 h-1 bg-cream/60" initial={{
-        width: 0
-      }} animate={{
-        width: isActive ? "100%" : 0
-      }} transition={{
-        duration: 0.4
-      }} />
+          {/* Active indicator */}
+          <motion.div className="absolute bottom-0 left-0 h-1 bg-cream/70 rounded-full" initial={{
+          width: 0
+        }} animate={{
+          width: isActive ? "100%" : 0
+        }} transition={{
+          duration: 0.4
+        }} />
+        </div>
 
         {/* Corner accent */}
-        <div className={`absolute top-4 right-4 w-8 h-8 border-t border-r transition-all duration-300 ${isActive ? "border-cream/40" : "border-cream/20 group-hover:border-cream/40"}`} />
+        <div className={`absolute top-3 right-3 w-6 h-6 border-t border-r transition-all duration-300 ${isActive ? "border-cream/50" : "border-cream/30 group-hover:border-cream/50"}`} />
       </div>
     </motion.div>;
 };
