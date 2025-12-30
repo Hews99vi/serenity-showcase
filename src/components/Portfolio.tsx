@@ -207,18 +207,19 @@ const CategoryCard = ({
   }} transition={{
     duration: 0.8,
     delay: index * 0.15
-  }} onClick={onClick} className={`group relative cursor-pointer overflow-hidden rounded-lg transition-all duration-500 ${isActive ? "ring-2 ring-cream/60" : ""} ${isMiddle ? "md:scale-105 md:z-10" : ""}`}
+  }} onClick={onClick} className={`group relative cursor-pointer rounded-lg transition-all duration-500 ${isActive ? "ring-2 ring-cream/60" : ""} ${isMiddle ? "md:scale-105 md:z-10" : ""}`}
   style={{ 
-    boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+    boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+    height: isMiddle ? '580px' : '540px'
   }}>
-      {/* 9:16 Portrait Aspect Ratio Container */}
-      <div className="relative" style={{ aspectRatio: '9 / 16', height: isMiddle ? '580px' : '540px' }}>
-        {/* Background Image - Full brightness, no filters, centered for faces */}
+      {/* Image wrapper - fills entire card */}
+      <div className="relative w-full h-full overflow-hidden rounded-lg">
+        {/* Background Image - fills entire container, no blank space */}
         <img 
           src={category.image} 
           alt={category.title} 
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" 
-          style={{ objectPosition: 'center 30%' }}
+          className="block w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" 
+          style={{ objectPosition: 'center 30%', display: 'block' }}
         />
         
         {/* Soft bottom gradient only - completely clear at top, increases on hover */}
