@@ -16,64 +16,55 @@ const videos: VideoItem[] = [{
   youtubeId: "v-BLUo0s0zI",
   caption: "A quiet moment by the sea. A story told through soft light and raw emotion.",
   category: "destination",
-  location: "Maldives",
-  couple: "Sarah & James"
+  couple: "Malka & Amasha"
 }, {
   id: "2",
   youtubeId: "oq4QcEnhz5E",
   caption: "Love knows no borders, a destination celebration.",
   category: "destination",
-  location: "Beach Resort",
-  couple: "Maya & Daniel"
+  couple: "Jithmi & Waruna"
 }, {
   id: "3",
   youtubeId: "0TvxJPETd-8",
   caption: "A celebration filled with colour, culture, and heartfelt connections.",
   category: "cultural",
-  location: "Kandy",
-  couple: "Nimali & Ruwan"
+  couple: "Kavindu & Lankika"
 }, {
   id: "4",
   youtubeId: "EQBWxoCvVdQ",
   caption: "Where tradition meets timeless love, beautifully captured.",
   category: "cultural",
-  location: "Galle",
-  couple: "Kavindi & Dinesh"
+  couple: "Nilupuli & Chinthaka"
 }, {
   id: "5",
   youtubeId: "d4EVqmeHXLM",
   caption: "Sacred rituals and heartfelt moments woven together.",
   category: "cultural",
-  location: "Colombo",
-  couple: "Priya & Sahan"
+  couple: "Uma & Udaraka"
 }, {
   id: "6",
   youtubeId: "LzUrmG_gBlA",
   caption: "The beauty of heritage, the joy of celebration.",
   category: "cultural",
-  location: "Negombo",
-  couple: "Dilani & Kasun"
+  couple: "Gayani & Rajitha"
 }, {
   id: "7",
   youtubeId: "YaZWNpmYuYo",
   caption: "Two souls finding forever in a moment of pure joy.",
   category: "engagement",
-  location: "Colombo",
-  couple: "Tharushi & Ashan"
+  couple: "Chamudi & Umesh"
 }, {
   id: "8",
   youtubeId: "gINkgjJelU4",
   caption: "The beginning of a beautiful journey together.",
   category: "engagement",
-  location: "Kandy",
-  couple: "Nethmi & Roshan"
+  couple: "Bhanusha & Janith"
 }, {
   id: "9",
   youtubeId: "Jh254MxhU3g",
   caption: "Love stories start with a simple yes.",
   category: "engagement",
-  location: "Galle",
-  couple: "Sanduni & Chamara"
+  couple: "Rasanjalee & Sumedha"
 }];
 const categories = [{
   id: "destination",
@@ -131,11 +122,6 @@ const VideoCard = ({
         <img src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`} alt="Wedding film thumbnail" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
         
-        {/* Location badge */}
-        {video.location && <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-charcoal/80 backdrop-blur-sm border border-cream/20">
-            <MapPin className="w-3 h-3 text-cream/70" />
-            <span className="text-cream/90 text-xs tracking-wide">{video.location}</span>
-          </div>}
 
         <motion.div className="absolute inset-0 flex items-center justify-center" initial={false} animate={{
         scale: isHovered ? 1.1 : 1
