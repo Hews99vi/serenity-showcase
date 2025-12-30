@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { Play, X, Film, MapPin, Heart, Sparkles } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import categoryCultural from "@/assets/category-cultural.jpg";
+import categoryDestination from "@/assets/category-destination.jpg";
+import categoryEngagement from "@/assets/category-engagement.jpg";
+
 interface VideoItem {
   id: string;
   youtubeId: string;
@@ -72,21 +76,21 @@ const categories = [{
   subtitle: "Love Across Borders",
   description: "Exotic locations, breathtaking vistas, and unforgettable celebrations",
   icon: MapPin,
-  image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80"
+  image: categoryDestination
 }, {
   id: "cultural",
   title: "Classic Sri Lankan Cultural Weddings",
   subtitle: "Timeless Traditions",
   description: "Rich heritage, sacred rituals, and the beauty of our culture",
   icon: Sparkles,
-  image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80"
+  image: categoryCultural
 }, {
   id: "engagement",
   title: "Engagement & Pre-Wedding Stories",
   subtitle: "The Beginning",
   description: "Capturing the magic of your journey before the big day",
   icon: Heart,
-  image: "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=800&q=80"
+  image: categoryEngagement
 }];
 type CategoryType = "all" | "destination" | "cultural" | "engagement";
 const VideoCard = ({
@@ -575,7 +579,12 @@ const Portfolio = () => {
             duration: 0.8
           }} className="flex items-center justify-center gap-4 mb-6">
               <span className="w-12 md:w-20 h-px bg-cream/20" />
-              <span className="text-cream/50 text-xs md:text-sm tracking-[0.3em] uppercase">Featured Films</span>
+              <button 
+                onClick={() => setActiveCategory("all")}
+                className={`text-xs md:text-sm tracking-[0.3em] uppercase transition-all duration-300 hover:text-cream ${activeCategory === "all" ? "text-cream" : "text-cream/50 hover:text-cream/80"}`}
+              >
+                Featured Films
+              </button>
               <span className="w-12 md:w-20 h-px bg-cream/20" />
             </motion.div>
 
