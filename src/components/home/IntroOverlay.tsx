@@ -3,120 +3,105 @@ import { motion, AnimatePresence } from "framer-motion";
 import serenityLogo from "@/assets/serenity-logo-icon.png";
 
 const IntroOverlay = ({ onComplete }: { onComplete: () => void }) => {
-  const [phase, setPhase] = useState<"logo" | "reveal" | "done">("logo");
+  const [phase, setPhase] = useState<"intro" | "exit" | "done">("intro");
 
-  // Colors as specified
   const dark = "#303030";
-  const light = "#FFEFC2";
+  const cream = "#FFEFC2";
 
   useEffect(() => {
-    // Phase 1: Show logo (800ms)
-    const logoTimer = setTimeout(() => {
-      setPhase("reveal");
-    }, 900);
-
-    // Phase 2: Complete reveal (1.5s total)
-    const completeTimer = setTimeout(() => {
+    // Show logo, then exit
+    const exitTimer = setTimeout(() => setPhase("exit"), 1200);
+    const doneTimer = setTimeout(() => {
       setPhase("done");
       onComplete();
-    }, 1600);
+    }, 2000);
 
     return () => {
-      clearTimeout(logoTimer);
-      clearTimeout(completeTimer);
+      clearTimeout(exitTimer);
+      clearTimeout(doneTimer);
     };
   }, [onComplete]);
 
   return (
     <AnimatePresence>
       {phase !== "done" && (
-        <>
-          {/* Dark panel - slides up */}
+        <motion.div
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[100]"
+        >
+          {/* Full dark background */}
           <motion.div
-            initial={{ y: 0 }}
-            animate={{ y: phase === "reveal" ? "-100%" : 0 }}
-            transition={{ 
-              duration: 0.7, 
-              ease: [0.4, 0, 0.2, 1],
-              delay: phase === "reveal" ? 0.05 : 0
-            }}
-            className="fixed top-0 left-0 w-full h-1/2 z-[100]"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: phase === "exit" ? 0 : 1 }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute inset-0"
             style={{ backgroundColor: dark }}
           />
 
-          {/* Light panel - slides down */}
+          {/* Elegant curtain wipe from center */}
           <motion.div
-            initial={{ y: 0 }}
-            animate={{ y: phase === "reveal" ? "100%" : 0 }}
-            transition={{ 
-              duration: 0.7, 
-              ease: [0.4, 0, 0.2, 1],
-              delay: phase === "reveal" ? 0.05 : 0
-            }}
-            className="fixed bottom-0 left-0 w-full h-1/2 z-[100]"
-            style={{ backgroundColor: light }}
+            initial={{ scaleY: 1 }}
+            animate={{ scaleY: phase === "exit" ? 0 : 1 }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+            className="absolute inset-0 origin-top"
+            style={{ backgroundColor: dark }}
           />
 
-          {/* Center divider line */}
+          {/* Centered logo container */}
           <motion.div
-            initial={{ scaleX: 1, opacity: 1 }}
-            animate={{ 
-              scaleX: phase === "reveal" ? 0 : 1,
-              opacity: phase === "reveal" ? 0 : 1
-            }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed top-1/2 left-0 w-full h-px z-[101]"
-            style={{ backgroundColor: light, transform: 'translateY(-50%)' }}
-          />
-
-          {/* Centered logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ 
-              opacity: phase === "logo" ? 1 : 0, 
-              scale: phase === "logo" ? 1 : 1.05 
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: phase === "exit" ? 0 : 1 }}
             transition={{ 
-              duration: 0.4, 
-              ease: [0.4, 0, 0.2, 1]
+              opacity: { duration: phase === "exit" ? 0.4 : 0.6, delay: phase === "exit" ? 0 : 0.2 }
             }}
-            className="fixed inset-0 z-[102] flex items-center justify-center pointer-events-none"
+            className="absolute inset-0 flex items-center justify-center"
           >
-            <div className="flex flex-col items-center gap-4">
-              {/* Logo icon */}
+            <div className="flex flex-col items-center">
+              {/* Logo */}
               <motion.img
                 src={serenityLogo}
                 alt="Serenity"
-                className="w-16 h-16 sm:w-20 sm:h-20"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.15, ease: "easeOut" }}
+                className="w-14 h-14 sm:w-16 sm:h-16 mb-5"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
               />
               
               {/* Brand name */}
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
+              <motion.h1
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.25, ease: "easeOut" }}
-                className="font-serif text-2xl sm:text-3xl tracking-[0.25em] uppercase"
-                style={{ color: light }}
+                transition={{ duration: 0.5, delay: 0.45, ease: "easeOut" }}
+                className="font-serif text-xl sm:text-2xl tracking-[0.3em] uppercase mb-2"
+                style={{ color: cream }}
               >
                 Serenity
-              </motion.div>
+              </motion.h1>
               
-              {/* Subtle tagline */}
+              {/* Thin line */}
               <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.55, ease: [0.4, 0, 0.2, 1] }}
+                className="w-12 h-px mb-3"
+                style={{ backgroundColor: cream, opacity: 0.5 }}
+              />
+              
+              {/* Tagline */}
+              <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.7 }}
-                transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" }}
-                className="text-[10px] sm:text-xs tracking-[0.4em] uppercase font-light"
-                style={{ color: light }}
+                transition={{ duration: 0.4, delay: 0.65, ease: "easeOut" }}
+                className="text-[9px] sm:text-[10px] tracking-[0.5em] uppercase"
+                style={{ color: cream }}
               >
                 Wedding Films
-              </motion.div>
+              </motion.p>
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );
