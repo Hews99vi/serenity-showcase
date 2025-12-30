@@ -44,11 +44,13 @@ const Index = () => {
       {/* Cinematic Intro Overlay */}
       <IntroOverlay onComplete={handleIntroComplete} />
 
-      <motion.main 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: introComplete ? 1 : 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+      <main 
         className="overflow-hidden bg-charcoal"
+        style={{ 
+          opacity: introComplete ? 1 : 0,
+          visibility: introComplete ? 'visible' : 'hidden',
+          transition: 'opacity 0.4s ease-out, visibility 0.4s'
+        }}
       >
         <Navbar />
         <SideNav />
@@ -64,7 +66,7 @@ const Index = () => {
         </div>
         <ContactCTA />
         <Footer />
-      </motion.main>
+      </main>
     </>
   );
 };
