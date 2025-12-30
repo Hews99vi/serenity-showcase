@@ -13,28 +13,28 @@ interface VideoItem {
 }
 const videos: VideoItem[] = [{
   id: "1",
-  youtubeId: "v-BLUo0s0zI",
-  caption: "A quiet moment by the sea. A story told through soft light and raw emotion.",
-  category: "destination",
-  couple: "Malka & Amasha"
-}, {
-  id: "2",
-  youtubeId: "oq4QcEnhz5E",
-  caption: "Love knows no borders, a destination celebration.",
-  category: "destination",
-  couple: "Jithmi & Waruna"
-}, {
-  id: "3",
   youtubeId: "0TvxJPETd-8",
   caption: "A celebration filled with colour, culture, and heartfelt connections.",
   category: "cultural",
   couple: "Kavindu & Lankika"
 }, {
-  id: "4",
+  id: "2",
   youtubeId: "EQBWxoCvVdQ",
   caption: "Where tradition meets timeless love, beautifully captured.",
   category: "cultural",
   couple: "Nilupuli & Chinthaka"
+}, {
+  id: "3",
+  youtubeId: "v-BLUo0s0zI",
+  caption: "A quiet moment by the sea. A story told through soft light and raw emotion.",
+  category: "destination",
+  couple: "Malka & Amasha"
+}, {
+  id: "4",
+  youtubeId: "oq4QcEnhz5E",
+  caption: "Love knows no borders, a destination celebration.",
+  category: "destination",
+  couple: "Jithmi & Waruna"
 }, {
   id: "5",
   youtubeId: "d4EVqmeHXLM",
