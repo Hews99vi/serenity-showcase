@@ -31,7 +31,7 @@ const IntroOverlay = ({ onComplete }: { onComplete: () => void }) => {
             initial={{ x: 0 }}
             animate={{ x: phase === "reveal" ? "-100%" : 0 }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed top-0 left-0 w-1/2 h-full z-[100] bg-charcoal"
+            className="fixed top-0 left-0 w-1/2 h-full z-[100] bg-cream"
           >
             {/* Elegant edge line */}
             <motion.div
@@ -46,7 +46,7 @@ const IntroOverlay = ({ onComplete }: { onComplete: () => void }) => {
             initial={{ x: 0 }}
             animate={{ x: phase === "reveal" ? "100%" : 0 }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed top-0 right-0 w-1/2 h-full z-[100] bg-charcoal"
+            className="fixed top-0 right-0 w-1/2 h-full z-[100] bg-cream"
           >
             {/* Elegant edge line */}
             <motion.div
@@ -69,7 +69,7 @@ const IntroOverlay = ({ onComplete }: { onComplete: () => void }) => {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-                className="text-cream font-serif text-2xl sm:text-3xl tracking-[0.2em] uppercase"
+                className="text-charcoal font-serif text-2xl sm:text-3xl tracking-[0.2em] uppercase"
               >
                 Serenity
               </motion.div>
@@ -79,7 +79,7 @@ const IntroOverlay = ({ onComplete }: { onComplete: () => void }) => {
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.4, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
-                className="w-12 h-px bg-cream/50"
+                className="w-12 h-px bg-charcoal/50"
               />
               
               {/* Tagline */}
@@ -87,7 +87,7 @@ const IntroOverlay = ({ onComplete }: { onComplete: () => void }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.6 }}
                 transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
-                className="text-cream/60 text-[10px] tracking-[0.4em] uppercase font-light"
+                className="text-charcoal/60 text-[10px] tracking-[0.4em] uppercase font-light"
               >
                 Wedding Films
               </motion.div>
