@@ -31,98 +31,105 @@ const Navbar = () => {
     ? "bg-charcoal/95 backdrop-blur-md py-3"
     : "bg-transparent py-6";
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBackground}`}
-    >
-      <div className="section-container">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img
-              src={logo}
-              alt="Serenity Wedding Films"
-              className="h-12 md:h-16 w-auto"
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 link-underline ${
-                  location.pathname === link.href
-                    ? "text-cream"
-                    : "text-cream/80 hover:text-cream"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Reserve Now Button */}
-          <div className="hidden lg:block">
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 bg-cream text-charcoal px-6 py-3 text-sm tracking-widest uppercase font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105"
-            >
-              Reserve Now
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBackground}`}
+      >
+        <div className="section-container">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link to="/" className="flex items-center z-[60]">
+              <img
+                src={logo}
+                alt="Serenity Wedding Films"
+                className="h-10 sm:h-12 md:h-16 w-auto"
+              />
             </Link>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-cream"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-10">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 link-underline ${
+                    location.pathname === link.href
+                      ? "text-cream"
+                      : "text-cream/80 hover:text-cream"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Reserve Now Button */}
+            <div className="hidden lg:block">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 bg-cream text-charcoal px-6 py-3 text-sm tracking-widest uppercase font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105"
+              >
+                Reserve Now
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 text-cream z-[60] relative"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
+      </nav>
 
-        {/* Mobile Navigation */}
-        <div
-          className={`lg:hidden fixed inset-0 top-0 bg-charcoal/98 backdrop-blur-lg transition-all duration-500 ${
-            isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        >
-          <div className="flex flex-col items-center justify-center h-full gap-8">
-            {navLinks.map((link, index) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => setIsOpen(false)}
-                className={`text-2xl font-serif tracking-wide transition-all duration-300 ${
-                  location.pathname === link.href
-                    ? "text-cream"
-                    : "text-cream/70 hover:text-cream"
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {link.label}
-              </Link>
-            ))}
+      {/* Mobile Navigation - Outside nav for full screen coverage */}
+      <div
+        className={`lg:hidden fixed inset-0 z-[55] bg-charcoal transition-all duration-500 ${
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-full gap-6 sm:gap-8 px-4">
+          {navLinks.map((link, index) => (
             <Link
-              to="/contact"
+              key={link.href}
+              to={link.href}
               onClick={() => setIsOpen(false)}
-              className="mt-4 inline-flex items-center gap-2 bg-cream text-charcoal px-8 py-4 text-sm tracking-widest uppercase font-medium"
+              className={`text-xl sm:text-2xl font-serif tracking-wide transition-all duration-300 ${
+                location.pathname === link.href
+                  ? "text-cream"
+                  : "text-cream/70 hover:text-cream"
+              }`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              Reserve Now
+              {link.label}
             </Link>
-          </div>
-          <button
+          ))}
+          <Link
+            to="/contact"
             onClick={() => setIsOpen(false)}
-            className="absolute top-6 right-6 p-2 text-cream"
-            aria-label="Close menu"
+            className="mt-4 inline-flex items-center gap-2 bg-cream text-charcoal px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm tracking-widest uppercase font-medium"
           >
-            <X className="w-8 h-8" />
-          </button>
+            Reserve Now
+          </Link>
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 
