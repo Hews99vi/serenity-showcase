@@ -100,10 +100,19 @@ const Navbar = () => {
 
       {/* Mobile Navigation - Outside nav for full screen coverage */}
       <div
-        className={`lg:hidden fixed inset-0 z-[55] bg-charcoal transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 z-[55] bg-charcoal/95 backdrop-blur-xl transition-all duration-500 ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
       >
+        {/* Close Button */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-4 right-4 p-3 text-cream/70 hover:text-cream transition-colors z-[60]"
+          aria-label="Close menu"
+        >
+          <X className="w-7 h-7" />
+        </button>
+
         <div className="flex flex-col items-center justify-center h-full gap-6 sm:gap-8 px-4">
           {navLinks.map((link, index) => (
             <Link
@@ -123,7 +132,7 @@ const Navbar = () => {
           <Link
             to="/contact"
             onClick={() => setIsOpen(false)}
-            className="mt-4 inline-flex items-center gap-2 bg-cream text-charcoal px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm tracking-widest uppercase font-medium"
+            className="mt-4 inline-flex items-center gap-2 bg-cream text-charcoal px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm tracking-widest uppercase font-medium hover:bg-cream/90 transition-colors"
           >
             Reserve Now
           </Link>
