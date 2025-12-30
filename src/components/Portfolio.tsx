@@ -13,32 +13,67 @@ interface VideoItem {
 }
 const videos: VideoItem[] = [{
   id: "1",
-  youtubeId: "gINkgjJelU4",
+  youtubeId: "v-BLUo0s0zI",
   caption: "A quiet moment by the sea. A story told through soft light and raw emotion.",
   category: "destination",
   location: "Maldives",
   couple: "Sarah & James"
 }, {
   id: "2",
+  youtubeId: "oq4QcEnhz5E",
+  caption: "Love knows no borders, a destination celebration.",
+  category: "destination",
+  location: "Beach Resort",
+  couple: "Maya & Daniel"
+}, {
+  id: "3",
   youtubeId: "0TvxJPETd-8",
   caption: "A celebration filled with colour, culture, and heartfelt connections.",
   category: "cultural",
   location: "Kandy",
   couple: "Nimali & Ruwan"
 }, {
-  id: "3",
+  id: "4",
+  youtubeId: "EQBWxoCvVdQ",
+  caption: "Where tradition meets timeless love, beautifully captured.",
+  category: "cultural",
+  location: "Galle",
+  couple: "Kavindi & Dinesh"
+}, {
+  id: "5",
+  youtubeId: "d4EVqmeHXLM",
+  caption: "Sacred rituals and heartfelt moments woven together.",
+  category: "cultural",
+  location: "Colombo",
+  couple: "Priya & Sahan"
+}, {
+  id: "6",
+  youtubeId: "LzUrmG_gBlA",
+  caption: "The beauty of heritage, the joy of celebration.",
+  category: "cultural",
+  location: "Negombo",
+  couple: "Dilani & Kasun"
+}, {
+  id: "7",
   youtubeId: "YaZWNpmYuYo",
   caption: "Two souls finding forever in a moment of pure joy.",
   category: "engagement",
   location: "Colombo",
   couple: "Tharushi & Ashan"
 }, {
-  id: "4",
-  youtubeId: "BPPlu0aNgb0",
-  caption: "Where tradition meets timeless love, beautifully captured.",
-  category: "cultural",
+  id: "8",
+  youtubeId: "gINkgjJelU4",
+  caption: "The beginning of a beautiful journey together.",
+  category: "engagement",
+  location: "Kandy",
+  couple: "Nethmi & Roshan"
+}, {
+  id: "9",
+  youtubeId: "Jh254MxhU3g",
+  caption: "Love stories start with a simple yes.",
+  category: "engagement",
   location: "Galle",
-  couple: "Kavindi & Dinesh"
+  couple: "Sanduni & Chamara"
 }];
 const categories = [{
   id: "destination",
@@ -444,7 +479,7 @@ const Portfolio = () => {
               
               {/* Autoplay Video */}
               <div className="relative aspect-[4/3] overflow-hidden">
-                <iframe src="https://www.youtube.com/embed/gINkgjJelU4?autoplay=1&mute=1&loop=1&playlist=gINkgjJelU4&controls=0&showinfo=0&rel=0&modestbranding=1" title="Featured wedding film" className="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media" allowFullScreen />
+                <iframe src="https://www.youtube.com/embed/lvgxweA0t3U?autoplay=1&mute=1&loop=1&playlist=lvgxweA0t3U&controls=0&showinfo=0&rel=0&modestbranding=1" title="Featured wedding film" className="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media" allowFullScreen />
               </div>
 
               {/* Floating accent */}
