@@ -18,7 +18,6 @@ const PortfolioPage = () => {
         <Navbar />
         <Portfolio />
         <Footer />
-        <Footer />
       </main>
     </>
   );
