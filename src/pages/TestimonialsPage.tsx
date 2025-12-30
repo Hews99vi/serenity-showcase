@@ -148,58 +148,31 @@ const TestimonialReel = ({
 };
 const testimonials: Testimonial[] = [{
   id: 1,
-  coupleName: "Sahan & Nethmi",
-  shortQuote: "Every emotion, every laugh, every tear—perfectly captured.",
-  fullQuote: "We were blown away by the final film. It captured every emotion, every laugh, every tear. Watching it brings us right back to that magical day. The team was incredibly professional and made us feel so comfortable throughout the entire process. From the initial consultation to the final delivery, everything was seamless. We couldn't have asked for a better experience. The cinematography was absolutely stunning, and the way they told our story was beyond anything we could have imagined.",
-  eventDate: "March 2024",
+  coupleName: "Udaraka & Uma",
+  shortQuote: "The video was absolutely beautiful. Thank you for your amazing work!",
+  fullQuote: "A huge thank you for Serenity Wedding Films for the incredible job you did capturing our wedding day! The video was absolutely beautiful. Thank you so much Ishara malli for your amazing work and dedication.",
+  eventDate: "2024",
   eventType: "Wedding",
-  youtubeId: "EfD3jBkdvZs",
-  location: "Colombo, Sri Lanka"
+  youtubeId: "GUipYDqu72k",
+  location: "Sri Lanka"
 }, {
   id: 2,
-  coupleName: "Kasun & Dilini",
-  shortQuote: "Professional, creative, and made us feel so comfortable.",
-  fullQuote: "From the very first meeting, we knew we were in great hands. The team was professional, creative, and made us feel so comfortable. Their attention to detail was remarkable, and they captured moments we didn't even know happened. The pre-wedding shoot was an incredible experience - they knew exactly how to guide us to get the most natural and beautiful shots.",
-  eventDate: "February 2024",
-  eventType: "Pre-Wedding",
-  youtubeId: "JxeMUuvda9A",
-  location: "Galle, Sri Lanka"
+  coupleName: "Bashi & Dehemi",
+  shortQuote: "My work was beautifully done. Everyone said it was beautiful.",
+  fullQuote: "My work was beautifully done. Everyone said it was beautiful. It was beautiful than I expected. Good job. Thank you malli.",
+  eventDate: "2024",
+  eventType: "Wedding",
+  youtubeId: "pxaBIOkCW1M",
+  location: "Sri Lanka"
 }, {
   id: 3,
-  coupleName: "Ravindu & Sachini",
-  shortQuote: "A film that felt like US—stunning cinematography.",
-  fullQuote: "Serenity Wedding Films understood exactly what we wanted—a film that felt like US. The cinematography was stunning and exceeded our expectations. They have an incredible ability to capture raw emotions and genuine moments. Every time we watch our wedding film, we're transported back to that magical day.",
-  eventDate: "January 2024",
+  coupleName: "Nilmi & Tharindu",
+  shortQuote: "Thank you for finishing our video so lovely. We truly appreciate it.",
+  fullQuote: "Thank you so much for all the hard work you put into our wedding day video. We truly appreciate it. It meant so much to us that you finished our video so lovely. Thank you again @ishara malli.",
+  eventDate: "2024",
   eventType: "Wedding",
-  youtubeId: "co_WYnhlhi0",
-  location: "Kandy, Sri Lanka"
-}, {
-  id: 4,
-  coupleName: "Dinesh & Malsha",
-  shortQuote: "Our families still talk about how beautiful the film was.",
-  fullQuote: "Our families still talk about how beautiful the film was. Every detail of our traditional homecoming was captured with such care and artistry. The team was respectful of our traditions and customs while still creating a modern, cinematic masterpiece. They managed to capture the essence of our Sri Lankan heritage beautifully.",
-  eventDate: "December 2023",
-  eventType: "Wedding",
-  youtubeId: "EfD3jBkdvZs",
-  location: "Negombo, Sri Lanka"
-}, {
-  id: 5,
-  coupleName: "Tharindu & Ishara",
-  shortQuote: "The 4K quality is incredible—you can see every detail.",
-  fullQuote: "The 4K quality is incredible—you can see every detail. But more than that, they captured the FEELING of our day perfectly. The technical quality combined with their storytelling ability is unmatched. We were hesitant about having cameras around all day, but the team was so discreet that we often forgot they were there.",
-  eventDate: "November 2023",
-  eventType: "Wedding",
-  youtubeId: "JxeMUuvda9A",
-  location: "Bentota, Sri Lanka"
-}, {
-  id: 6,
-  coupleName: "Nuwan & Sanduni",
-  shortQuote: "Every frame tells our story with attention to detail.",
-  fullQuote: "Every frame tells our story. The attention to detail and the creative vision exceeded everything we hoped for. From the first consultation to the final delivery, the experience was nothing short of magical. They understood our vision perfectly and translated it into a cinematic masterpiece.",
-  eventDate: "October 2023",
-  eventType: "Wedding",
-  youtubeId: "co_WYnhlhi0",
-  location: "Colombo, Sri Lanka"
+  youtubeId: "fSSQLuejmzg",
+  location: "Sri Lanka"
 }];
 const TestimonialsPage = () => {
   const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
