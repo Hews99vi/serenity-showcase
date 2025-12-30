@@ -193,6 +193,8 @@ const CategoryCard = ({
     once: true,
     margin: "-50px"
   });
+  const isMiddle = index === 1;
+  
   return <motion.div ref={ref} initial={{
     opacity: 0,
     y: 40
@@ -204,20 +206,23 @@ const CategoryCard = ({
     y: 40
   }} transition={{
     duration: 0.8,
-    delay: index * 0.2
-  }} onClick={onClick} className={`group relative cursor-pointer overflow-hidden rounded-lg ${isActive ? "ring-2 ring-cream/60" : ""}`}>
+    delay: index * 0.15
+  }} onClick={onClick} className={`group relative cursor-pointer overflow-hidden rounded-lg transition-all duration-500 ${isActive ? "ring-2 ring-cream/60" : ""} ${isMiddle ? "md:scale-105 md:z-10" : ""}`}
+  style={{ 
+    boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+  }}>
       {/* 9:16 Portrait Aspect Ratio Container */}
-      <div className="relative" style={{ aspectRatio: '9 / 16', minHeight: '420px', maxHeight: '480px' }}>
+      <div className="relative" style={{ aspectRatio: '9 / 16', height: isMiddle ? '580px' : '540px' }}>
         {/* Background Image - Full brightness, no filters, centered for faces */}
         <img 
           src={category.image} 
           alt={category.title} 
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" 
           style={{ objectPosition: 'center 30%' }}
         />
         
-        {/* Soft bottom gradient only - completely clear at top, 45-50% at bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent via-40% to-transparent" />
+        {/* Soft bottom gradient only - completely clear at top, increases on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent via-50% to-transparent transition-all duration-500 group-hover:from-charcoal/60" />
         
         {/* Content positioned at bottom */}
         <div className="absolute inset-0 z-10 p-5 md:p-6 flex flex-col justify-end">
@@ -504,7 +509,7 @@ const Portfolio = () => {
       </section>
 
       {/* Category Filter Cards Section */}
-      <section className="py-20 md:py-32 bg-charcoal-light/30 relative">
+      <section className="py-16 md:py-20 bg-charcoal-light/30 relative">
         {/* Decorative pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0" style={{
@@ -513,9 +518,10 @@ const Portfolio = () => {
         }} />
         </div>
 
-        <div className="section-container relative z-10">
+        {/* Tighter container - max 1150px */}
+        <div className="max-w-[1150px] mx-auto px-4 md:px-6 relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <motion.div initial={{
             opacity: 0
           }} whileInView={{
@@ -524,10 +530,10 @@ const Portfolio = () => {
             once: true
           }} transition={{
             duration: 0.8
-          }} className="flex items-center justify-center gap-4 mb-6">
-              <span className="w-12 md:w-20 h-px bg-cream/20" />
+          }} className="flex items-center justify-center gap-4 mb-5">
+              <span className="w-12 md:w-16 h-px bg-cream/20" />
               <span className="text-cream/50 text-xs md:text-sm tracking-[0.3em] uppercase">Browse by Category</span>
-              <span className="w-12 md:w-20 h-px bg-cream/20" />
+              <span className="w-12 md:w-16 h-px bg-cream/20" />
             </motion.div>
 
             <motion.h2 initial={{
@@ -540,7 +546,7 @@ const Portfolio = () => {
             once: true
           }} transition={{
             duration: 0.8
-          }} className="font-serif text-3xl md:text-4xl text-cream mb-4">
+          }} className="font-serif text-3xl md:text-4xl text-cream mb-3">
               We create 
             </motion.h2>
 
@@ -555,13 +561,13 @@ const Portfolio = () => {
           }} transition={{
             duration: 0.8,
             delay: 0.1
-          }} className="text-cream/50 text-sm md:text-base max-w-xl mx-auto">
+          }} className="text-cream/50 text-sm md:text-base max-w-lg mx-auto">
               Select a category to explore our featured wedding films
             </motion.p>
           </div>
 
-          {/* Category Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {/* Category Cards - Tighter grid with items-end for baseline alignment */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-end">
             {categories.map((category, index) => <CategoryCard key={category.id} category={category} index={index} isActive={activeCategory === category.id} onClick={() => handleCategoryClick(category.id)} />)}
           </div>
         </div>
