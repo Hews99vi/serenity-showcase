@@ -1,0 +1,23 @@
+{
+  "name": "Serenity Wedding Films",
+  "short_name": "Serenity",
+  "description": "Where Serenity Meets Cinema, Love Becomes a Masterpiece",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#2D2D2D",
+  "background_color": "#FFEFC2",
+  "display": "standalone",
+  "start_url": "/"
+}
