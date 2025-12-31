@@ -17,15 +17,17 @@ const HeroSection = () => {
           aria-hidden="true"
         />
 
-        {/* Video overlay - Vidflow for high quality background video */}
-        <iframe
-          className="absolute inset-0 w-full h-full scale-150 pointer-events-none"
-          src="https://galleries.vidflow.co/videos/3e84bcb0?autoplay=1&muted=1&loop=1&controls=0"
-          title="Hero Background Video"
-          allow="autoplay; fullscreen"
-          allowFullScreen
+        {/* Native video for seamless autoplay background */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover scale-125 pointer-events-none"
+          src="https://stream.vidflow.co/89710a190/studio/83b2c580/videos/c6b98410-d0860afb/u/Final_main.mp4"
+          poster="https://meta.vidflow.co/studio/83b2c580/media/1bam7wvl/Still2025-11-25211622181.png?width=2400&height=2400&optimize=image"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
           aria-hidden="true"
-          loading="eager"
         />
       </div>
 
