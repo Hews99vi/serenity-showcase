@@ -5,23 +5,12 @@ import heroLogo from "@/assets/serenity-hero-logo.png";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background with poster fallback */}
+      {/* Video Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Poster image as fallback background */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://meta.vidflow.co/studio/83b2c580/media/1bam7wvl/Still2025-11-25211622181.png?width=2400&height=2400&optimize=image')",
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Native video for seamless autoplay background */}
+        {/* Native video for seamless autoplay background - optimized for mobile */}
         <video
-          className="absolute inset-0 w-full h-full object-cover scale-125 pointer-events-none"
-          src="https://stream.vidflow.co/89710a190/studio/83b2c580/videos/c6b98410-d0860afb/u/Final_main.mp4"
-          poster="https://meta.vidflow.co/studio/83b2c580/media/1bam7wvl/Still2025-11-25211622181.png?width=2400&height=2400&optimize=image"
+          className="absolute inset-0 w-full h-full object-cover md:scale-100 scale-110 pointer-events-none"
+          src="/videos/hero-background.mp4"
           autoPlay
           muted
           loop
