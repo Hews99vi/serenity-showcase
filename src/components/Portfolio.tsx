@@ -7,6 +7,33 @@ import categoryCultural from "@/assets/category-cultural.jpg";
 import categoryDestination from "@/assets/category-destination.jpg";
 import categoryEngagement from "@/assets/category-engagement.jpg";
 
+// Video component with smooth loading
+const PortfolioVideo = ({ src }: { src: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  return (
+    <>
+      {/* Gradient placeholder */}
+      <div 
+        className={`absolute inset-0 bg-gradient-to-br from-charcoal via-charcoal/95 to-charcoal transition-opacity duration-700 ${isLoaded ? 'opacity-0' : 'opacity-100'}`}
+      />
+      <video
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        onCanPlay={() => setIsLoaded(true)}
+        onLoadedData={() => setIsLoaded(true)}
+        // @ts-ignore - webkit specific attributes for iOS
+        webkit-playsinline="true"
+      />
+    </>
+  );
+};
+
 interface VideoItem {
   id: string;
   youtubeId: string;
@@ -125,8 +152,6 @@ const VideoCard = ({
       <div className="relative aspect-video overflow-hidden cursor-pointer bg-charcoal" onClick={() => onPlay(video.youtubeId)}>
         <img src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`} alt="Wedding film thumbnail" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-        
-
         <motion.div className="absolute inset-0 flex items-center justify-center" initial={false} animate={{
         scale: isHovered ? 1.1 : 1
       }} transition={{
@@ -484,19 +509,9 @@ const Portfolio = () => {
               <div className="absolute -inset-3 border border-cream/10 -z-10" />
               <div className="absolute -inset-6 border border-cream/5 -z-20" />
               
-              {/* Autoplay Video */}
+              {/* Autoplay Video with smooth loading */}
               <div className="relative aspect-[4/3] overflow-hidden">
-                <video
-                  className="absolute inset-0 w-full h-full object-cover"
-                  src="/videos/portfolio-hero.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  // @ts-ignore - webkit specific attributes for iOS
-                  webkit-playsinline="true"
-                />
+                <PortfolioVideo src="/videos/portfolio-hero.mp4" />
               </div>
 
               {/* Floating accent */}
