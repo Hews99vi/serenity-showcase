@@ -157,11 +157,8 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <p className="text-[10px] md:text-[11px] text-cream/30 tracking-wide leading-relaxed">
-              Photography Credits:{" "}
-              <span className="text-cream/40">
-                Studio A Photography • Elegance Captures • Moments by Priya • Lakshan Studios • Eternal Frames
-              </span>
+            <p className="text-[10px] md:text-[11px] text-cream/30 tracking-wide leading-relaxed italic">
+              All photographs are the property of their respective owners
             </p>
           </motion.div>
         </div>
