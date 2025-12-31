@@ -197,63 +197,63 @@ const CategoryCard = ({
   
   return <motion.div ref={ref} initial={{
     opacity: 0,
-    y: 40
+    y: 30
   }} animate={isInView ? {
     opacity: 1,
     y: 0
   } : {
     opacity: 0,
-    y: 40
+    y: 30
   }} transition={{
-    duration: 0.8,
-    delay: index * 0.15
-  }} onClick={onClick} className={`group relative cursor-pointer rounded-lg transition-all duration-500 ${isActive ? "ring-2 ring-cream/60" : ""} ${isMiddle ? "md:scale-105 md:z-10" : ""}`}
+    duration: 0.7,
+    delay: index * 0.12
+  }} onClick={onClick} className={`group relative cursor-pointer rounded-lg transition-all duration-500 ${isActive ? "ring-2 ring-cream/50" : ""} ${isMiddle ? "md:scale-[1.02] md:z-10" : ""}`}
   style={{ 
-    boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-    height: isMiddle ? '580px' : '540px'
+    boxShadow: '0 6px 24px rgba(0,0,0,0.25)',
+    height: isMiddle ? '340px' : '320px'
   }}>
       {/* Image wrapper - fills entire card */}
       <div className="relative w-full h-full overflow-hidden rounded-lg">
-        {/* Background Image - fills entire container, no blank space */}
+        {/* Background Image - fills entire container */}
         <img 
           src={category.image} 
           alt={category.title} 
           className="block w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" 
-          style={{ objectPosition: 'center 30%', display: 'block' }}
+          style={{ objectPosition: 'center 25%', display: 'block' }}
         />
         
-        {/* Soft bottom gradient only - completely clear at top, increases on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent via-50% to-transparent transition-all duration-500 group-hover:from-charcoal/60" />
+        {/* Soft bottom gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/10 via-40% to-transparent transition-all duration-500 group-hover:from-charcoal/70" />
         
         {/* Content positioned at bottom */}
-        <div className="absolute inset-0 z-10 p-5 md:p-6 flex flex-col justify-end">
+        <div className="absolute inset-0 z-10 p-4 md:p-5 flex flex-col justify-end">
           {/* Text container */}
           <div className="relative">
             {/* Icon */}
-            <motion.div className={`w-10 h-10 rounded-full flex items-center justify-center mb-3 transition-all duration-300 backdrop-blur-sm ${isActive ? "bg-cream/30" : "bg-cream/20 group-hover:bg-cream/30"}`} whileHover={{
+            <motion.div className={`w-8 h-8 rounded-full flex items-center justify-center mb-2 transition-all duration-300 backdrop-blur-sm ${isActive ? "bg-cream/30" : "bg-cream/20 group-hover:bg-cream/30"}`} whileHover={{
             scale: 1.1
           }}>
-              <category.icon className="w-4 h-4 text-cream transition-colors duration-300" />
+              <category.icon className="w-3.5 h-3.5 text-cream transition-colors duration-300" />
             </motion.div>
 
             {/* Subtitle */}
-            <p className="text-cream text-xs tracking-[0.2em] uppercase mb-1.5 drop-shadow-lg" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}>
+            <p className="text-cream text-[10px] tracking-[0.2em] uppercase mb-1 drop-shadow-lg" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}>
               {category.subtitle}
             </p>
 
-            {/* Title with text shadow for readability */}
-            <h3 className="font-serif text-lg md:text-xl mb-2 text-cream drop-shadow-lg transition-all duration-300" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>
+            {/* Title */}
+            <h3 className="font-serif text-base md:text-lg mb-1.5 text-cream drop-shadow-lg transition-all duration-300 leading-tight" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}>
               {category.title}
             </h3>
 
             {/* Description */}
-            <p className="text-cream/95 text-sm font-light leading-relaxed drop-shadow-lg" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>
+            <p className="text-cream/90 text-xs font-light leading-relaxed drop-shadow-lg" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>
               {category.description}
             </p>
           </div>
 
           {/* Active indicator */}
-          <motion.div className="absolute bottom-0 left-0 h-1 bg-cream/80 rounded-full" initial={{
+          <motion.div className="absolute bottom-0 left-0 h-0.5 bg-cream/70 rounded-full" initial={{
           width: 0
         }} animate={{
           width: isActive ? "100%" : 0
@@ -263,7 +263,7 @@ const CategoryCard = ({
         </div>
 
         {/* Corner accent */}
-        <div className={`absolute top-3 right-3 w-6 h-6 border-t border-r transition-all duration-300 ${isActive ? "border-cream/60" : "border-cream/40 group-hover:border-cream/60"}`} />
+        <div className={`absolute top-2 right-2 w-5 h-5 border-t border-r transition-all duration-300 ${isActive ? "border-cream/50" : "border-cream/30 group-hover:border-cream/50"}`} />
       </div>
     </motion.div>;
 };
