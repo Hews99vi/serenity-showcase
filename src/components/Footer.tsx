@@ -135,32 +135,24 @@ const Footer = () => {
 
         {/* Bottom Bar - Clean & Professional */}
         <div className="pt-8 md:pt-10 border-t border-cream/10">
-          <div className="flex flex-col gap-4 md:gap-0 md:flex-row items-center justify-between text-center md:text-left">
+          <div className="flex flex-col gap-4 md:flex-row items-center justify-between">
             
-            {/* Copyright */}
-            <p className="text-[11px] md:text-xs text-cream/40 tracking-[0.15em] uppercase order-2 md:order-1">
+            {/* Copyright - Left */}
+            <p className="text-[10px] md:text-[11px] text-cream/40 tracking-[0.12em] uppercase order-1">
               © 2025 Serenity Wedding Films
             </p>
 
-            {/* Company Legal Name */}
-            <p className="text-[11px] md:text-xs text-cream/50 tracking-[0.2em] uppercase font-medium order-1 md:order-2">
+            {/* Photography Credits - Center */}
+            <p className="text-[10px] md:text-[11px] text-cream/30 tracking-wide italic order-2">
+              All photographs are the property of their respective owners
+            </p>
+
+            {/* Company Legal Name - Right */}
+            <p className="text-[10px] md:text-[11px] text-cream/50 tracking-[0.15em] uppercase font-medium order-3">
               SERENITY WEDDING FILMS (PVT) LTD
             </p>
 
           </div>
-
-          {/* Photography Credits */}
-          <motion.div 
-            className="mt-6 md:mt-8 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <p className="text-[10px] md:text-[11px] text-cream/30 tracking-wide leading-relaxed italic">
-              All photographs are the property of their respective owners
-            </p>
-          </motion.div>
         </div>
       </div>
 
