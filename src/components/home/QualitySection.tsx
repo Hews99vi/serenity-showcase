@@ -89,10 +89,11 @@ const QualitySection = () => {
 
               <div className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl ring-1 ring-cream/20">
                 <iframe
-                  src="https://www.youtube.com/embed/eQEpKw-RVJ0?autoplay=1&mute=1&loop=1&playlist=eQEpKw-RVJ0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                  src="https://www.youtube-nocookie.com/embed/eQEpKw-RVJ0?autoplay=1&mute=1&loop=1&playlist=eQEpKw-RVJ0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  loading="lazy"
                   title="Serenity 4K Quality Showcase"
                   className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>

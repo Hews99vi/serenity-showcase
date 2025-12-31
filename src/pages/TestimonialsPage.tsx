@@ -68,10 +68,11 @@ const TestimonialReel = ({
         {isLoaded && (
           <iframe
             ref={iframeRef}
-            src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=${isVisible ? 1 : 0}&mute=${isMuted ? 1 : 0}&loop=1&playlist=${testimonial.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1&enablejsapi=1`}
+            src={`https://www.youtube-nocookie.com/embed/${testimonial.youtubeId}?autoplay=${isVisible ? 1 : 0}&mute=${isMuted ? 1 : 0}&loop=1&playlist=${testimonial.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1&enablejsapi=1`}
             className="absolute inset-0 w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
+            loading="lazy"
             title={`${testimonial.coupleName} testimonial`}
           />
         )}
@@ -256,10 +257,11 @@ const TestimonialsPage = () => {
               className="flex-shrink-0">
               <div className="relative w-[280px] md:w-[320px] aspect-[9/16] rounded-2xl overflow-hidden bg-charcoal/80 border border-cream/10 shadow-2xl">
                 <iframe
-                  src={`https://www.youtube.com/embed/${testimonials[0].youtubeId}?autoplay=1&mute=1&loop=1&playlist=${testimonials[0].youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${testimonials[0].youtubeId}?autoplay=1&mute=1&loop=1&playlist=${testimonials[0].youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1`}
                   className="absolute inset-0 w-full h-full object-contain"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
                   title={`${testimonials[0].coupleName} testimonial`}
                 />
                 
@@ -475,7 +477,7 @@ const TestimonialsPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0 bg-gradient-to-br from-cream/8 to-cream/4 border border-cream/10">
                 {/* Video Side */}
                 <div className="relative aspect-[9/16] md:aspect-auto md:h-full min-h-[300px] md:min-h-[500px] bg-charcoal">
-                  <iframe src={`https://www.youtube.com/embed/${selectedTestimonial.youtubeId}?autoplay=0&controls=1&modestbranding=1&rel=0`} className="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title={`${selectedTestimonial.coupleName} testimonial`} />
+                  <iframe src={`https://www.youtube-nocookie.com/embed/${selectedTestimonial.youtubeId}?autoplay=0&controls=1&modestbranding=1&rel=0&playsinline=1`} className="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" title={`${selectedTestimonial.coupleName} testimonial`} />
                 </div>
 
                 {/* Content Side */}
