@@ -20,7 +20,7 @@ const HeroSection = () => {
         {/* Video overlay - Vidflow for high quality background video */}
         <iframe
           className="absolute inset-0 w-full h-full scale-150 pointer-events-none"
-          src="https://galleries.vidflow.co/videos/3e84bcb0"
+          src="https://galleries.vidflow.co/videos/3e84bcb0?autoplay=1&muted=1&loop=1&controls=0"
           title="Hero Background Video"
           allow="autoplay; fullscreen"
           allowFullScreen
