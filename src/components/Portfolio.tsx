@@ -577,9 +577,13 @@ const Portfolio = () => {
             </motion.p>
           </div>
 
-          {/* Category Cards - Tighter grid with items-end for baseline alignment */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-end">
-            {categories.map((category, index) => <CategoryCard key={category.id} category={category} index={index} isActive={activeCategory === category.id} onClick={() => handleCategoryClick(category.id)} />)}
+          {/* Category Cards - Horizontal scroll with snap on mobile, grid on desktop */}
+          <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 items-end overflow-x-auto md:overflow-visible pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory scrollbar-hide">
+            {categories.map((category, index) => (
+              <div key={category.id} className="flex-shrink-0 w-[280px] md:w-auto snap-center">
+                <CategoryCard category={category} index={index} isActive={activeCategory === category.id} onClick={() => handleCategoryClick(category.id)} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
