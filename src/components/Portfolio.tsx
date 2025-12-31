@@ -486,7 +486,17 @@ const Portfolio = () => {
               
               {/* Autoplay Video */}
               <div className="relative aspect-[4/3] overflow-hidden">
-                <iframe src="https://www.youtube.com/embed/lvgxweA0t3U?autoplay=1&mute=1&loop=1&playlist=lvgxweA0t3U&controls=0&showinfo=0&rel=0&modestbranding=1" title="Featured wedding film" className="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media" allowFullScreen />
+                <video
+                  className="absolute inset-0 w-full h-full object-cover"
+                  src="/videos/portfolio-hero.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  // @ts-ignore - webkit specific attributes for iOS
+                  webkit-playsinline="true"
+                />
               </div>
 
               {/* Floating accent */}
