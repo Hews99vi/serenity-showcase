@@ -91,13 +91,9 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Tagline - balanced with logo */}
-          <span className="text-cream/80 text-sm sm:text-base md:text-lg block opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans font-extralight tracking-wide text-center px-4 max-w-xs sm:max-w-none">
-            Where Serenity Meets Cinema, Love Becomes a Masterpiece
-          </span>
-
-          {/* CTA Buttons - reduced gap */}
-          <div className="mt-2 sm:mt-3 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 w-full px-4 sm:px-0">
+          {/* CTA Buttons with Slogan between them */}
+          <div className="mt-4 sm:mt-5 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-0">
+            {/* Watch Our Films Button */}
             <Link
               to="/portfolio"
               className="group flex items-center justify-center gap-2 sm:gap-3 bg-cream text-charcoal px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105 shadow-lg opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1s_forwards] w-full sm:w-auto text-sm sm:text-base"
@@ -105,6 +101,13 @@ const HeroSection = () => {
               <Play className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
               Watch Our Films
             </Link>
+            
+            {/* Slogan - centered between buttons on desktop, below on mobile */}
+            <span className="hidden sm:block text-cream/60 text-[10px] md:text-xs font-light tracking-[0.15em] opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1.15s_forwards] px-2 md:px-4 text-center max-w-[180px] md:max-w-[220px] leading-relaxed">
+              Where Serenity Meets Cinema, Love Becomes a Masterpiece
+            </span>
+            
+            {/* Request a Quote Button */}
             <Link
               to="/contact"
               className="group flex items-center justify-center gap-2 sm:gap-3 border border-cream/40 text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream backdrop-blur-sm opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1.3s_forwards] w-full sm:w-auto text-sm sm:text-base"
@@ -113,6 +116,11 @@ const HeroSection = () => {
               Request a Quote
             </Link>
           </div>
+          
+          {/* Slogan - shown below buttons on mobile only */}
+          <span className="sm:hidden text-cream/50 text-[10px] font-light tracking-[0.12em] opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1.4s_forwards] text-center px-6 mt-3 leading-relaxed">
+            Where Serenity Meets Cinema, Love Becomes a Masterpiece
+          </span>
         </div>
       </div>
 
