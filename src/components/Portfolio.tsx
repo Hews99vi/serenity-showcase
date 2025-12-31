@@ -578,12 +578,39 @@ const Portfolio = () => {
           </div>
 
           {/* Category Cards - Horizontal scroll with snap on mobile, grid on desktop */}
-          <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 items-end overflow-x-auto md:overflow-visible pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory scrollbar-hide">
-            {categories.map((category, index) => (
-              <div key={category.id} className="flex-shrink-0 w-[280px] md:w-auto snap-center">
-                <CategoryCard category={category} index={index} isActive={activeCategory === category.id} onClick={() => handleCategoryClick(category.id)} />
-              </div>
-            ))}
+          <div className="relative">
+            <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 items-end overflow-x-auto md:overflow-visible pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory scrollbar-hide">
+              {categories.map((category, index) => (
+                <div key={category.id} className="flex-shrink-0 w-[280px] md:w-auto snap-center">
+                  <CategoryCard category={category} index={index} isActive={activeCategory === category.id} onClick={() => handleCategoryClick(category.id)} />
+                </div>
+              ))}
+            </div>
+            
+            {/* Swipe hint - mobile only */}
+            <motion.div 
+              className="md:hidden flex items-center justify-center gap-2 mt-4 text-cream/40"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+            >
+              <motion.div
+                className="flex items-center gap-1.5"
+                animate={{ x: [0, 8, 0] }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: 2,
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+              >
+                <span className="text-[10px] tracking-widest uppercase">Swipe</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
