@@ -186,7 +186,7 @@ const TestimonialsPage = () => {
 
       <main className="min-h-screen bg-charcoal scroll-smooth">
         {/* Full Viewport Hero with First Testimonial */}
-        <section className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-16">
+        <section className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-20 pb-24 md:pt-16 md:pb-16">
           {/* Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-b from-cream/5 via-charcoal to-charcoal" />
           
@@ -280,14 +280,14 @@ const TestimonialsPage = () => {
                 </div>
               </div>
               
-              {/* Mobile Quote */}
-              <div className="lg:hidden mt-6 text-center">
-                <p className="text-cream/70 text-sm font-serif italic mb-2">
+              {/* Mobile Quote - Moved below with proper spacing */}
+              <div className="lg:hidden mt-8 text-center px-4">
+                <p className="text-cream/70 text-sm font-serif italic mb-3 leading-relaxed">
                   "{testimonials[0].shortQuote}"
                 </p>
-                <p className="text-cream font-script text-lg">{testimonials[0].coupleName}</p>
+                <p className="text-cream font-script text-lg mb-4">{testimonials[0].coupleName}</p>
                 <button onClick={() => setSelectedTestimonial(testimonials[0])} 
-                  className="mt-3 inline-flex items-center gap-2 text-cream/60 text-xs hover:text-cream transition-colors group/btn">
+                  className="inline-flex items-center gap-2 text-cream/60 text-xs hover:text-cream transition-colors group/btn">
                   <span className="tracking-wide">Read Full Story</span>
                   <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
