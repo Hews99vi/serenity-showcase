@@ -83,7 +83,79 @@ const Testimonials = () => {
 
           {/* Right Side - Reel Cards */}
           <div className="lg:col-span-8">
-            <div className="flex flex-col md:flex-row justify-center items-stretch gap-6">
+            {/* Mobile: Horizontal scroll layout */}
+            <div className="md:hidden flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative group flex-shrink-0 w-[200px] snap-center"
+                >
+                  {/* Reel Card - Smaller on mobile */}
+                  <div className="relative aspect-[9/16] rounded-xl overflow-hidden bg-charcoal border border-cream/10 shadow-xl">
+                    {/* YouTube Embed */}
+                    {playingId === testimonial.id ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&loop=1&playlist=${testimonial.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0`}
+                        className="absolute inset-0 w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title={`${testimonial.coupleName} testimonial`}
+                      />
+                    ) : (
+                      <>
+                        {/* Thumbnail */}
+                        <img
+                          src={`https://img.youtube.com/vi/${testimonial.youtubeId}/maxresdefault.jpg`}
+                          alt={testimonial.coupleName}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        
+                        {/* Play Button Overlay */}
+                        <button
+                          onClick={() => setPlayingId(testimonial.id)}
+                          className="absolute inset-0 flex items-center justify-center bg-charcoal/30 hover:bg-charcoal/20 transition-colors"
+                        >
+                          <div className="w-12 h-12 rounded-full bg-cream/20 backdrop-blur-sm border border-cream/30 flex items-center justify-center">
+                            <Play className="w-5 h-5 text-cream fill-cream/60 ml-0.5" />
+                          </div>
+                        </button>
+                      </>
+                    )}
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent pointer-events-none" />
+
+                    {/* Content Overlay */}
+                    <div
+                      className="absolute bottom-0 left-0 right-0 p-4 cursor-pointer"
+                      onClick={() => setSelectedTestimonial(testimonial)}
+                    >
+                      <p className="text-cream/90 text-[11px] leading-relaxed mb-2 line-clamp-2 italic">
+                        "{testimonial.shortQuote}"
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="text-cream font-serif text-xs">
+                            {testimonial.coupleName}
+                          </h3>
+                          <p className="text-cream/40 text-[9px] tracking-widest uppercase">
+                            {testimonial.eventType}
+                          </p>
+                        </div>
+                        <ArrowRight className="w-3 h-3 text-cream/50" />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Desktop: Row layout */}
+            <div className="hidden md:flex flex-row justify-center items-stretch gap-6">
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.id}
@@ -91,7 +163,7 @@ const Testimonials = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
-                  className="relative group flex-1 max-w-[280px] mx-auto md:mx-0"
+                  className="relative group flex-1 max-w-[280px]"
                 >
                   {/* Reel Card */}
                   <div className="relative aspect-[9/16] rounded-xl overflow-hidden bg-charcoal border border-cream/10 shadow-2xl transition-all duration-500 group-hover:border-cream/25 group-hover:shadow-cream/5">
