@@ -74,8 +74,8 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-charcoal/30" />
 
       {/* Content */}
-      <div className="relative z-10 section-container text-center flex flex-col items-center justify-center min-h-screen px-4 sm:px-6">
-        <div className="flex flex-col items-center justify-center max-w-4xl mx-auto gap-4 sm:gap-6">
+      <div className="relative z-10 section-container text-center flex flex-col items-center justify-end min-h-screen px-4 sm:px-6 pb-24 sm:pb-32">
+        <div className="flex flex-col items-center justify-center max-w-4xl mx-auto gap-2 sm:gap-3">
           {/* Hero Logo with fade effect */}
           <div className="relative animate-fade-up">
             <div className="relative">
@@ -96,8 +96,8 @@ const HeroSection = () => {
             Where Serenity Meets Cinema, Love Becomes a Masterpiece
           </span>
 
-          {/* CTA Buttons - positioned with balanced gap */}
-          <div className="mt-4 sm:mt-6 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-0">
+          {/* CTA Buttons - reduced gap */}
+          <div className="mt-2 sm:mt-3 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 w-full px-4 sm:px-0">
             <Link
               to="/portfolio"
               className="group flex items-center justify-center gap-2 sm:gap-3 bg-cream text-charcoal px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105 shadow-lg opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1s_forwards] w-full sm:w-auto text-sm sm:text-base"
