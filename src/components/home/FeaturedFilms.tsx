@@ -99,10 +99,12 @@ const FeaturedFilms = () => {
             {/* Main image container */}
             <div className="relative aspect-video overflow-hidden">
               <iframe 
-                src={`https://www.youtube.com/embed/${films[0].youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${films[0].youtubeId}`} 
+                src={`https://www.youtube-nocookie.com/embed/${films[0].youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${films[0].youtubeId}&playsinline=1`} 
                 className="w-full h-full" 
-                allow="autoplay; encrypted-media" 
-                allowFullScreen 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowFullScreen
+                loading="lazy"
+                title={films[0].title}
               />
               
               {/* Gradient overlays */}
@@ -157,7 +159,7 @@ const FeaturedFilms = () => {
         }}>
               <div className="relative group cursor-pointer overflow-hidden rounded-lg md:rounded-xl" onClick={() => openVideo(film.youtubeId)} onMouseEnter={() => setHoveredId(film.id)} onMouseLeave={() => setHoveredId(null)}>
                 <div className="relative aspect-video overflow-hidden">
-                  {hoveredId === film.id ? <iframe src={`https://www.youtube.com/embed/${film.youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${film.youtubeId}`} className="w-full h-full object-cover scale-[1.2]" allow="autoplay; encrypted-media" allowFullScreen /> : <motion.img src={film.thumbnail} alt={film.title} className="w-full h-full object-cover" initial={{
+                  {hoveredId === film.id ? <iframe src={`https://www.youtube-nocookie.com/embed/${film.youtubeId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${film.youtubeId}&playsinline=1`} className="w-full h-full object-cover scale-[1.2]" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" title={film.title} /> : <motion.img src={film.thumbnail} alt={film.title} className="w-full h-full object-cover" initial={{
                 scale: 1
               }} transition={{
                 duration: 0.7
@@ -298,7 +300,7 @@ const FeaturedFilms = () => {
             {/* Video frame with decoration */}
             <div className="relative w-full h-full">
               <div className="absolute -inset-2 md:-inset-4 border border-gold/20 rounded-lg" />
-              <iframe src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&rel=0`} title="Wedding Film" className="w-full h-full rounded-lg shadow-2xl shadow-gold/10" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+              <iframe src={`https://www.youtube-nocookie.com/embed/${activeVideo}?autoplay=1&rel=0&playsinline=1`} title="Wedding Film" className="w-full h-full rounded-lg shadow-2xl shadow-gold/10" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" />
             </div>
           </motion.div>
         </motion.div>}

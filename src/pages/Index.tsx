@@ -14,22 +14,24 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Serenity Wedding Films | Cinematic Wedding Videography Sri Lanka</title>
+        <title>Serenity Wedding Films | Cinematic Wedding Experience</title>
         <meta
           name="description"
-          content="Serenity Wedding Films creates cinematic wedding films in Sri Lanka. Premium 4K videography capturing your special moments with elegance and emotion."
+          content="Serenity Wedding Films creates timeless wedding films in Sri Lanka. Where Serenity Meets Cinema, Love Becomes a Masterpiece."
         />
         <meta
           name="keywords"
-          content="wedding videography, wedding films, Sri Lanka, cinematic wedding, 4K wedding video, wedding cinematography"
+          content="wedding videography, wedding films, Sri Lanka, cinematic wedding, 4K wedding video, wedding cinematography, Serenity Wedding Films"
         />
-        <meta property="og:title" content="Serenity Wedding Films | Cinematic Wedding Videography" />
+        <meta property="og:title" content="Serenity Wedding Films" />
         <meta
           property="og:description"
-          content="Cinematic wedding films crafted with elegance, emotion, and timeless beauty."
+          content="Where Serenity Meets Cinema, Love Becomes a Masterpiece. Timeless wedding films in Sri Lanka."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://serenityweddingfilms.com" />
+        <meta property="og:url" content="https://serenityweddingfilms.com/" />
+        <meta property="og:image" content="https://serenityweddingfilms.com/og-image.jpg" />
+        <link rel="canonical" href="https://serenityweddingfilms.com/" />
       </Helmet>
 
       <main className="overflow-hidden bg-charcoal">

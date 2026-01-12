@@ -135,21 +135,16 @@ const Footer = () => {
 
         {/* Bottom Bar - Clean & Professional */}
         <div className="pt-8 md:pt-10 border-t border-cream/10">
-          <div className="flex flex-col gap-4 md:flex-row items-center justify-between">
+          <div className="flex flex-col gap-3 items-center justify-center text-center">
             
-            {/* Copyright - Left */}
-            <p className="text-[10px] md:text-[11px] text-cream/40 tracking-[0.12em] uppercase order-1">
-              © 2025 Serenity Wedding Films
+            {/* Copyright */}
+            <p className="text-[10px] md:text-[11px] text-cream/40 tracking-[0.12em] uppercase">
+              © 2026 SERENITY WEDDING FILMS (PVT) LTD
             </p>
 
-            {/* Photography Credits - Center */}
-            <p className="text-[10px] md:text-[11px] text-cream/30 tracking-wide italic order-2">
+            {/* Photography Credits */}
+            <p className="text-[10px] md:text-[11px] text-cream/30 tracking-wide italic">
               All photographs are the property of their respective owners
-            </p>
-
-            {/* Company Legal Name - Right */}
-            <p className="text-[10px] md:text-[11px] text-cream/50 tracking-[0.15em] uppercase font-medium order-3">
-              SERENITY WEDDING FILMS (PVT) LTD
             </p>
 
           </div>

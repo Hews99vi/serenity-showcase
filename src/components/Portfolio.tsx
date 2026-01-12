@@ -757,7 +757,7 @@ const Portfolio = () => {
                   <X className="w-6 h-6" />
                 </button>
                 <div className="aspect-video w-full">
-                  <iframe src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&rel=0`} title="Wedding Film" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
+                  <iframe src={`https://www.youtube-nocookie.com/embed/${activeVideo}?autoplay=1&rel=0&playsinline=1`} title="Wedding Film" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen loading="lazy" className="w-full h-full" />
                 </div>
               </div>
             </DialogContent>

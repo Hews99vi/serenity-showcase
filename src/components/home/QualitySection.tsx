@@ -39,7 +39,7 @@ const QualitySection = () => {
       <div className="section-container relative">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Text Content - Left */}
-          <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left order-2 lg:order-1">
+          <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left order-1 lg:order-1">
             <div className="inline-flex items-center gap-2 sm:gap-3 bg-cream/10 border border-cream/20 rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8">
               <span className="text-cream text-xs sm:text-sm font-medium tracking-wider">
                 4K CINEMATIC QUALITY
@@ -78,7 +78,7 @@ const QualitySection = () => {
           </div>
 
           {/* Video - Right */}
-          <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
+          <div className="relative flex justify-center lg:justify-end order-2 lg:order-2">
             <div className="relative">
               {/* Decorative glow ring - hidden on mobile */}
               <div
@@ -89,10 +89,11 @@ const QualitySection = () => {
 
               <div className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl ring-1 ring-cream/20">
                 <iframe
-                  src="https://www.youtube.com/embed/eQEpKw-RVJ0?autoplay=1&mute=1&loop=1&playlist=eQEpKw-RVJ0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                  src="https://www.youtube-nocookie.com/embed/eQEpKw-RVJ0?autoplay=1&mute=1&loop=1&playlist=eQEpKw-RVJ0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  loading="lazy"
                   title="Serenity 4K Quality Showcase"
                   className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
