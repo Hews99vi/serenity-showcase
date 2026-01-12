@@ -2,7 +2,7 @@ name: Deploy Vite dist to Namecheap (cPanel)
 
 on:
   push:
-    branches: ["main"]
+    branches: ["latest-version"]
 
 concurrency:
   group: deploy
