@@ -1,27 +1,30 @@
-import { Helmet } from "react-helmet-async";
-import Navbar from "@/components/Navbar";
 import Contact from "@/components/Contact";
-import QuoteSection from "@/components/QuoteSection";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import QuoteSection from "@/components/QuoteSection";
+import SeoTags from "@/components/SeoTags";
+import { useContactPageContent } from "@/hooks/useContactPageContent";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const ContactPage = () => {
+  const { data: content } = useContactPageContent();
+  const { data: seo } = usePageMeta("contact");
+
   return (
     <>
-      <Helmet>
-        <title>Contact Us | Serenity Wedding Films</title>
-        <meta
-          name="description"
-          content="Get in touch with Serenity Wedding Films. Book your wedding videography consultation today."
-        />
-      </Helmet>
+      <SeoTags seo={seo} />
 
       <main className="overflow-hidden">
         <Navbar />
         <div className="pt-24">
-          <QuoteSection />
-          <Contact />
+          <QuoteSection content={content.quoteSection} />
+          <Contact
+            content={content.contactSection}
+            siteSettings={content.siteSettings}
+            socialLinks={content.socialLinks}
+          />
         </div>
-        <Footer />
+        <Footer siteSettings={content.siteSettings} socialLinks={content.socialLinks} />
       </main>
     </>
   );

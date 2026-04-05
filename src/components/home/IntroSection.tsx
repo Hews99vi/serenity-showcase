@@ -1,4 +1,10 @@
-const IntroSection = () => {
+import type { HomeIntroSection } from "@/types/content";
+
+interface IntroSectionProps {
+  content: HomeIntroSection;
+}
+
+const IntroSection = ({ content }: IntroSectionProps) => {
   return (
     <section className="section-dark section-padding">
       <div className="section-container">
@@ -6,27 +12,21 @@ const IntroSection = () => {
           {/* Text Content - Left */}
           <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
             <span className="text-cream/60 text-xs tracking-[0.3em] uppercase mb-6 sm:mb-8 block animate-fade-up">
-              About Serenity
+              {content.eyebrow}
             </span>
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-cream leading-tight mb-6 sm:mb-8 animate-fade-up animation-delay-200 tracking-wide uppercase lg:text-3xl">
-              A NEW CHAPTER IN SERENITY
+              {content.title}
             </h2>
 
             <div className="space-y-4 sm:space-y-6 text-cream/80 text-base sm:text-lg leading-relaxed font-light animate-fade-up animation-delay-400">
-              <p>
-                We're stepping into a new chapter with a refreshed identity crafted with
-                elegance, warmth, and timeless storytelling.
-              </p>
-              <p>
-                At Serenity Wedding Films, every love story becomes a cinematic journey
-                filled with emotion and beauty. We believe your wedding film should feel
-                personal, meaningful, and deeply connected to who you are.
-              </p>
+              {content.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
 
             <p className="mt-8 sm:mt-10 text-xl sm:text-2xl md:text-3xl font-script text-cream/90 animate-fade-up animation-delay-600">
-              Let's create your masterpiece together.
+              {content.signatureText}
             </p>
           </div>
 
@@ -39,10 +39,10 @@ const IntroSection = () => {
 
               <div className="relative w-[240px] sm:w-[280px] h-[420px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/HErj8tqko3M?autoplay=1&mute=1&loop=1&playlist=HErj8tqko3M&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                  src={content.videoUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   loading="lazy"
-                  title="Serenity Wedding Films Reel"
+                  title={content.videoTitle}
                   className="w-full h-full"
                   allowFullScreen
                 />

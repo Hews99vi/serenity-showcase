@@ -1,23 +1,29 @@
-import { Helmet } from "react-helmet-async";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Portfolio from "@/components/Portfolio";
-import Footer from "@/components/Footer";
+import SeoTags from "@/components/SeoTags";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { usePortfolioPageContent } from "@/hooks/usePortfolioPageContent";
 
 const PortfolioPage = () => {
+  const { data: content } = usePortfolioPageContent();
+  const { data: seo } = usePageMeta("portfolio");
+
   return (
     <>
-      <Helmet>
-        <title>Our Work | Serenity Wedding Films</title>
-        <meta
-          name="description"
-          content="Explore our collection of cinematic wedding films. Watch beautiful wedding stories from couples across Sri Lanka."
-        />
-      </Helmet>
+      <SeoTags seo={seo} />
 
       <main className="overflow-hidden">
         <Navbar />
-        <Portfolio />
-        <Footer />
+        <Portfolio
+          hero={content.hero}
+          intro={content.intro}
+          categoriesIntro={content.categoriesIntro}
+          cta={content.cta}
+          categories={content.categories}
+          videos={content.videos}
+        />
+        <Footer siteSettings={content.siteSettings} socialLinks={content.socialLinks} />
       </main>
     </>
   );

@@ -2,13 +2,18 @@ import { Link } from "react-router-dom";
 import { Play, Mail } from "lucide-react";
 import heroLogo from "@/assets/serenity-hero-logo.png";
 import VideoBackground from "@/components/ui/VideoBackground";
+import type { HomeHeroSection } from "@/types/content";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  content: HomeHeroSection;
+}
+
+const HeroSection = ({ content }: HeroSectionProps) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background with smooth loading */}
       <VideoBackground 
-        src="/videos/hero-background.mp4"
+        src={content.backgroundVideoPath}
         className="md:scale-100 scale-110"
         overlayClassName="bg-gradient-to-t from-charcoal via-charcoal/60 to-charcoal/30"
       />
@@ -33,24 +38,24 @@ const HeroSection = () => {
 
           {/* Tagline - small, refined, centered */}
           <span className="text-cream/60 text-[10px] sm:text-xs tracking-[0.15em] uppercase mt-3 sm:mt-4 opacity-0 animate-[fadeSlideUp_0.8s_ease-out_0.6s_forwards] font-sans font-light text-center max-w-[280px] sm:max-w-none">
-            Where Serenity Meets Cinema, Love Becomes a Masterpiece
+            {content.tagline}
           </span>
 
           {/* CTA Buttons */}
           <div className="mt-4 sm:mt-5 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 w-full px-4 sm:px-0">
             <Link
-              to="/portfolio"
+              to={content.primaryCtaHref}
               className="group flex items-center justify-center gap-2 sm:gap-3 bg-cream text-charcoal px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/90 hover:scale-105 shadow-lg opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1s_forwards] w-full sm:w-auto text-sm sm:text-base"
             >
               <Play className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
-              Watch Our Films
+              {content.primaryCtaLabel}
             </Link>
             <Link
-              to="/contact"
+              to={content.secondaryCtaHref}
               className="group flex items-center justify-center gap-2 sm:gap-3 border border-cream/40 text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:bg-cream/10 hover:border-cream backdrop-blur-sm opacity-0 animate-[fadeSlideUp_0.8s_ease-out_1.3s_forwards] w-full sm:w-auto text-sm sm:text-base"
             >
               <Mail className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
-              Request a Quote
+              {content.secondaryCtaLabel}
             </Link>
           </div>
         </div>

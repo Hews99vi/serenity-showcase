@@ -1,27 +1,24 @@
-import { Film, Sparkles, Eye, ChevronDown } from "lucide-react";
+import { Film, Sparkles, Eye, ChevronDown, Heart, MapPin, Plane, Calendar, Clock, Palette } from "lucide-react";
 import { motion } from "framer-motion";
+import type { HomeQualitySection, IconName } from "@/types/content";
 
-const QualitySection = () => {
-  const features = [
-    {
-      icon: Eye,
-      title: "Breathtaking Clarity",
-      description:
-        "Every detail — from the texture of your dress to the emotions in your loved ones' eyes — captured with stunning precision.",
-    },
-    {
-      icon: Sparkles,
-      title: "Future-Proof Memories",
-      description:
-        "Your film will remain vivid, timeless, and ready for any screen in the years ahead.",
-    },
-    {
-      icon: Film,
-      title: "Pure Emotion",
-      description: "We don't just capture moments — we preserve emotions in their purest form.",
-    },
-  ];
+const iconMap: Record<IconName, typeof Eye> = {
+  eye: Eye,
+  sparkles: Sparkles,
+  film: Film,
+  heart: Heart,
+  "map-pin": MapPin,
+  plane: Plane,
+  calendar: Calendar,
+  clock: Clock,
+  palette: Palette,
+};
 
+interface QualitySectionProps {
+  content: HomeQualitySection;
+}
+
+const QualitySection = ({ content }: QualitySectionProps) => {
   const scrollToFeatured = () => {
     const element = document.getElementById("featured");
     if (element) {
@@ -42,38 +39,41 @@ const QualitySection = () => {
           <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left order-1 lg:order-1">
             <div className="inline-flex items-center gap-2 sm:gap-3 bg-cream/10 border border-cream/20 rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8">
               <span className="text-cream text-xs sm:text-sm font-medium tracking-wider">
-                4K CINEMATIC QUALITY
+                {content.badge}
               </span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-cream leading-tight mb-4 sm:mb-6 tracking-wide uppercase lg:text-4xl">
-              CAPTURING YOUR LOVE IN 4K
+              {content.title}
             </h2>
 
             <p className="text-cream/70 text-base sm:text-lg md:text-xl leading-relaxed mb-8 sm:mb-10">
-              4K filmmaking sets a new standard in preserving memories. With four times the
-              resolution of Full HD, every precious detail is captured with breathtaking clarity.
+              {content.intro}
             </p>
 
             <div className="space-y-4 sm:space-y-6">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-3 sm:gap-4 group text-left"
-                >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-cream/10 flex items-center justify-center flex-shrink-0 group-hover:bg-cream/20 transition-colors">
-                    <feature.icon className="w-5 h-5 sm:w-6 sm:h-6 text-cream" />
+              {content.features.map((feature) => {
+                const Icon = iconMap[feature.iconName];
+
+                return (
+                  <div
+                    key={feature.title}
+                    className="flex items-start gap-3 sm:gap-4 group text-left"
+                  >
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-cream/10 flex items-center justify-center flex-shrink-0 group-hover:bg-cream/20 transition-colors">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-cream" />
+                    </div>
+                    <div>
+                      <h3 className="text-base sm:text-lg font-serif text-cream mb-1">
+                        {feature.title}
+                      </h3>
+                      <p className="text-cream/60 text-xs sm:text-sm leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-serif text-cream mb-1">
-                      {feature.title}
-                    </h3>
-                    <p className="text-cream/60 text-xs sm:text-sm leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -89,10 +89,10 @@ const QualitySection = () => {
 
               <div className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl ring-1 ring-cream/20">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/eQEpKw-RVJ0?autoplay=1&mute=1&loop=1&playlist=eQEpKw-RVJ0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                  src={content.videoUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   loading="lazy"
-                  title="Serenity 4K Quality Showcase"
+                  title={content.videoTitle}
                   className="w-full h-full"
                   allowFullScreen
                 />
@@ -107,10 +107,10 @@ const QualitySection = () => {
         {/* Quote Section */}
         <div className="text-center mt-12 sm:mt-16 lg:mt-20 px-4">
           <p className="text-xl sm:text-2xl md:text-3xl font-script text-cream/80">
-            At Serenity Wedding Films, we don't just capture moments —
+            {content.quoteLines[0]}
           </p>
           <p className="text-xl sm:text-2xl md:text-3xl font-script text-cream mt-2">
-            We preserve emotions in their purest form.
+            {content.quoteLines[1]}
           </p>
         </div>
 
@@ -130,7 +130,7 @@ const QualitySection = () => {
             whileHover={{ scale: 1.05 }}
           >
             <span className="text-[10px] sm:text-xs tracking-[0.3em] uppercase font-light">
-              Explore Our Films
+              {content.scrollLabel}
             </span>
             <motion.div
               animate={{ y: [0, 5, 0] }}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,13 +8,15 @@ import { HelmetProvider } from "react-helmet-async";
 import { AnimatePresence } from "framer-motion";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import SplashScreen from "./components/SplashScreen";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
 
 const queryClient = new QueryClient();
 
 const AppContent = () => {
   const location = useLocation();
+  const { data: siteContent } = useSiteSettings();
   const [showSplash, setShowSplash] = useState(() => {
-    // Only show splash on homepage and first visit
     if (location.pathname !== "/") return false;
     const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
     return !hasSeenSplash;
@@ -28,7 +30,12 @@ const AppContent = () => {
   return (
     <>
       <AnimatePresence>
-        {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+        {showSplash && (
+          <SplashScreen
+            onComplete={handleSplashComplete}
+            tagline={siteContent.siteSettings.tagline}
+          />
+        )}
       </AnimatePresence>
       <AnimatedRoutes />
     </>
@@ -42,7 +49,9 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <AppContent />
+          <AdminAuthProvider>
+            <AppContent />
+          </AdminAuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

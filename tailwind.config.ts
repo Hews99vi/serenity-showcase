@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -31,38 +32,38 @@ export default {
       borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
       keyframes: {
         breathe: {
-          '0%, 100%': { transform: 'scale(1)', filter: 'brightness(1)' },
-          '50%': { transform: 'scale(1.02)', filter: 'brightness(1.1)' },
+          "0%, 100%": { transform: "scale(1)", filter: "brightness(1)" },
+          "50%": { transform: "scale(1.02)", filter: "brightness(1.1)" },
         },
         fadeSlideUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
         glow: {
-          '0%, 100%': { opacity: '0.3', transform: 'scale(1.05)' },
-          '50%': { opacity: '0.5', transform: 'scale(1.1)' },
+          "0%, 100%": { opacity: "0.3", transform: "scale(1.05)" },
+          "50%": { opacity: "0.5", transform: "scale(1.1)" },
         },
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
         "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
-        "fade-up": { 
-          from: { opacity: "0", transform: "translateY(40px)" }, 
-          to: { opacity: "1", transform: "translateY(0)" } 
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(40px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
-        "fade-in": { 
-          from: { opacity: "0" }, 
-          to: { opacity: "1" } 
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
         },
-        "scale-in": { 
-          from: { opacity: "0", transform: "scale(0.95)" }, 
-          to: { opacity: "1", transform: "scale(1)" } 
+        "scale-in": {
+          from: { opacity: "0", transform: "scale(0.95)" },
+          to: { opacity: "1", transform: "scale(1)" },
         },
         "slide-up": {
           from: { opacity: "0", transform: "translateY(20px)" },
-          to: { opacity: "1", transform: "translateY(0)" }
+          to: { opacity: "1", transform: "translateY(0)" },
         },
       },
-      animation: { 
-        "accordion-down": "accordion-down 0.2s ease-out", 
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.8s ease-out forwards",
         "fade-in": "fade-in 1s ease-out forwards",
@@ -70,10 +71,10 @@ export default {
         "slide-up": "slide-up 0.6s ease-out forwards",
       },
       letterSpacing: {
-        'widest': '0.2em',
-        'ultra': '0.3em',
+        widest: "0.2em",
+        ultra: "0.3em",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

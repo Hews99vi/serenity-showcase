@@ -1,54 +1,40 @@
-import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import FeaturedFilms from "@/components/home/FeaturedFilms";
+import ContactCTA from "@/components/home/ContactCTA";
 import HeroSection from "@/components/home/HeroSection";
 import IntroSection from "@/components/home/IntroSection";
 import PhilosophySection from "@/components/home/PhilosophySection";
 import QualitySection from "@/components/home/QualitySection";
-import FeaturedFilms from "@/components/home/FeaturedFilms";
-import Testimonials from "@/components/Testimonials";
-import ContactCTA from "@/components/home/ContactCTA";
 import SideNav from "@/components/home/SideNav";
-import Footer from "@/components/Footer";
+import SeoTags from "@/components/SeoTags";
+import Testimonials from "@/components/Testimonials";
+import { useHomePageContent } from "@/hooks/useHomePageContent";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Index = () => {
+  const { data: content } = useHomePageContent();
+  const { data: seo } = usePageMeta("home");
+
   return (
     <>
-      <Helmet>
-        <title>Serenity Wedding Films | Cinematic Wedding Experience</title>
-        <meta
-          name="description"
-          content="Serenity Wedding Films creates timeless wedding films in Sri Lanka. Where Serenity Meets Cinema, Love Becomes a Masterpiece."
-        />
-        <meta
-          name="keywords"
-          content="wedding videography, wedding films, Sri Lanka, cinematic wedding, 4K wedding video, wedding cinematography, Serenity Wedding Films"
-        />
-        <meta property="og:title" content="Serenity Wedding Films" />
-        <meta
-          property="og:description"
-          content="Where Serenity Meets Cinema, Love Becomes a Masterpiece. Timeless wedding films in Sri Lanka."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://serenityweddingfilms.com/" />
-        <meta property="og:image" content="https://serenityweddingfilms.com/og-image.jpg" />
-        <link rel="canonical" href="https://serenityweddingfilms.com/" />
-      </Helmet>
+      <SeoTags seo={seo} />
 
       <main className="overflow-hidden bg-charcoal">
         <Navbar />
         <SideNav />
-        <HeroSection />
-        <IntroSection />
-        <PhilosophySection />
-        <QualitySection />
+        <HeroSection content={content.hero} />
+        <IntroSection content={content.intro} />
+        <PhilosophySection content={content.philosophy} />
+        <QualitySection content={content.quality} />
         <div id="featured">
-          <FeaturedFilms />
+          <FeaturedFilms intro={content.featuredIntro} films={content.featuredFilms} />
         </div>
         <div id="testimonials">
-          <Testimonials />
+          <Testimonials intro={content.testimonialsIntro} testimonials={content.testimonials} />
         </div>
-        <ContactCTA />
-        <Footer />
+        <ContactCTA content={content.contactCta} />
+        <Footer siteSettings={content.siteSettings} socialLinks={content.socialLinks} />
       </main>
     </>
   );

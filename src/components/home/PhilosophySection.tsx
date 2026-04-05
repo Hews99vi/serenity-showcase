@@ -1,4 +1,10 @@
-const PhilosophySection = () => {
+import type { HomePhilosophySection } from "@/types/content";
+
+interface PhilosophySectionProps {
+  content: HomePhilosophySection;
+}
+
+const PhilosophySection = ({ content }: PhilosophySectionProps) => {
   return (
     <section id="philosophy" className="section-light section-padding">
       <div className="section-container">
@@ -12,10 +18,10 @@ const PhilosophySection = () => {
 
               <div className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-xl">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/Ycc-1d4hfEc?autoplay=1&mute=1&loop=1&playlist=Ycc-1d4hfEc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                  src={content.videoUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   loading="lazy"
-                  title="Serenity Wedding Films Philosophy"
+                  title={content.videoTitle}
                   className="w-full h-full"
                   allowFullScreen
                 />
@@ -27,30 +33,23 @@ const PhilosophySection = () => {
           <div className="max-w-xl mx-auto lg:mx-0 order-1 lg:order-2 text-center lg:text-left">
             <div className="mb-8 sm:mb-12">
               <span className="text-charcoal/60 text-xs tracking-[0.3em] uppercase mb-4 sm:mb-6 block">
-                Our Philosophy
+                {content.eyebrow}
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-charcoal leading-tight tracking-wide uppercase">
-                Capturing timeless moments, one frame at a time.
+                {content.title}
               </h2>
             </div>
 
             <div className="space-y-4 sm:space-y-6">
-              <p className="text-charcoal/80 text-base sm:text-lg leading-relaxed">
-                We believe wedding filmmaking is more than documenting events, it's creating an
-                emotional journey.
-              </p>
-              <p className="text-charcoal/80 text-base sm:text-lg leading-relaxed">
-                Our goal is to preserve the feelings, the atmosphere, and the unique charm of
-                your union in a film you will cherish for life.
-              </p>
-              <p className="text-charcoal/80 text-base sm:text-lg leading-relaxed">
-                With a cinematic eye and a calm, unobtrusive approach, we focus on the real
-                moments — the laughter, the quiet pauses, the energy around you.
-              </p>
+              {content.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="text-charcoal/80 text-base sm:text-lg leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
               <div className="flex items-center gap-3 sm:gap-4 pt-4 justify-center lg:justify-start">
                 <div className="w-8 sm:w-12 h-px bg-charcoal/30" />
                 <span className="text-charcoal/60 text-xs sm:text-sm tracking-wider uppercase">
-                  Natural • Artistic • Intentional
+                  {content.valuesLine}
                 </span>
               </div>
             </div>

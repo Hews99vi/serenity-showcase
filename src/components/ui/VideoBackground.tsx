@@ -108,7 +108,7 @@ const VideoBackground = ({ src, className = "", overlayClassName }: VideoBackgro
         onCanPlay={handleCanPlay}
         onLoadedData={handleCanPlay}
         onError={handleError}
-        // @ts-ignore - webkit specific attributes for iOS
+        // @ts-expect-error - webkit specific attributes for iOS
         webkit-playsinline="true"
         x-webkit-airplay="deny"
         disablePictureInPicture
@@ -127,3 +127,4 @@ const VideoBackground = ({ src, className = "", overlayClassName }: VideoBackgro
 };
 
 export default VideoBackground;
+
