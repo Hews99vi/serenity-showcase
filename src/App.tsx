@@ -7,11 +7,19 @@ import { BrowserRouter, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { AnimatePresence } from "framer-motion";
 import AnimatedRoutes from "./components/AnimatedRoutes";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import SplashScreen from "./components/SplashScreen";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+  },
+});
 
 const AppContent = () => {
   const location = useLocation();
@@ -37,7 +45,9 @@ const AppContent = () => {
           />
         )}
       </AnimatePresence>
-      <AnimatedRoutes />
+      <ErrorBoundary>
+        <AnimatedRoutes />
+      </ErrorBoundary>
     </>
   );
 };

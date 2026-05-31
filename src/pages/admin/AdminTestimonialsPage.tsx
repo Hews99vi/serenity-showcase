@@ -4,6 +4,7 @@ import SectionFormCard from "@/components/admin/forms/SectionFormCard";
 import TestimonialForm from "@/components/admin/forms/TestimonialForm";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
 import {
   deleteTestimonial,
   fetchAdminTestimonialsContent,
@@ -44,6 +45,7 @@ const invalidateAllContent = async (queryClient: ReturnType<typeof useQueryClien
 };
 
 const AdminTestimonialsPage = () => {
+  const { toast } = useToast();
   const queryClient = useQueryClient();
   const { data, isLoading, error, refetch } = useQuery({
     queryKey,
@@ -77,8 +79,16 @@ const AdminTestimonialsPage = () => {
   const newTestimonial = emptyTestimonial(data.testimonials.length + 1);
 
   const saveAndRefresh = async (callback: () => Promise<void>) => {
-    await callback();
-    await invalidateAllContent(queryClient);
+    try {
+      await callback();
+      await invalidateAllContent(queryClient);
+    } catch (error) {
+      toast({ 
+        variant: "destructive", 
+        title: "Action failed", 
+        description: error instanceof Error ? error.message : "An unexpected error occurred." 
+      });
+    }
   };
 
   return (

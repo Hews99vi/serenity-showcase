@@ -39,7 +39,7 @@ const Testimonials = ({ intro, testimonials }: TestimonialsProps) => {
               </p>
               <a
                 href={intro.buttonHref}
-                className="inline-flex items-center gap-2 px-6 py-3 border border-cream/30 text-cream text-sm tracking-wide hover:bg-cream hover:text-charcoal transition-all duration-300 group"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center gap-2 px-6 py-3 border border-cream/30 text-cream text-sm tracking-wide hover:bg-cream hover:text-charcoal transition-all duration-300 group"
               >
                 {intro.buttonLabel}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -73,6 +73,8 @@ const Testimonials = ({ intro, testimonials }: TestimonialsProps) => {
                         <img
                           src={`https://img.youtube.com/vi/${testimonial.youtubeId}/maxresdefault.jpg`}
                           alt={testimonial.coupleName}
+                          loading="lazy"
+                          decoding="async"
                           className="absolute inset-0 w-full h-full object-cover"
                         />
 
@@ -136,6 +138,8 @@ const Testimonials = ({ intro, testimonials }: TestimonialsProps) => {
                         <img
                           src={`https://img.youtube.com/vi/${testimonial.youtubeId}/maxresdefault.jpg`}
                           alt={testimonial.coupleName}
+                          loading="lazy"
+                          decoding="async"
                           className="absolute inset-0 w-full h-full object-cover"
                         />
 
@@ -205,7 +209,7 @@ const Testimonials = ({ intro, testimonials }: TestimonialsProps) => {
             >
               <button
                 onClick={() => setSelectedTestimonial(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-cream/10 border border-cream/20 flex items-center justify-center hover:bg-cream/20 transition-colors"
+                className="absolute top-4 right-4 min-h-[44px] min-w-[44px] rounded-full bg-cream/10 border border-cream/20 flex items-center justify-center hover:bg-cream/20 transition-colors"
               >
                 <X className="w-5 h-5 text-cream" />
               </button>
@@ -217,7 +221,7 @@ const Testimonials = ({ intro, testimonials }: TestimonialsProps) => {
               </h3>
 
               <p className="text-cream/40 text-xs tracking-widest uppercase mb-8">
-                {selectedTestimonial.eventType} • {selectedTestimonial.eventYear}
+                {selectedTestimonial.eventType} | {selectedTestimonial.eventYear}
               </p>
 
               <p className="text-cream/80 text-base md:text-lg leading-relaxed">

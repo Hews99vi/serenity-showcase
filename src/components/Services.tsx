@@ -1,4 +1,4 @@
-import { ChevronDown, Heart, Plane, Sparkles } from "lucide-react";
+import { Calendar, ChevronDown, Clock, Eye, Film, Heart, MapPin, Palette, Plane, Sparkles } from "lucide-react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -24,9 +24,15 @@ interface ServicesProps {
 }
 
 const serviceIconMap = {
-  plane: Plane,
+  film: Film,
   sparkles: Sparkles,
   heart: Heart,
+  eye: Eye,
+  "map-pin": MapPin,
+  plane: Plane,
+  calendar: Calendar,
+  clock: Clock,
+  palette: Palette,
 } as const;
 
 const Services = ({
@@ -79,7 +85,7 @@ const Services = ({
 
           <div className="grid md:grid-cols-3 gap-6">
             {sortedServices.map((service, index) => {
-              const Icon = serviceIconMap[service.iconName as keyof typeof serviceIconMap];
+              const Icon = serviceIconMap[service.iconName as keyof typeof serviceIconMap] || Sparkles;
 
               return (
                 <div

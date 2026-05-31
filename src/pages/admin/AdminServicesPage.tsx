@@ -6,6 +6,7 @@ import SectionFormCard from "@/components/admin/forms/SectionFormCard";
 import ServiceItemForm from "@/components/admin/forms/ServiceItemForm";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
 import {
   deleteFaqGroup,
   deleteFaqItem,
@@ -71,6 +72,7 @@ const invalidateAllContent = async (queryClient: ReturnType<typeof useQueryClien
 };
 
 const AdminServicesPage = () => {
+  const { toast } = useToast();
   const queryClient = useQueryClient();
   const { data, isLoading, error, refetch } = useQuery({
     queryKey,
@@ -102,8 +104,16 @@ const AdminServicesPage = () => {
   }
 
   const saveAndRefresh = async (callback: () => Promise<void>) => {
-    await callback();
-    await invalidateAllContent(queryClient);
+    try {
+      await callback();
+      await invalidateAllContent(queryClient);
+    } catch (error) {
+      toast({ 
+        variant: "destructive", 
+        title: "Action failed", 
+        description: error instanceof Error ? error.message : "An unexpected error occurred." 
+      });
+    }
   };
 
   return (

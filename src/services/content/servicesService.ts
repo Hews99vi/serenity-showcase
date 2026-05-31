@@ -20,6 +20,7 @@ import type {
   ServiceItem,
   ServicesHeroSection,
 } from "@/types/content";
+import { isIconName } from "@/types/content";
 
 export interface ServicesContent {
   hero: ServicesHeroSection;
@@ -79,7 +80,7 @@ const mapServiceItemRow = (row: Record<string, unknown>): ServiceItem | null => 
   const title = row.title as string | undefined;
   const description = row.description as string | undefined;
 
-  if (!dbId || !iconName || !title || !description) {
+  if (!dbId || !iconName || !isIconName(iconName) || !title || !description) {
     return null;
   }
 
@@ -100,7 +101,7 @@ const mapFaqGroupRow = (row: Record<string, unknown>): FaqGroup | null => {
   const label = row.label as string | undefined;
   const iconName = row.icon_name as FaqGroup["iconName"] | undefined;
 
-  if (!dbId || !slug || !label || !iconName) {
+  if (!dbId || !slug || !label || !iconName || !isIconName(iconName)) {
     return null;
   }
 
@@ -364,17 +365,27 @@ export const saveServiceItem = async (serviceItem: ServiceItem): Promise<Service
   return mapped;
 };
 
-export const saveServiceItemsOrder = async (serviceItems: ServiceItem[]): Promise<void> => {
+export const saveServiceItemsOrder = async (items: ServiceItem[]): Promise<void> => {
   const client = requireSupabaseClient();
-  const rows = serviceItems
+  const updatePromises = items
     .filter((item) => item.dbId)
-    .map((item, index) => ({ id: item.dbId, sort_order: index + 1, is_published: item.isPublished ?? true }));
+    .map((item, index) =>
+      client
+        .from("service_items")
+        .update({
+          sort_order: index + 1,
+          is_published: item.isPublished ?? true,
+        })
+        .eq("id", item.dbId)
+    );
 
-  if (!rows.length) {
+  if (!updatePromises.length) {
     return;
   }
 
-  const { error } = await client.from("service_items").upsert(rows, { onConflict: "id" });
+  const results = await Promise.all(updatePromises);
+  const error = results.find((res) => res.error)?.error;
+
   if (error) {
     throw error;
   }
@@ -420,17 +431,27 @@ export const saveFaqGroup = async (faqGroup: FaqGroup): Promise<FaqGroup> => {
   return mapped;
 };
 
-export const saveFaqGroupsOrder = async (faqGroups: FaqGroup[]): Promise<void> => {
+export const saveFaqGroupsOrder = async (groups: FaqGroup[]): Promise<void> => {
   const client = requireSupabaseClient();
-  const rows = faqGroups
+  const updatePromises = groups
     .filter((group) => group.dbId)
-    .map((group, index) => ({ id: group.dbId, sort_order: index + 1, is_active: group.isActive ?? true }));
+    .map((group, index) =>
+      client
+        .from("faq_groups")
+        .update({
+          sort_order: index + 1,
+          is_active: group.isActive ?? true,
+        })
+        .eq("id", group.dbId)
+    );
 
-  if (!rows.length) {
+  if (!updatePromises.length) {
     return;
   }
 
-  const { error } = await client.from("faq_groups").upsert(rows, { onConflict: "id" });
+  const results = await Promise.all(updatePromises);
+  const error = results.find((res) => res.error)?.error;
+
   if (error) {
     throw error;
   }
@@ -485,17 +506,27 @@ export const saveFaqItem = async (faqItem: FaqItem, faqGroups: FaqGroup[]): Prom
   return mapped;
 };
 
-export const saveFaqItemsOrder = async (faqItems: FaqItem[]): Promise<void> => {
+export const saveFaqItemsOrder = async (items: FaqItem[]): Promise<void> => {
   const client = requireSupabaseClient();
-  const rows = faqItems
+  const updatePromises = items
     .filter((item) => item.dbId)
-    .map((item, index) => ({ id: item.dbId, sort_order: index + 1, is_published: item.isPublished ?? true }));
+    .map((item, index) =>
+      client
+        .from("faq_items")
+        .update({
+          sort_order: index + 1,
+          is_published: item.isPublished ?? true,
+        })
+        .eq("id", item.dbId)
+    );
 
-  if (!rows.length) {
+  if (!updatePromises.length) {
     return;
   }
 
-  const { error } = await client.from("faq_items").upsert(rows, { onConflict: "id" });
+  const results = await Promise.all(updatePromises);
+  const error = results.find((res) => res.error)?.error;
+
   if (error) {
     throw error;
   }

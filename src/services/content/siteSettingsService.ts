@@ -182,17 +182,26 @@ export const saveSocialLink = async (socialLink: SocialLink): Promise<SocialLink
   return mapped;
 };
 
-export const saveSocialLinksOrder = async (socialLinks: SocialLink[]): Promise<void> => {
+export const saveSocialLinksOrder = async (links: SocialLink[]): Promise<void> => {
   const client = requireSupabaseClient();
-  const rows = socialLinks
+  const updatePromises = links
     .filter((link) => link.id)
-    .map((link, index) => ({ id: link.id, sort_order: index + 1, is_active: link.isActive ?? true }));
+    .map((link, index) =>
+      client
+        .from("social_links")
+        .update({
+          sort_order: index + 1,
+          is_active: link.isActive ?? true,
+        })
+        .eq("id", link.id)
+    );
 
-  if (!rows.length) {
+  if (!updatePromises.length) {
     return;
   }
 
-  const { error } = await client.from("social_links").upsert(rows, { onConflict: "id" });
+  const results = await Promise.all(updatePromises);
+  const error = results.find((res) => res.error)?.error;
 
   if (error) {
     throw error;

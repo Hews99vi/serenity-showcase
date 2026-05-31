@@ -1,22 +1,36 @@
+import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Index from "@/pages/Index";
-import PortfolioPage from "@/pages/PortfolioPage";
-import ServicesPage from "@/pages/ServicesPage";
-import ContactPage from "@/pages/ContactPage";
-import TestimonialsPage from "@/pages/TestimonialsPage";
-import NotFound from "@/pages/NotFound";
-import AdminLoginPage from "@/pages/admin/AdminLoginPage";
-import AdminHomePage from "@/pages/admin/AdminHomePage";
-import AdminPortfolioPage from "@/pages/admin/AdminPortfolioPage";
-import AdminTestimonialsPage from "@/pages/admin/AdminTestimonialsPage";
-import AdminServicesPage from "@/pages/admin/AdminServicesPage";
-import AdminSitePage from "@/pages/admin/AdminSitePage";
-import AdminSeoPage from "@/pages/admin/AdminSeoPage";
 import PageTransition from "./PageTransition";
 import ScrollToTop from "./ScrollToTop";
-import ProtectedAdminRoute from "./admin/ProtectedAdminRoute";
-import AdminShell from "./admin/AdminShell";
+
+const PortfolioPage = lazy(() => import("@/pages/PortfolioPage"));
+const ServicesPage = lazy(() => import("@/pages/ServicesPage"));
+const ContactPage = lazy(() => import("@/pages/ContactPage"));
+const TestimonialsPage = lazy(() => import("@/pages/TestimonialsPage"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
+const AdminLoginPage = lazy(() => import("@/pages/admin/AdminLoginPage"));
+const AdminHomePage = lazy(() => import("@/pages/admin/AdminHomePage"));
+const AdminPortfolioPage = lazy(() => import("@/pages/admin/AdminPortfolioPage"));
+const AdminTestimonialsPage = lazy(() => import("@/pages/admin/AdminTestimonialsPage"));
+const AdminServicesPage = lazy(() => import("@/pages/admin/AdminServicesPage"));
+const AdminSitePage = lazy(() => import("@/pages/admin/AdminSitePage"));
+const AdminSeoPage = lazy(() => import("@/pages/admin/AdminSeoPage"));
+const ProtectedAdminRoute = lazy(() => import("./admin/ProtectedAdminRoute"));
+const AdminShell = lazy(() => import("./admin/AdminShell"));
+
+const adminFallback = (
+  <div className="flex h-screen items-center justify-center bg-charcoal text-cream/80">
+    Loading admin...
+  </div>
+);
+
+const routeFallback = (
+  <div className="flex min-h-screen items-center justify-center bg-charcoal text-cream/80">
+    Loading...
+  </div>
+);
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -37,53 +51,125 @@ const AnimatedRoutes = () => {
           <Route
             path="/portfolio"
             element={
-              <PageTransition>
-                <PortfolioPage />
-              </PageTransition>
+              <Suspense fallback={routeFallback}>
+                <PageTransition>
+                  <PortfolioPage />
+                </PageTransition>
+              </Suspense>
             }
           />
           <Route
             path="/services"
             element={
-              <PageTransition>
-                <ServicesPage />
-              </PageTransition>
+              <Suspense fallback={routeFallback}>
+                <PageTransition>
+                  <ServicesPage />
+                </PageTransition>
+              </Suspense>
             }
           />
           <Route
             path="/contact"
             element={
-              <PageTransition>
-                <ContactPage />
-              </PageTransition>
+              <Suspense fallback={routeFallback}>
+                <PageTransition>
+                  <ContactPage />
+                </PageTransition>
+              </Suspense>
             }
           />
           <Route
             path="/testimonials"
             element={
-              <PageTransition>
-                <TestimonialsPage />
-              </PageTransition>
+              <Suspense fallback={routeFallback}>
+                <PageTransition>
+                  <TestimonialsPage />
+                </PageTransition>
+              </Suspense>
             }
           />
-          <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route path="/admin" element={<ProtectedAdminRoute />}>
-            <Route element={<AdminShell />}>
+          <Route
+            path="/admin/login"
+            element={
+              <Suspense fallback={adminFallback}>
+                <AdminLoginPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <Suspense fallback={adminFallback}>
+                <ProtectedAdminRoute />
+              </Suspense>
+            }
+          >
+            <Route
+              element={
+                <Suspense fallback={adminFallback}>
+                  <AdminShell />
+                </Suspense>
+              }
+            >
               <Route index element={<Navigate to="/admin/home" replace />} />
-              <Route path="home" element={<AdminHomePage />} />
-              <Route path="portfolio" element={<AdminPortfolioPage />} />
-              <Route path="testimonials" element={<AdminTestimonialsPage />} />
-              <Route path="services" element={<AdminServicesPage />} />
-              <Route path="site" element={<AdminSitePage />} />
-              <Route path="seo" element={<AdminSeoPage />} />
+              <Route
+                path="home"
+                element={
+                  <Suspense fallback={adminFallback}>
+                    <AdminHomePage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="portfolio"
+                element={
+                  <Suspense fallback={adminFallback}>
+                    <AdminPortfolioPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="testimonials"
+                element={
+                  <Suspense fallback={adminFallback}>
+                    <AdminTestimonialsPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="services"
+                element={
+                  <Suspense fallback={adminFallback}>
+                    <AdminServicesPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="site"
+                element={
+                  <Suspense fallback={adminFallback}>
+                    <AdminSitePage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="seo"
+                element={
+                  <Suspense fallback={adminFallback}>
+                    <AdminSeoPage />
+                  </Suspense>
+                }
+              />
             </Route>
           </Route>
           <Route
             path="*"
             element={
-              <PageTransition>
-                <NotFound />
-              </PageTransition>
+              <Suspense fallback={routeFallback}>
+                <PageTransition>
+                  <NotFound />
+                </PageTransition>
+              </Suspense>
             }
           />
         </Routes>

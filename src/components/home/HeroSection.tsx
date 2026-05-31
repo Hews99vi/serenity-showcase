@@ -27,6 +27,9 @@ const HeroSection = ({ content }: HeroSectionProps) => {
               <img
                 src={heroLogo}
                 alt="Serenity Wedding Films"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-40 xs:w-48 sm:w-56 md:w-64 lg:w-72 h-auto drop-shadow-2xl"
               />
               {/* Soft glow behind logo */}

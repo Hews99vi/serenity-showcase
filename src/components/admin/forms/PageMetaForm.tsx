@@ -21,9 +21,15 @@ const PageMetaForm = ({ title, description, initialValue, onSave }: PageMetaForm
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
+  const [baselineValue, setBaselineValue] = useState(initialValue);
+  const userMadeChanges = JSON.stringify(draft) !== JSON.stringify(baselineValue);
+
   useEffect(() => {
-    setDraft(initialValue);
-  }, [initialValue]);
+    if (!userMadeChanges) {
+      setDraft(initialValue);
+      setBaselineValue(initialValue);
+    }
+  }, [initialValue, userMadeChanges]);
 
   const isDirty = useMemo(() => JSON.stringify(draft) !== JSON.stringify(initialValue), [draft, initialValue]);
 
@@ -38,7 +44,8 @@ const PageMetaForm = ({ title, description, initialValue, onSave }: PageMetaForm
 
     try {
       await onSave(draft);
-      toast({ title: "Saved", description: `${title} metadata has been updated.` });
+      setBaselineValue(draft);
+      toast({ title: "Saved", description: `${title} SEO metadata has been updated.` });
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unable to save page metadata.";
       setErrorMessage(message);

@@ -8,8 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import type { FaqGroup, IconName } from "@/types/content";
+import { ICON_OPTIONS } from "@/types/content";
 
-const iconOptions: IconName[] = ["film", "calendar", "clock", "palette", "sparkles", "heart", "eye", "map-pin", "plane"];
 
 interface FaqGroupFormProps {
   title: string;
@@ -36,9 +36,15 @@ const FaqGroupForm = ({
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const [baselineValue, setBaselineValue] = useState(initialValue);
+  const userMadeChanges = JSON.stringify(draft) !== JSON.stringify(baselineValue);
+
   useEffect(() => {
-    setDraft(initialValue);
-  }, [initialValue]);
+    if (!userMadeChanges) {
+      setDraft(initialValue);
+      setBaselineValue(initialValue);
+    }
+  }, [initialValue, userMadeChanges]);
 
   const isDirty = useMemo(() => JSON.stringify(draft) !== JSON.stringify(initialValue), [draft, initialValue]);
 
@@ -53,6 +59,7 @@ const FaqGroupForm = ({
 
     try {
       await onSave(draft);
+      setBaselineValue(draft);
       toast({ title: "Saved", description: `${title} has been updated.` });
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unable to save this FAQ group.";
@@ -107,7 +114,7 @@ const FaqGroupForm = ({
                 <SelectValue placeholder="Choose an icon" />
               </SelectTrigger>
               <SelectContent>
-                {iconOptions.map((icon) => (
+                {ICON_OPTIONS.map((icon) => (
                   <SelectItem key={icon} value={icon}>
                     {icon}
                   </SelectItem>

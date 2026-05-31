@@ -3,9 +3,14 @@ import {
   Calendar,
   ChevronDown,
   Clock,
+  Eye,
   Film,
+  Heart,
+  MapPin,
   MessageCircle,
   Palette,
+  Plane,
+  Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -28,6 +33,11 @@ interface FAQSectionProps {
 
 const faqIconMap = {
   film: Film,
+  sparkles: Sparkles,
+  heart: Heart,
+  eye: Eye,
+  "map-pin": MapPin,
+  plane: Plane,
   calendar: Calendar,
   clock: Clock,
   palette: Palette,
@@ -118,7 +128,7 @@ const FAQSection = ({ intro, cta, groups, items, siteSettings }: FAQSectionProps
 
         <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10 md:mb-14">
           {sortedGroups.map((category) => {
-            const Icon = faqIconMap[category.iconName as keyof typeof faqIconMap];
+            const Icon = faqIconMap[category.iconName as keyof typeof faqIconMap] || Sparkles;
             const isActive = activeCategory === category.id;
 
             return (

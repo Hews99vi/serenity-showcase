@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -44,14 +44,18 @@ const SectionFormCard = <T extends Record<string, unknown>>({
   const [values, setValues] = useState<T>(initialValues);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const hasUserInteracted = useRef(false);
 
   useEffect(() => {
-    setValues(initialValues);
+    if (!hasUserInteracted.current) {
+      setValues(initialValues);
+    }
   }, [initialValues]);
 
   const isDirty = useMemo(() => JSON.stringify(values) !== JSON.stringify(initialValues), [initialValues, values]);
 
   const setFieldValue = (fieldKey: Extract<keyof T, string>, nextValue: unknown) => {
+    hasUserInteracted.current = true;
     setValues((currentValues) => ({
       ...currentValues,
       [fieldKey]: nextValue,
@@ -70,6 +74,7 @@ const SectionFormCard = <T extends Record<string, unknown>>({
 
     try {
       await onSave(values);
+      hasUserInteracted.current = false;
       toast({
         title: "Saved",
         description: `${title} has been updated.`,
@@ -175,7 +180,10 @@ const SectionFormCard = <T extends Record<string, unknown>>({
         ) : null}
       </CardContent>
       <CardFooter className="flex items-center justify-between gap-3">
-        <Button variant="outline" onClick={() => setValues(initialValues)} disabled={!isDirty || isSaving}>
+        <Button variant="outline" onClick={() => {
+          hasUserInteracted.current = false;
+          setValues(initialValues);
+        }} disabled={!isDirty || isSaving}>
           Reset
         </Button>
         <Button onClick={() => void handleSave()} disabled={isSaving || !isDirty}>

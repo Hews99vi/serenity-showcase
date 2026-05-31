@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Film, Heart, MapPin, Play, Sparkles, X } from "lucide-react";
+import { Calendar, Clock, Eye, Film, Heart, MapPin, Palette, Plane, Play, Sparkles, X } from "lucide-react";
 import type {
   CallToActionSection,
   PortfolioCategoriesIntroSection,
@@ -22,9 +22,15 @@ interface PortfolioProps {
 }
 
 const categoryIconMap = {
-  "map-pin": MapPin,
+  film: Film,
   sparkles: Sparkles,
   heart: Heart,
+  eye: Eye,
+  "map-pin": MapPin,
+  plane: Plane,
+  calendar: Calendar,
+  clock: Clock,
+  palette: Palette,
 } as const;
 
 const PortfolioVideo = ({ src }: { src: string }) => {
@@ -95,6 +101,8 @@ const VideoCard = ({
         <img
           src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
           alt="Wedding film thumbnail"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
@@ -173,7 +181,7 @@ const CategoryCard = ({
     margin: "-50px",
   });
   const isMiddle = index === 1;
-  const Icon = categoryIconMap[category.iconName as keyof typeof categoryIconMap];
+  const Icon = categoryIconMap[category.iconName as keyof typeof categoryIconMap] || Sparkles;
 
   return (
     <motion.div
@@ -194,6 +202,8 @@ const CategoryCard = ({
         <img
           src={category.image}
           alt={category.title}
+          loading="lazy"
+          decoding="async"
           className="block w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           style={{ objectPosition: "center 25%", display: "block" }}
         />
@@ -532,7 +542,7 @@ const Portfolio = ({ hero, intro, categoriesIntro, cta, categories, videos }: Po
               <span className="w-12 md:w-20 h-px bg-cream/20" />
               <button
                 onClick={() => setActiveCategory("all")}
-                className={`text-xs md:text-sm tracking-[0.3em] uppercase transition-all duration-300 hover:text-cream ${
+                className={`min-h-[44px] min-w-[44px] px-2 text-xs md:text-sm tracking-[0.3em] uppercase transition-all duration-300 hover:text-cream ${
                   activeCategory === "all" ? "text-cream" : "text-cream/50 hover:text-cream/80"
                 }`}
               >
@@ -616,7 +626,7 @@ const Portfolio = ({ hero, intro, categoriesIntro, cta, categories, videos }: Po
               <div className="relative">
                 <button
                   onClick={closeVideo}
-                  className="absolute -top-12 right-0 z-50 p-2 text-cream/80 hover:text-cream transition-colors"
+                  className="absolute -top-12 right-0 z-50 min-h-[44px] min-w-[44px] p-2 text-cream/80 hover:text-cream transition-colors"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -640,4 +650,3 @@ const Portfolio = ({ hero, intro, categoriesIntro, cta, categories, videos }: Po
 };
 
 export default Portfolio;
-

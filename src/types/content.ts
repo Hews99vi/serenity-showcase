@@ -263,3 +263,19 @@ export interface PageSeo {
   twitterImage?: string;
   noindex?: boolean;
 }
+
+export const ICON_OPTIONS: IconName[] = [
+  "film",
+  "sparkles",
+  "heart",
+  "eye",
+  "map-pin",
+  "plane",
+  "calendar",
+  "clock",
+  "palette",
+];
+
+export const isIconName = (value: unknown): value is IconName => {
+  return typeof value === "string" && ICON_OPTIONS.includes(value as IconName);
+};

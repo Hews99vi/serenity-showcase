@@ -51,7 +51,7 @@ const Navbar = () => {
         <div className="section-container">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center z-[60]">
+            <Link to="/" className="flex min-h-[44px] min-w-[44px] items-center z-[60]">
               <img
                 src={logo}
                 alt="Serenity Wedding Films"
@@ -89,7 +89,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-cream z-[60] relative"
+              className="lg:hidden min-h-[44px] min-w-[44px] p-2 text-cream z-[60] relative"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -107,7 +107,7 @@ const Navbar = () => {
         {/* Close Button */}
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 p-3 text-cream/70 hover:text-cream transition-colors z-[60]"
+          className="absolute top-4 right-4 min-h-[44px] min-w-[44px] p-3 text-cream/70 hover:text-cream transition-colors z-[60]"
           aria-label="Close menu"
         >
           <X className="w-7 h-7" />
@@ -119,7 +119,7 @@ const Navbar = () => {
               key={link.href}
               to={link.href}
               onClick={() => setIsOpen(false)}
-              className={`text-xl sm:text-2xl font-serif tracking-wide transition-all duration-300 ${
+              className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center px-4 py-3 text-xl sm:text-2xl font-serif tracking-wide transition-all duration-300 ${
                 location.pathname === link.href
                   ? "text-cream"
                   : "text-cream/70 hover:text-cream"
@@ -132,7 +132,7 @@ const Navbar = () => {
           <Link
             to="/contact"
             onClick={() => setIsOpen(false)}
-            className="mt-4 inline-flex items-center gap-2 bg-cream text-charcoal px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm tracking-widest uppercase font-medium hover:bg-cream/90 transition-colors"
+            className="mt-4 inline-flex min-h-[44px] min-w-[44px] items-center gap-2 bg-cream text-charcoal px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm tracking-widest uppercase font-medium hover:bg-cream/90 transition-colors"
           >
             Reserve Now
           </Link>

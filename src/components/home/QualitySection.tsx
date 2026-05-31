@@ -53,7 +53,7 @@ const QualitySection = ({ content }: QualitySectionProps) => {
 
             <div className="space-y-4 sm:space-y-6">
               {content.features.map((feature) => {
-                const Icon = iconMap[feature.iconName];
+                const Icon = iconMap[feature.iconName] || Sparkles;
 
                 return (
                   <div

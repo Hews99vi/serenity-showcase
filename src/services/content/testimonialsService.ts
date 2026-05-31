@@ -210,23 +210,28 @@ export const saveTestimonial = async (testimonial: Testimonial): Promise<Testimo
   return mapped;
 };
 
-export const saveTestimonialsOrder = async (testimonials: Testimonial[]): Promise<void> => {
+export const saveTestimonialsOrder = async (items: Testimonial[]): Promise<void> => {
   const client = requireSupabaseClient();
-  const rows = testimonials
-    .filter((testimonial) => testimonial.dbId)
-    .map((testimonial, index) => ({
-      id: testimonial.dbId,
-      page_sort_order: index + 1,
-      show_on_home: testimonial.showOnHome,
-      home_sort_order: testimonial.homeSortOrder ?? null,
-      is_published: testimonial.isPublished ?? true,
-    }));
+  const updatePromises = items
+    .filter((item) => item.dbId)
+    .map((item, index) =>
+      client
+        .from("testimonials")
+        .update({
+          page_sort_order: index + 1,
+          show_on_home: item.showOnHome,
+          home_sort_order: item.homeSortOrder ?? null,
+          is_published: item.isPublished ?? true,
+        })
+        .eq("id", item.dbId)
+    );
 
-  if (!rows.length) {
+  if (!updatePromises.length) {
     return;
   }
 
-  const { error } = await client.from("testimonials").upsert(rows, { onConflict: "id" });
+  const results = await Promise.all(updatePromises);
+  const error = results.find((res) => res.error)?.error;
 
   if (error) {
     throw error;

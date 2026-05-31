@@ -12,10 +12,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import {
   deletePortfolioCategory,
   deletePortfolioItem,
-  fetchAdminPortfolioContent,  savePortfolioCategoriesOrder,
+  fetchAdminPortfolioContent,
+  savePortfolioCategoriesOrder,
   savePortfolioCategory,
   savePortfolioItem,
   savePortfolioItemsOrder,
@@ -23,15 +25,14 @@ import {
 } from "@/services/content/portfolioService";
 import type {
   CallToActionSection,
-  IconName,
   PortfolioCategoriesIntroSection,
   PortfolioCategory,
   PortfolioHeroSection,
   PortfolioIntroSection,
   PortfolioItem,
 } from "@/types/content";
+import { ICON_OPTIONS } from "@/types/content";
 
-const iconOptions: IconName[] = ["map-pin", "sparkles", "heart", "film", "plane", "calendar", "clock", "palette", "eye"];
 const queryKey = ["admin", "page", "portfolio"];
 
 const moveItem = <T,>(items: T[], fromIndex: number, toIndex: number) => {
@@ -106,9 +107,15 @@ const PortfolioCategoryEditor = ({
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const [baselineValue, setBaselineValue] = useState(initialValue);
+  const userMadeChanges = JSON.stringify(draft) !== JSON.stringify(baselineValue);
+
   useEffect(() => {
-    setDraft(initialValue);
-  }, [initialValue]);
+    if (!userMadeChanges) {
+      setDraft(initialValue);
+      setBaselineValue(initialValue);
+    }
+  }, [initialValue, userMadeChanges]);
 
   const isDirty = JSON.stringify(draft) !== JSON.stringify(initialValue);
 
@@ -128,6 +135,7 @@ const PortfolioCategoryEditor = ({
 
     try {
       await onSave(draft);
+      setBaselineValue(draft);
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Unable to save this category.");
     } finally {
@@ -172,7 +180,7 @@ const PortfolioCategoryEditor = ({
                 <SelectValue placeholder="Choose an icon" />
               </SelectTrigger>
               <SelectContent>
-                {iconOptions.map((icon) => (
+                {ICON_OPTIONS.map((icon) => (
                   <SelectItem key={icon} value={icon}>
                     {icon}
                   </SelectItem>
@@ -224,6 +232,7 @@ const PortfolioCategoryEditor = ({
 };
 
 const AdminPortfolioPage = () => {
+  const { toast } = useToast();
   const queryClient = useQueryClient();
   const { data, isLoading, error, refetch } = useQuery({
     queryKey,
@@ -258,8 +267,16 @@ const AdminPortfolioPage = () => {
   }
 
   const saveAndRefresh = async (callback: () => Promise<void>) => {
-    await callback();
-    await invalidateAllContent(queryClient);
+    try {
+      await callback();
+      await invalidateAllContent(queryClient);
+    } catch (error) {
+      toast({ 
+        variant: "destructive", 
+        title: "Action failed", 
+        description: error instanceof Error ? error.message : "An unexpected error occurred." 
+      });
+    }
   };
 
   return (
@@ -439,4 +456,3 @@ const AdminPortfolioPage = () => {
 };
 
 export default AdminPortfolioPage;
-

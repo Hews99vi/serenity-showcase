@@ -38,11 +38,20 @@ const PortfolioItemForm = ({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  
+  // Keep track of the baseline to know if the user has made changes
+  const [baselineValue, setBaselineValue] = useState(initialValue);
+  const normalizedYoutubeInput = parseYoutubeId(youtubeInput) ?? youtubeInput;
+  const normalizedBaselineYoutube = parseYoutubeId(baselineValue.youtubeId) ?? baselineValue.youtubeId;
+  const userMadeChanges = JSON.stringify({ ...draft, youtubeId: normalizedYoutubeInput }) !== JSON.stringify({ ...baselineValue, youtubeId: normalizedBaselineYoutube });
 
   useEffect(() => {
-    setDraft(initialValue);
-    setYoutubeInput(initialValue.youtubeId);
-  }, [initialValue]);
+    if (!userMadeChanges) {
+      setDraft(initialValue);
+      setYoutubeInput(initialValue.youtubeId);
+      setBaselineValue(initialValue);
+    }
+  }, [initialValue, userMadeChanges]);
 
   const normalizedYoutubeId = useMemo(() => parseYoutubeId(youtubeInput), [youtubeInput]);
   const thumbnailUrl = useMemo(() => getYoutubeThumbnailUrl(youtubeInput), [youtubeInput]);
@@ -75,6 +84,7 @@ const PortfolioItemForm = ({
         ...draft,
         youtubeId: normalizedYoutubeId,
       });
+      setBaselineValue({ ...draft, youtubeId: normalizedYoutubeId });
       toast({ title: "Saved", description: `${title} has been updated.` });
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unable to save this film.";

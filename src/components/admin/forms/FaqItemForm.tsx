@@ -36,9 +36,15 @@ const FaqItemForm = ({
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const [baselineValue, setBaselineValue] = useState(initialValue);
+  const userMadeChanges = JSON.stringify(draft) !== JSON.stringify(baselineValue);
+
   useEffect(() => {
-    setDraft(initialValue);
-  }, [initialValue]);
+    if (!userMadeChanges) {
+      setDraft(initialValue);
+      setBaselineValue(initialValue);
+    }
+  }, [initialValue, userMadeChanges]);
 
   const isDirty = useMemo(() => JSON.stringify(draft) !== JSON.stringify(initialValue), [draft, initialValue]);
 
@@ -58,6 +64,7 @@ const FaqItemForm = ({
 
     try {
       await onSave(draft);
+      setBaselineValue(draft);
       toast({ title: "Saved", description: `${title} has been updated.` });
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unable to save this FAQ item.";

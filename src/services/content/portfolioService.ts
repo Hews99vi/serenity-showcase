@@ -18,6 +18,7 @@ import type {
   PortfolioIntroSection,
   PortfolioItem,
 } from "@/types/content";
+import { isIconName } from "@/types/content";
 
 export interface PortfolioContent {
   hero: PortfolioHeroSection;
@@ -72,7 +73,7 @@ const mapPortfolioCategoryRow = (row: Record<string, unknown>): PortfolioCategor
   const iconName = row.icon_name as PortfolioCategory["iconName"] | undefined;
   const image = row.image_url as string | undefined;
 
-  if (!dbId || !slug || !title || !subtitle || !description || !iconName || !image) {
+  if (!dbId || !slug || !title || !subtitle || !description || !iconName || !isIconName(iconName) || !image) {
     return null;
   }
 
@@ -316,19 +317,24 @@ export const savePortfolioCategory = async (category: PortfolioCategory): Promis
 
 export const savePortfolioCategoriesOrder = async (categories: PortfolioCategory[]): Promise<void> => {
   const client = requireSupabaseClient();
-  const rows = categories
+  const updatePromises = categories
     .filter((category) => category.dbId)
-    .map((category, index) => ({
-      id: category.dbId,
-      sort_order: index + 1,
-      is_active: category.isActive ?? true,
-    }));
+    .map((category, index) =>
+      client
+        .from("portfolio_categories")
+        .update({
+          sort_order: index + 1,
+          is_active: category.isActive ?? true,
+        })
+        .eq("id", category.dbId)
+    );
 
-  if (!rows.length) {
+  if (!updatePromises.length) {
     return;
   }
 
-  const { error } = await client.from("portfolio_categories").upsert(rows, { onConflict: "id" });
+  const results = await Promise.all(updatePromises);
+  const error = results.find((res) => res.error)?.error;
 
   if (error) {
     throw error;
@@ -401,21 +407,26 @@ export const savePortfolioItem = async (
 
 export const savePortfolioItemsOrder = async (items: PortfolioItem[]): Promise<void> => {
   const client = requireSupabaseClient();
-  const rows = items
+  const updatePromises = items
     .filter((item) => item.dbId)
-    .map((item, index) => ({
-      id: item.dbId,
-      sort_order: index + 1,
-      featured_on_home: item.featuredOnHome,
-      home_feature_order: item.homeFeatureOrder ?? null,
-      is_published: item.isPublished ?? true,
-    }));
+    .map((item, index) =>
+      client
+        .from("portfolio_items")
+        .update({
+          sort_order: index + 1,
+          featured_on_home: item.featuredOnHome,
+          home_feature_order: item.homeFeatureOrder ?? null,
+          is_published: item.isPublished ?? true,
+        })
+        .eq("id", item.dbId)
+    );
 
-  if (!rows.length) {
+  if (!updatePromises.length) {
     return;
   }
 
-  const { error } = await client.from("portfolio_items").upsert(rows, { onConflict: "id" });
+  const results = await Promise.all(updatePromises);
+  const error = results.find((res) => res.error)?.error;
 
   if (error) {
     throw error;

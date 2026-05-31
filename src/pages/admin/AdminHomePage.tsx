@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 import AdminQueryState from "@/components/admin/AdminQueryState";
 import SectionFormCard from "@/components/admin/forms/SectionFormCard";
 import {
@@ -28,6 +30,7 @@ import type {
   SectionIntro,
   Testimonial,
 } from "@/types/content";
+import { ICON_OPTIONS } from "@/types/content";
 
 const homeSectionDefaults = {
   "home.hero": homeHero,
@@ -96,6 +99,7 @@ const invalidateAllContent = async (queryClient: ReturnType<typeof useQueryClien
 };
 
 const AdminHomePage = () => {
+  const { toast } = useToast();
   const queryClient = useQueryClient();
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: homeQueryKey,
@@ -182,6 +186,13 @@ const AdminHomePage = () => {
       }));
       await savePortfolioItemsOrder(nextItems);
       await invalidateAllContent(queryClient);
+      toast({ title: "Saved", description: "Featured films order updated." });
+    } catch (error) {
+      toast({ 
+        variant: "destructive", 
+        title: "Save failed", 
+        description: error instanceof Error ? error.message : "Unable to save featured films." 
+      });
     } finally {
       setIsSavingFeatured(false);
     }
@@ -198,6 +209,13 @@ const AdminHomePage = () => {
       }));
       await saveTestimonialsOrder(nextTestimonials);
       await invalidateAllContent(queryClient);
+      toast({ title: "Saved", description: "Homepage testimonials updated." });
+    } catch (error) {
+      toast({ 
+        variant: "destructive", 
+        title: "Save failed", 
+        description: error instanceof Error ? error.message : "Unable to save homepage testimonials." 
+      });
     } finally {
       setIsSavingTestimonials(false);
     }
@@ -330,23 +348,28 @@ const AdminHomePage = () => {
             <div className="space-y-4">
               {values.features.map((feature, index) => (
                 <div key={`${feature.title}-${index}`} className="grid gap-3 rounded-lg border p-3 md:grid-cols-3">
-                  <input className="hidden" readOnly value={feature.iconName} />
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Icon name</label>
-                    <input
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    <Select
                       value={feature.iconName}
-                      onChange={(event) =>
+                      onValueChange={(value: FeatureItem["iconName"]) =>
                         setValues((current) => ({
                           ...current,
                           features: current.features.map((currentFeature, featureIndex) =>
-                            featureIndex === index
-                              ? { ...currentFeature, iconName: event.target.value as FeatureItem["iconName"] }
-                              : currentFeature,
+                            featureIndex === index ? { ...currentFeature, iconName: value } : currentFeature,
                           ),
                         }))
                       }
-                    />
+                    >
+                      <SelectTrigger className="flex h-10 w-full bg-background">
+                        <SelectValue placeholder="Choose an icon" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {ICON_OPTIONS.map((icon) => (
+                          <SelectItem key={icon} value={icon}>{icon}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Title</label>
