@@ -11,6 +11,8 @@ const PhilosophySection = ({ content }: PhilosophySectionProps) => {
   const videoRef = useRef<HTMLDivElement>(null);
   const isVideoInView = useInView(videoRef, { once: true, margin: "-100px" });
   const videoId = parseYoutubeId(content.videoUrl);
+  const philosophyValues =
+    content.valuesLine.match(/[\p{L}\p{N}]+(?:['\u2019][\p{L}\p{N}]+)?/gu) ?? [];
   const autoplayVideoUrl =
     getYoutubeEmbedUrl(content.videoUrl, {
       autoplay: 1,
@@ -70,9 +72,17 @@ const PhilosophySection = ({ content }: PhilosophySectionProps) => {
               ))}
               <div className="flex items-center gap-3 sm:gap-4 pt-4 justify-center lg:justify-start">
                 <div className="w-8 sm:w-12 h-px bg-charcoal/30" />
-                <span className="text-charcoal/60 text-xs sm:text-sm tracking-wider uppercase">
-                  {content.valuesLine}
-                </span>
+                <div
+                  className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 text-charcoal/60 text-xs sm:text-sm tracking-wider uppercase"
+                  aria-label={philosophyValues.join(", ")}
+                >
+                  {philosophyValues.map((value, index) => (
+                    <span key={`${value}-${index}`} className="inline-flex items-center gap-2.5 sm:gap-3">
+                      {index > 0 && <span aria-hidden="true" className="w-1.5 h-1.5 rotate-45 bg-charcoal/40" />}
+                      <span>{value}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

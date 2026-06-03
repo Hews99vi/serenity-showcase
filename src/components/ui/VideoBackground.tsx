@@ -103,7 +103,7 @@ const VideoBackground = ({ src, className = "", overlayClassName }: VideoBackgro
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
         onCanPlay={handleCanPlay}
         onLoadedData={handleCanPlay}
@@ -127,4 +127,3 @@ const VideoBackground = ({ src, className = "", overlayClassName }: VideoBackgro
 };
 
 export default VideoBackground;
-
