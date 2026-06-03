@@ -1,11 +1,25 @@
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 import type { HomePhilosophySection } from "@/types/content";
-import { getYoutubeEmbedUrl } from "@/lib/youtube";
+import { getYoutubeEmbedUrl, parseYoutubeId } from "@/lib/youtube";
 
 interface PhilosophySectionProps {
   content: HomePhilosophySection;
 }
 
 const PhilosophySection = ({ content }: PhilosophySectionProps) => {
+  const videoRef = useRef<HTMLDivElement>(null);
+  const isVideoInView = useInView(videoRef, { once: true, margin: "-100px" });
+  const videoId = parseYoutubeId(content.videoUrl);
+  const autoplayVideoUrl =
+    getYoutubeEmbedUrl(content.videoUrl, {
+      autoplay: 1,
+      mute: 1,
+      loop: 1,
+      playsinline: 1,
+      ...(videoId ? { playlist: videoId } : {}),
+    }) || content.videoUrl;
+
   return (
     <section id="philosophy" className="section-light section-padding">
       <div className="section-container">
@@ -17,15 +31,22 @@ const PhilosophySection = ({ content }: PhilosophySectionProps) => {
               <div className="hidden sm:block absolute -top-6 -left-6 w-20 sm:w-24 h-20 sm:h-24 border-t-2 border-l-2 border-charcoal/20" />
               <div className="hidden sm:block absolute -bottom-6 -right-6 w-20 sm:w-24 h-20 sm:h-24 border-b-2 border-r-2 border-charcoal/20" />
 
-              <div className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-xl">
-                <iframe
-                  src={getYoutubeEmbedUrl(content.videoUrl) || content.videoUrl}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  loading="lazy"
-                  title={content.videoTitle}
-                  className="w-full h-full"
-                  allowFullScreen
-                />
+              <div
+                ref={videoRef}
+                className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-xl"
+              >
+                {isVideoInView ? (
+                  <iframe
+                    src={autoplayVideoUrl}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    loading="lazy"
+                    title={content.videoTitle}
+                    className="w-full h-full border-0"
+                    allowFullScreen
+                  />
+                ) : (
+                  <div className="w-full h-full bg-charcoal/5 animate-pulse" />
+                )}
               </div>
             </div>
           </div>

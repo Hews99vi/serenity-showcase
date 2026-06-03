@@ -1,11 +1,25 @@
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 import type { HomeIntroSection } from "@/types/content";
-import { getYoutubeEmbedUrl } from "@/lib/youtube";
+import { getYoutubeEmbedUrl, parseYoutubeId } from "@/lib/youtube";
 
 interface IntroSectionProps {
   content: HomeIntroSection;
 }
 
 const IntroSection = ({ content }: IntroSectionProps) => {
+  const videoRef = useRef<HTMLDivElement>(null);
+  const isVideoInView = useInView(videoRef, { once: true, margin: "-100px" });
+  const videoId = parseYoutubeId(content.videoUrl);
+  const autoplayVideoUrl =
+    getYoutubeEmbedUrl(content.videoUrl, {
+      autoplay: 1,
+      mute: 1,
+      loop: 1,
+      playsinline: 1,
+      ...(videoId ? { playlist: videoId } : {}),
+    }) || content.videoUrl;
+
   return (
     <section className="section-dark section-padding">
       <div className="section-container">
@@ -38,15 +52,22 @@ const IntroSection = ({ content }: IntroSectionProps) => {
               <div className="hidden sm:block absolute -inset-4 border border-cream/20 rounded-2xl" />
               <div className="hidden sm:block absolute -inset-8 border border-cream/10 rounded-3xl" />
 
-              <div className="relative w-[240px] sm:w-[280px] h-[420px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl">
-                <iframe
-                  src={getYoutubeEmbedUrl(content.videoUrl) || content.videoUrl}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  loading="lazy"
-                  title={content.videoTitle}
-                  className="w-full h-full"
-                  allowFullScreen
-                />
+              <div
+                ref={videoRef}
+                className="relative w-[240px] sm:w-[280px] h-[420px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl"
+              >
+                {isVideoInView ? (
+                  <iframe
+                    src={autoplayVideoUrl}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    loading="lazy"
+                    title={content.videoTitle}
+                    className="w-full h-full border-0"
+                    allowFullScreen
+                  />
+                ) : (
+                  <div className="w-full h-full bg-cream/5 animate-pulse" />
+                )}
               </div>
 
               {/* Subtle glow effect */}

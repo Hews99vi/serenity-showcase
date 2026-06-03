@@ -1,7 +1,8 @@
+import { useRef } from "react";
 import { Film, Sparkles, Eye, ChevronDown, Heart, MapPin, Plane, Calendar, Clock, Palette } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import type { HomeQualitySection, IconName } from "@/types/content";
-import { getYoutubeEmbedUrl } from "@/lib/youtube";
+import { getYoutubeEmbedUrl, parseYoutubeId } from "@/lib/youtube";
 
 const iconMap: Record<IconName, typeof Eye> = {
   eye: Eye,
@@ -20,6 +21,18 @@ interface QualitySectionProps {
 }
 
 const QualitySection = ({ content }: QualitySectionProps) => {
+  const videoRef = useRef<HTMLDivElement>(null);
+  const isVideoInView = useInView(videoRef, { once: true, margin: "-100px" });
+  const videoId = parseYoutubeId(content.videoUrl);
+  const autoplayVideoUrl =
+    getYoutubeEmbedUrl(content.videoUrl, {
+      autoplay: 1,
+      mute: 1,
+      loop: 1,
+      playsinline: 1,
+      ...(videoId ? { playlist: videoId } : {}),
+    }) || content.videoUrl;
+
   const scrollToFeatured = () => {
     const element = document.getElementById("featured");
     if (element) {
@@ -88,15 +101,22 @@ const QualitySection = ({ content }: QualitySectionProps) => {
               />
               <div className="hidden sm:block absolute inset-0 -m-16 rounded-full border border-cream/5" />
 
-              <div className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl ring-1 ring-cream/20">
-                <iframe
-                  src={getYoutubeEmbedUrl(content.videoUrl) || content.videoUrl}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  loading="lazy"
-                  title={content.videoTitle}
-                  className="w-full h-full"
-                  allowFullScreen
-                />
+              <div
+                ref={videoRef}
+                className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl ring-1 ring-cream/20"
+              >
+                {isVideoInView ? (
+                  <iframe
+                    src={autoplayVideoUrl}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    loading="lazy"
+                    title={content.videoTitle}
+                    className="w-full h-full border-0"
+                    allowFullScreen
+                  />
+                ) : (
+                  <div className="w-full h-full bg-cream/5 animate-pulse" />
+                )}
               </div>
 
               {/* Ambient glow */}
