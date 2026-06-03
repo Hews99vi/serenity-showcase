@@ -1,4 +1,5 @@
 import type { HomeIntroSection } from "@/types/content";
+import { getYoutubeEmbedUrl } from "@/lib/youtube";
 
 interface IntroSectionProps {
   content: HomeIntroSection;
@@ -39,7 +40,7 @@ const IntroSection = ({ content }: IntroSectionProps) => {
 
               <div className="relative w-[240px] sm:w-[280px] h-[420px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl">
                 <iframe
-                  src={content.videoUrl}
+                  src={getYoutubeEmbedUrl(content.videoUrl) || content.videoUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   loading="lazy"
                   title={content.videoTitle}

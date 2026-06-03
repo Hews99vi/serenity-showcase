@@ -1,4 +1,5 @@
 import type { HomePhilosophySection } from "@/types/content";
+import { getYoutubeEmbedUrl } from "@/lib/youtube";
 
 interface PhilosophySectionProps {
   content: HomePhilosophySection;
@@ -18,7 +19,7 @@ const PhilosophySection = ({ content }: PhilosophySectionProps) => {
 
               <div className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-xl">
                 <iframe
-                  src={content.videoUrl}
+                  src={getYoutubeEmbedUrl(content.videoUrl) || content.videoUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   loading="lazy"
                   title={content.videoTitle}

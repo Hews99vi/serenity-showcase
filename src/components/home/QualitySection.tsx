@@ -1,6 +1,7 @@
 import { Film, Sparkles, Eye, ChevronDown, Heart, MapPin, Plane, Calendar, Clock, Palette } from "lucide-react";
 import { motion } from "framer-motion";
 import type { HomeQualitySection, IconName } from "@/types/content";
+import { getYoutubeEmbedUrl } from "@/lib/youtube";
 
 const iconMap: Record<IconName, typeof Eye> = {
   eye: Eye,
@@ -89,7 +90,7 @@ const QualitySection = ({ content }: QualitySectionProps) => {
 
               <div className="relative w-[220px] sm:w-[280px] h-[380px] sm:h-[500px] rounded-xl overflow-hidden shadow-2xl ring-1 ring-cream/20">
                 <iframe
-                  src={content.videoUrl}
+                  src={getYoutubeEmbedUrl(content.videoUrl) || content.videoUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   loading="lazy"
                   title={content.videoTitle}
