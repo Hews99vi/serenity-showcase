@@ -9,7 +9,7 @@ export const siteSettings: SiteSettings = {
   whatsappNumber: "94771234567",
   whatsappPrefillMessage: "Hi! I'm interested in your wedding videography services.",
   locationLabel: "Sri Lanka",
-  footerCopyrightText: "© 2026 SERENITY WEDDING FILMS (PVT) LTD",
+  footerCopyrightText: "Â© 2026 SERENITY WEDDING FILMS (PVT) LTD",
   footerCreditText: "All photographs are the property of their respective owners",
   defaultOgImageUrl: "https://serenityweddingfilms.com/og-image.jpg",
   themeColor: "#2D2D2D",

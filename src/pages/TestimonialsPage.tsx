@@ -343,7 +343,13 @@ const TestimonialsPage = () => {
 
                   <Quote className="w-8 h-8 text-cream/20 rotate-180 mb-4" />
                   <h3 className="text-2xl md:text-3xl font-script text-cream mb-2">{selectedTestimonial.coupleName}</h3>
-                  <p className="text-cream/40 text-xs tracking-widest uppercase mb-6">{selectedTestimonial.eventType} • {selectedTestimonial.eventYear} • {selectedTestimonial.location}</p>
+                  <div className="flex flex-wrap items-center gap-2 text-cream/40 text-xs tracking-widest uppercase mb-6">
+                    <span className="whitespace-nowrap">{selectedTestimonial.eventType}</span>
+                    <span className="w-1 h-1 rounded-full bg-cream/30 flex-shrink-0" />
+                    <span className="whitespace-nowrap">{selectedTestimonial.eventYear}</span>
+                    <span className="w-1 h-1 rounded-full bg-cream/30 flex-shrink-0" />
+                    <span className="whitespace-nowrap">{selectedTestimonial.location}</span>
+                  </div>
                   <p className="text-cream/70 text-sm md:text-base leading-relaxed">{selectedTestimonial.fullQuote}</p>
 
                   <div className="mt-8 pt-6 border-t border-cream/10 flex items-center gap-4">

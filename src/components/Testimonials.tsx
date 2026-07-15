@@ -220,9 +220,13 @@ const Testimonials = ({ intro, testimonials }: TestimonialsProps) => {
                 {selectedTestimonial.coupleName}
               </h3>
 
-              <p className="text-cream/40 text-xs tracking-widest uppercase mb-8">
-                {selectedTestimonial.eventType} | {selectedTestimonial.eventYear}
-              </p>
+              <div className="flex flex-wrap items-center gap-2 text-cream/40 text-xs tracking-widest uppercase mb-8">
+                <span className="whitespace-nowrap">{selectedTestimonial.eventType}</span>
+                <span className="w-1 h-1 rounded-full bg-cream/30 flex-shrink-0" />
+                <span className="whitespace-nowrap">{selectedTestimonial.eventYear}</span>
+                <span className="w-1 h-1 rounded-full bg-cream/30 flex-shrink-0" />
+                <span className="whitespace-nowrap">{selectedTestimonial.location}</span>
+              </div>
 
               <p className="text-cream/80 text-base md:text-lg leading-relaxed">
                 {selectedTestimonial.fullQuote}
